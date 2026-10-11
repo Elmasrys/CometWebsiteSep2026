@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+<symbol id="shen" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="27" r="18"/><path d="M10 49 H54 M24 43 V49 M40 43 V49"/></symbol>
+<symbol id="akhet" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 50 H60 M4 50 L17 24 L25 42 M60 50 L47 24 L39 42"/><circle cx="32" cy="40" r="8"/></symbol>
+<symbol id="columns" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12 H56 M12 18 H52 M8 54 H56 M12 48 H52 M17 18 V48 M25 18 V48 M39 18 V48 M47 18 V48"/></symbol>
+<symbol id="switch" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="18" width="52" height="28" rx="14"/><circle cx="44" cy="32" r="8"/></symbol>
+</svg>
