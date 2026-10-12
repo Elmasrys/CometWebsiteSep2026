@@ -46,47 +46,67 @@ window.matchMedia('(min-width: 981px)').addEventListener('change', e => {
   if (e.matches && nav?.classList.contains('open')) setMobileMenu(false);
 });
 
-// ---------- Opening film (home page) ----------
-const intro = document.querySelector('.intro-film');
-if (intro && !root.classList.contains('intro-seen')) {
-  const lines = [...intro.querySelectorAll('.film-line')];
-  const end = intro.querySelector('.film-end');
-  const enter = intro.querySelector('.film-enter');
-  const skip = intro.querySelector('.film-skip');
-  const timers = [];
-  const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+// ---------- Opening film, played inside the home page hero ----------
+const hero = document.querySelector('.hero[data-film]');
+if (hero) {
+  const lines = [...hero.querySelectorAll('.film-line')];
+  const control = hero.querySelector('.film-control');
+  const STEP = 1700;
+  let index = 0;
+  let timer = null;
 
-  const finish = () => {
-    timers.forEach(clearTimeout);
-    intro.classList.add('hidden');
-    try { sessionStorage.setItem('comet-intro-seen', '1'); } catch (e) { /* ignore */ }
-    document.getElementById('main')?.focus({ preventScroll: true });
+  const label = (text, aria) => { control.textContent = text; control.setAttribute('aria-label', aria); };
+  const clearLines = () => lines.forEach(l => l.classList.remove('show'));
+
+  const settle = () => {
+    clearTimeout(timer);
+    clearLines();
+    hero.classList.remove('playing', 'paused');
+    hero.classList.add('film-done');
+    root.classList.add('film-seen');
+    label('Replay', 'Replay the opening film');
+    try { sessionStorage.setItem('comet-film-seen', '1'); } catch (e) { /* ignore */ }
   };
-  const resolve = () => {
-    lines.forEach(l => l.classList.remove('show'));
-    intro.classList.add('lit', 'resolved');
-    end.classList.add('show');
-    intro.focus({ preventScroll: true });
+  const tick = () => {
+    clearLines();
+    if (index < lines.length) {
+      lines[index++].classList.add('show');
+      timer = setTimeout(tick, STEP);
+    } else {
+      timer = setTimeout(settle, 400);
+    }
+  };
+  const play = () => {
+    index = 0;
+    hero.style.setProperty('--film-duration', `${lines.length * STEP}ms`);
+    hero.classList.remove('film-done', 'paused', 'playing');
+    root.classList.remove('film-seen');
+    void hero.offsetWidth; // restart the dawn animation
+    hero.classList.add('playing');
+    label('Pause', 'Pause the opening film');
+    timer = setTimeout(tick, 500);
   };
 
-  skip.addEventListener('click', finish);
-  enter.addEventListener('click', finish);
-  intro.addEventListener('keydown', e => { if (e.key === 'Escape') finish(); });
-  intro.setAttribute('tabindex', '-1');
-  intro.focus({ preventScroll: true });
+  control.hidden = false;
+  control.addEventListener('click', () => {
+    if (hero.classList.contains('film-done')) return play();
+    if (hero.classList.contains('paused')) {
+      hero.classList.remove('paused');
+      label('Pause', 'Pause the opening film');
+      timer = setTimeout(tick, STEP / 2);
+    } else {
+      clearTimeout(timer);
+      hero.classList.add('paused');
+      label('Play', 'Resume the opening film');
+    }
+  });
+  // Anyone tabbing into the hero gets the real content immediately.
+  hero.querySelector('.hero-copy').addEventListener('focusin', () => {
+    if (!hero.classList.contains('film-done')) settle();
+  });
 
-  if (reducedMotion) {
-    resolve();
-  } else {
-    let i = 0;
-    const next = () => {
-      lines.forEach(l => l.classList.remove('show'));
-      if (i === 5) intro.classList.add('lit'); // the eclipse ignites on "AI is changing the fundamentals"
-      if (i < lines.length) { lines[i++].classList.add('show'); later(next, 1700); }
-      else later(resolve, 600);
-    };
-    later(next, 700);
-  }
+  if (root.classList.contains('film-seen')) settle();
+  else play();
 }
 document.getElementById('main')?.setAttribute('tabindex', '-1');
 
