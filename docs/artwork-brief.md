@@ -25,14 +25,20 @@ The site currently uses code-built placeholders (`public/images/*.svg`). This br
 
 ## Priority 1: replace the current placeholders
 
-### 1. Home hero, desktop: "The Gateway"
+### 1. Home hero, desktop: "The Gateway" (delivered)
+
+> **Status:** live as `public/images/home-hero-*` (AVIF, WebP and JPEG). The delivered file is 1586 × 992. If your tool can upscale or re-export it at 2400 × 1500, send that version for sharper results on large screens.
+
 - **File:** `home-hero.jpg` (replaces `hero-scene.svg`)
 - **Size:** 2400 × 1500 (16:10)
 - **Where:** full-screen home page hero, behind the opening film and headline
 - **Composition:** The camera looks down a monumental stone corridor toward an opening. The sun sits half-set on a distant desert horizon, centred in the opening at about **68% across and 60% down** the frame. The **left 45% must be deep shadow** (dark stone wall) because the headline sits there. A single small figure walks toward the light, about a fifth of the way up from the bottom, casting a long shadow toward the camera.
 - **Prompt:** A vast stone corridor of monumental sandstone walls framing a tall narrow opening; through it a low sun sits on a flat desert horizon, its light pouring down the corridor floor; a single small silhouetted figure walks toward the light, casting a long shadow toward the camera; the left side of the frame is a towering wall in deep shadow; symmetrical perspective, dust in the air catching the light.
 
-### 2. Home hero, mobile
+### 2. Home hero, mobile (optional now)
+
+> **Status:** the delivered desktop image crops well on phones, so this is only needed if you want a purpose-made vertical composition.
+
 - **File:** `home-hero-mobile.jpg`
 - **Size:** 1200 × 1500 (4:5)
 - **Where:** home hero on phones, where the scene sits above the headline

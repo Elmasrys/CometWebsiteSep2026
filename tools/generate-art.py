@@ -258,7 +258,7 @@ def icons():
 
 
 if __name__ == "__main__":
-    hero_scene()
+    # hero_scene() was the home hero placeholder; it is now the photograph public/images/home-hero-*.
     horizon()
     art_arch()
     art_columns()
