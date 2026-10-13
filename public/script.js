@@ -1,23 +1,12 @@
-const root = document.documentElement;
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// ---------- Current page in the nav ----------
-let current = location.pathname.split('/').pop() || 'index.html';
-if (!current.includes('.')) current += '.html';
-document.querySelectorAll('.nav a[href]').forEach(a => {
-  if (a.getAttribute('href') !== current) return;
-  a.setAttribute('aria-current', 'page');
-  if (a.hasAttribute('data-nav')) a.classList.add('active');
-  if (a.closest('.dropdown')) a.closest('.menu').querySelector('button').classList.add('active');
-});
-
-// ---------- Navigation: scrolled state, mobile menu, dropdown ----------
+// ---------- Navigation: mobile menu and "What we do" dropdown ----------
 const nav = document.querySelector('.nav');
 const navToggle = document.querySelector('.nav-toggle');
 const menu = document.querySelector('.menu');
 const menuButton = menu?.querySelector('button');
 
-const onScroll = () => nav?.classList.toggle('scrolled', window.scrollY > 24);
+const onScroll = () => nav?.classList.toggle('scrolled', window.scrollY > 8);
 onScroll();
 window.addEventListener('scroll', onScroll, { passive: true });
 
@@ -46,71 +35,21 @@ window.matchMedia('(min-width: 981px)').addEventListener('change', e => {
   if (e.matches && nav?.classList.contains('open')) setMobileMenu(false);
 });
 
-// ---------- Opening film, played inside the home page hero ----------
-const hero = document.querySelector('.hero[data-film]');
-if (hero) {
-  const lines = [...hero.querySelectorAll('.film-line')];
-  const control = hero.querySelector('.film-control');
-  const STEP = 1700;
-  let index = 0;
-  let timer = null;
-
-  const label = (text, aria) => { control.textContent = text; control.setAttribute('aria-label', aria); };
-  const clearLines = () => lines.forEach(l => l.classList.remove('show'));
-
-  const settle = () => {
-    clearTimeout(timer);
-    clearLines();
-    hero.classList.remove('playing', 'paused');
-    hero.classList.add('film-done');
-    root.classList.add('film-seen');
-    label('Replay', 'Replay the opening film');
-    try { sessionStorage.setItem('comet-film-seen', '1'); } catch (e) { /* ignore */ }
+// ---------- Hero: restrained parallax on the image ----------
+const parallax = document.querySelector('[data-parallax]');
+if (parallax && !reducedMotion) {
+  let ticking = false;
+  const update = () => {
+    const y = Math.min(window.scrollY, window.innerHeight);
+    parallax.style.transform = `translate3d(0, ${(y * 0.06).toFixed(1)}px, 0)`;
+    ticking = false;
   };
-  const tick = () => {
-    clearLines();
-    if (index < lines.length) {
-      lines[index++].classList.add('show');
-      timer = setTimeout(tick, STEP);
-    } else {
-      timer = setTimeout(settle, 400);
-    }
-  };
-  const play = () => {
-    index = 0;
-    hero.style.setProperty('--film-duration', `${lines.length * STEP}ms`);
-    hero.classList.remove('film-done', 'paused', 'playing');
-    root.classList.remove('film-seen');
-    void hero.offsetWidth; // restart the dawn animation
-    hero.classList.add('playing');
-    label('Pause', 'Pause the opening film');
-    timer = setTimeout(tick, 500);
-  };
-
-  control.hidden = false;
-  control.addEventListener('click', () => {
-    if (hero.classList.contains('film-done')) return play();
-    if (hero.classList.contains('paused')) {
-      hero.classList.remove('paused');
-      label('Pause', 'Pause the opening film');
-      timer = setTimeout(tick, STEP / 2);
-    } else {
-      clearTimeout(timer);
-      hero.classList.add('paused');
-      label('Play', 'Resume the opening film');
-    }
-  });
-  // Anyone tabbing into the hero gets the real content immediately.
-  hero.querySelector('.hero-copy').addEventListener('focusin', () => {
-    if (!hero.classList.contains('film-done')) settle();
-  });
-
-  if (root.classList.contains('film-seen')) settle();
-  else play();
+  window.addEventListener('scroll', () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }, { passive: true });
 }
-document.getElementById('main')?.setAttribute('tabindex', '-1');
 
-// ---------- Scroll reveal ----------
+// ---------- Scroll reveal and diagram animation ----------
 const revealables = document.querySelectorAll('.reveal');
 if ('IntersectionObserver' in window && !reducedMotion) {
   const io = new IntersectionObserver(entries => {
@@ -119,9 +58,10 @@ if ('IntersectionObserver' in window && !reducedMotion) {
       entry.target.classList.add('in');
       io.unobserve(entry.target);
     });
-  }, { rootMargin: '0px 0px -8% 0px' });
-  revealables.forEach((el, i) => {
-    el.style.transitionDelay = `${(i % 4) * 90}ms`;
+  }, { rootMargin: '0px 0px -10% 0px' });
+  revealables.forEach(el => {
+    const siblings = [...el.parentElement.children].filter(c => c.classList.contains('reveal'));
+    el.style.transitionDelay = `${Math.min(siblings.indexOf(el), 4) * 80}ms`;
     io.observe(el);
   });
 } else {
@@ -132,23 +72,16 @@ if ('IntersectionObserver' in window && !reducedMotion) {
 const form = document.getElementById('contact-form');
 if (form) {
   const params = new URLSearchParams(location.search);
-  const topic = params.get('topic');
   const select = form.elements.topic;
+  const topic = params.get('topic');
   if (topic && [...select.options].some(o => o.value === topic)) select.value = topic;
 
   const status = form.querySelector('.form-status');
-  const showSent = () => {
-    const done = document.createElement('div');
-    done.className = 'form-sent';
-    done.setAttribute('role', 'status');
-    done.innerHTML = '<div class="eyebrow">Thank you</div><h2>Your enquiry has been sent.</h2><p>We will be in touch shortly.</p>';
-    form.replaceWith(done);
-  };
-  if (params.get('sent') === '1') showSent();
-  if (params.get('error') === '1') {
-    status.textContent = 'Something went wrong sending your enquiry. Please try again.';
+  const showError = message => {
+    status.textContent = message;
     status.classList.add('error');
-  }
+  };
+  if (params.get('error') === '1') showError('Something went wrong sending your enquiry. Please try again.');
 
   form.addEventListener('submit', async e => {
     e.preventDefault();
@@ -157,17 +90,17 @@ if (form) {
     status.classList.remove('error');
     status.textContent = 'Sending…';
     try {
+      const data = Object.fromEntries(new FormData(form));
       const res = await fetch(form.action, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(Object.fromEntries(new FormData(form))),
+        body: JSON.stringify(data),
       });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(data.error || 'Something went wrong sending your enquiry. Please try again.');
-      showSent();
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(body.error || 'Something went wrong sending your enquiry. Please try again.');
+      location.assign('/enquiry-received.html');
     } catch (err) {
-      status.textContent = err.message;
-      status.classList.add('error');
+      showError(err.message);
       button.disabled = false;
     }
   });

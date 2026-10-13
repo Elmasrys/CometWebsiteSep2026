@@ -1,5 +1,7 @@
 # Comet Innovations: AI artwork brief
 
+> **Direction update (October 2026).** The site has moved from a cinematic presentation to an institutional, editorial one. Inner pages now use typographic heroes and need no imagery. Any new photography should show real business environments: leadership, industry, infrastructure, cities, complex operations, architecture, markets, physical businesses and decision environments. Avoid robots, glowing brains, neural networks, holographic interfaces, blue AI clichés, people pointing at screens, handshakes and obvious stock photography. Priority 2 below (Egyptian-motif page heroes) is **superseded** and should not be generated. Images 4 to 6 (card textures) and 18 to 26 remain optional.
+
 The site currently uses code-built placeholders (`public/images/*.svg`). This brief lists the images to generate with AI so they can be replaced with photographic artwork in the concept's visual language. Each item names the file it replaces or adds, where it appears, its size and how the composition must leave room for text.
 
 ## How to use this brief

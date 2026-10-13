@@ -1,0 +1,9 @@
+{
+  "_note": "Published articles live in src/insights/*.md. These are announced as forthcoming only and must not link anywhere until written.",
+  "forthcoming": [
+    { "category": "Work", "title": "Beyond Automation", "summary": "Automating a bad workflow creates a faster bad workflow." },
+    { "category": "Organisation", "title": "The AI-Native Operating Model", "summary": "When intelligence becomes available everywhere, traditional assumptions begin to change." },
+    { "category": "Strategy", "title": "Build, Buy or Partner?", "summary": "The answer depends less on technology than on where strategic advantage needs to reside." },
+    { "category": "Agents", "title": "The Economics of Agentic AI", "summary": "Agents matter when they begin changing the economics of complete workflows." }
+  ]
+}

@@ -258,8 +258,7 @@ def icons():
 
 
 if __name__ == "__main__":
-    # hero_scene() was the home hero placeholder; it is now the photograph public/images/home-hero-*.
-    horizon()
+    # hero_scene() and horizon() were placeholders for the earlier cinematic direction and are no longer used.
     art_arch()
     art_columns()
     art_stone()

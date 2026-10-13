@@ -1,0 +1,87 @@
+<!--meta {"title": "Privacy Policy", "description": "How Comet Innovations collects, uses and protects personal information submitted through this website."} -->
+<section class="page-hero page-hero-plain"><div class="shell">
+<p class="eyebrow">Legal</p>
+<h1>Privacy Policy</h1>
+<p>Effective date: <time datetime="{{legal.lastUpdated}}">{{legal.lastUpdatedLabel}}</time></p>
+</div></section>
+<section class="section"><div class="shell legal-layout"><div class="prose">
+
+<h2>Who we are</h2>
+<p>This website is operated by {{legal.entityName}}, trading as {{legal.tradingName}}. {{legal.entityName}} is {{legal.registration}}{{#legal.companyNumber}} with company number {{legal.companyNumber}}{{/legal.companyNumber}}.</p>
+<p>For the purposes of UK data protection law, {{legal.entityName}} is the controller of personal information collected through this website.</p>
+<p>Contact:</p>
+<address>{{legal.entityName}}<br>{{#legal.registeredAddress}}{{.}}<br>{{/legal.registeredAddress}}{{#legal.privacyEmail}}<a href="mailto:{{legal.privacyEmail}}">{{legal.privacyEmail}}</a>{{/legal.privacyEmail}}</address>
+{{^legal.privacyEmail}}<p>You can also reach us through our <a href="contact.html">contact page</a>.</p>{{/legal.privacyEmail}}
+
+<h2>Information we collect</h2>
+<p>We may collect information you provide directly to us when you:</p>
+<ul>
+<li>submit an enquiry</li>
+<li>request a Fundamentals Diagnostic</li>
+<li>subscribe to insights or updates</li>
+<li>otherwise contact {{legal.tradingName}}</li>
+</ul>
+<p>This may include your name, business email address, organisation, role, country or region, areas of interest and information contained in your message.</p>
+<p>We may also collect limited technical information about use of this website where lawful and subject to applicable consent requirements.</p>
+
+<h2>How we use information</h2>
+<p>We use personal information to:</p>
+<ul>
+<li>respond to enquiries</li>
+<li>evaluate potential engagements</li>
+<li>communicate regarding requested services</li>
+<li>operate and improve the website</li>
+<li>maintain appropriate business records</li>
+<li>comply with legal obligations</li>
+<li>send marketing communications where consent has been provided or another lawful basis applies</li>
+</ul>
+
+<h2>Legal bases</h2>
+<p>Depending on the circumstances, we process personal information on the basis of:</p>
+<ul>
+<li>consent</li>
+<li>legitimate interests</li>
+<li>steps taken before entering into a contract</li>
+<li>performance of a contract</li>
+<li>legal obligations</li>
+</ul>
+
+<h2>Marketing</h2>
+<p>Where marketing consent is requested, it is optional.</p>
+<p>You can withdraw consent or unsubscribe from marketing communications at any time.</p>
+
+<h2>Sharing information</h2>
+<p>We may use specialist service providers to operate our website, communications, analytics, CRM or other business systems.</p>
+{{#hasServiceProviders}}<p>The service providers currently used for this website are:</p>
+<ul>{{#legal.serviceProviders}}<li>{{name}}, which {{purpose}}</li>{{/legal.serviceProviders}}</ul>{{/hasServiceProviders}}
+<p>We require service providers handling personal data on our behalf to use it only for authorised purposes and to apply appropriate safeguards.</p>
+<p>We do not sell personal information.</p>
+
+<h2>International transfers</h2>
+<p>Where personal information is processed outside the United Kingdom, appropriate safeguards will be used where required by applicable law.</p>
+
+<h2>Retention</h2>
+<p>Personal information is retained only for as long as reasonably necessary for the purpose for which it was collected and to satisfy applicable legal, regulatory and business requirements.</p>
+{{#legal.retentionPeriod}}<p>{{legal.retentionPeriod}}</p>{{/legal.retentionPeriod}}
+
+<h2>Your rights</h2>
+<p>Depending on applicable law, you may have rights relating to:</p>
+<ul>
+<li>access</li>
+<li>correction</li>
+<li>deletion</li>
+<li>restriction</li>
+<li>objection</li>
+<li>portability</li>
+<li>withdrawal of consent</li>
+</ul>
+{{#legal.privacyEmail}}<p>Requests can be sent to: <a href="mailto:{{legal.privacyEmail}}">{{legal.privacyEmail}}</a></p>{{/legal.privacyEmail}}
+{{^legal.privacyEmail}}<p>Requests can be sent to us in writing at the address above or through our <a href="contact.html">contact page</a>.</p>{{/legal.privacyEmail}}
+<p>You may also have the right to complain to the UK Information Commissioner's Office.</p>
+
+<h2>Cookies</h2>
+<p>Our use of cookies and similar technologies is explained in our <a href="cookies.html">Cookie Policy</a>.</p>
+
+<h2>Changes to this policy</h2>
+<p>We may update this Privacy Policy from time to time. This version is effective from {{legal.lastUpdatedLabel}}.</p>
+</div></div></section>

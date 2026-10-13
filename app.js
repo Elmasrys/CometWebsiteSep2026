@@ -2,7 +2,8 @@ import express from 'express';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const publicDir = path.join(path.dirname(fileURLToPath(import.meta.url)), 'public');
+// The built site (see build.js). `npm start` builds it first.
+const siteDir = path.join(path.dirname(fileURLToPath(import.meta.url)), 'dist');
 
 export const TOPICS = {
   diagnostic: 'The Fundamentals Diagnostic',
@@ -10,27 +11,40 @@ export const TOPICS = {
   'work-redesign': 'Work Redesign',
   'operating-model': 'Operating Model',
   'venture-building': 'Venture Building',
-  education: 'Education & Capability',
-  other: 'Something Else',
+  education: 'Education and capability programmes',
+  other: 'Other',
 };
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const oneLine = v => String(v ?? '').replace(/[\r\n]+/g, ' ').trim();
+const ticked = v => v === true || v === 'yes' || v === 'on' || v === 'true';
 
 /** Returns { enquiry } or { error } for a submitted contact form body. */
 export function validateEnquiry(body = {}) {
   const enquiry = {
     name: oneLine(body.name),
-    organisation: oneLine(body.organisation),
     email: oneLine(body.email),
+    organisation: oneLine(body.organisation),
+    role: oneLine(body.role),
+    country: oneLine(body.country),
     topic: oneLine(body.topic),
     message: String(body.message ?? '').trim(),
+    consent: ticked(body.consent),
+    marketing: ticked(body.marketing),
   };
-  if (!enquiry.name || enquiry.name.length > 200) return { error: 'Please enter your name.' };
-  if (enquiry.organisation.length > 200) return { error: 'Organisation name is too long.' };
-  if (!EMAIL_RE.test(enquiry.email) || enquiry.email.length > 254) return { error: 'Please enter a valid email address.' };
-  if (!(enquiry.topic in TOPICS)) enquiry.topic = 'other';
+  const required = [
+    ['name', 200, 'Please enter your name.'],
+    ['organisation', 200, 'Please enter your organisation.'],
+    ['role', 200, 'Please enter your role.'],
+    ['country', 120, 'Please enter your country or region.'],
+  ];
+  for (const [field, max, message] of required) {
+    if (!enquiry[field] || enquiry[field].length > max) return { error: message };
+  }
+  if (!EMAIL_RE.test(enquiry.email) || enquiry.email.length > 254) return { error: 'Please enter a valid business email address.' };
+  if (!(enquiry.topic in TOPICS)) return { error: 'Please choose what you would like to discuss.' };
   if (enquiry.message.length > 5000) return { error: 'Please keep your message under 5,000 characters.' };
+  if (!enquiry.consent) return { error: 'Please confirm that we may process your information in accordance with the Privacy Policy.' };
   return { enquiry };
 }
 
@@ -51,9 +65,13 @@ export async function sendWithResend(enquiry, env = process.env) {
       subject: `Website enquiry: ${topic} (${enquiry.name})`,
       text: [
         `Name: ${enquiry.name}`,
-        `Organisation: ${enquiry.organisation || '-'}`,
-        `Email: ${enquiry.email}`,
+        `Business email: ${enquiry.email}`,
+        `Organisation: ${enquiry.organisation}`,
+        `Role: ${enquiry.role}`,
+        `Country or region: ${enquiry.country}`,
         `Topic: ${topic}`,
+        `Privacy consent: given at ${new Date().toISOString()}`,
+        `Marketing opt-in: ${enquiry.marketing ? 'yes' : 'no'}`,
         '',
         enquiry.message || '(no message)',
       ].join('\n'),
@@ -88,7 +106,7 @@ const wantsJson = req => (req.get('accept') || '').includes('application/json');
 function reply(req, res, status, body) {
   if (wantsJson(req)) return res.status(status).json(body);
   // Without JavaScript the form posts normally: send the visitor back to the page.
-  return res.redirect(303, status < 300 ? '/contact.html?sent=1' : '/contact.html?error=1');
+  return res.redirect(303, status < 300 ? '/enquiry-received.html' : '/contact.html?error=1');
 }
 
 const SECURITY_HEADERS = {
@@ -144,7 +162,7 @@ export function createApp({ sendEnquiry = sendWithResend, log = console, rateLim
   );
 
   app.use(
-    express.static(publicDir, {
+    express.static(siteDir, {
       extensions: ['html'],
       setHeaders(res, filePath) {
         if (filePath.includes(`${path.sep}fonts${path.sep}`)) {
@@ -158,6 +176,6 @@ export function createApp({ sendEnquiry = sendWithResend, log = console, rateLim
     }),
   );
 
-  app.use((req, res) => res.status(404).sendFile(path.join(publicDir, '404.html')));
+  app.use((req, res) => res.status(404).sendFile(path.join(siteDir, '404.html')));
   return app;
 }

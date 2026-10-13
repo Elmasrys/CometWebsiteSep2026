@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{page.title}} | {{site.name}}</title>
+<meta name="description" content="{{page.description}}">
+<meta property="og:site_name" content="{{site.name}}">
+<meta property="og:title" content="{{page.title}}">
+<meta property="og:description" content="{{page.description}}">
+<meta property="og:type" content="{{#page.ogType}}{{page.ogType}}{{/page.ogType}}{{^page.ogType}}website{{/page.ogType}}">
+{{#site.url}}<link rel="canonical" href="{{site.url}}{{page.path}}">{{/site.url}}
+{{#page.noindex}}<meta name="robots" content="noindex">{{/page.noindex}}
+<link rel="icon" href="comet-favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/cormorant-garamond-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css">
+<script src="head.js"></script>
+{{#page.head}}{{{page.head}}}{{/page.head}}
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="nav" aria-label="Main"><div class="shell nav-inner">
+<a class="brand" href="index.html"><img src="comet-lockup-horizontal-carbon.svg" alt="{{site.name}}" width="972" height="330"></a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+<div class="nav-links" id="nav-links">
+  <div class="menu"><button type="button" aria-expanded="false" aria-controls="menu-what-we-do">What we do</button>
+    <div class="dropdown" id="menu-what-we-do">
+      <a href="what-we-do.html">Overview</a>
+      <a href="value-creation.html">Value creation</a>
+      <a href="work-redesign.html">Work redesign</a>
+      <a href="operating-model.html">Operating model</a>
+      <a href="venture-building.html">Venture building</a>
+      <a href="diagnostic.html">Fundamentals diagnostic</a>
+    </div>
+  </div>
+  <a href="our-work.html">Work</a>
+  <a href="insights.html">Insights</a>
+  <a href="rd.html">R&amp;D</a>
+  <a href="about.html">About</a>
+  <a class="nav-cta" href="contact.html">Start a conversation</a>
+</div>
+</div></nav>
+
+<main id="main" tabindex="-1">
+{{{main}}}
+</main>
+
+<footer class="footer">
+<div class="shell footer-grid">
+  <div class="footer-brand">
+    <img class="footer-logo" src="comet-lockup-horizontal-white.svg" alt="{{site.name}}" width="972" height="330" loading="lazy">
+    <p class="footer-category">{{site.category}}</p>
+    <p class="footer-question">{{site.question}}</p>
+  </div>
+  <nav class="footer-col" aria-label="Footer">
+    <h2>Navigation</h2>
+    <ul>
+      <li><a href="what-we-do.html">What We Do</a></li>
+      <li><a href="our-work.html">Our Work</a></li>
+      <li><a href="insights.html">Insights</a></li>
+      <li><a href="rd.html">R&amp;D</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="footer-col">
+    <h2>Legal</h2>
+    <ul>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="cookies.html">Cookie Policy</a></li>
+      <li><a href="terms.html">Website Terms</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    {{#site.linkedin}}<h2>Social</h2>
+    <ul><li><a href="{{site.linkedin}}" rel="noopener" target="_blank">LinkedIn<span class="visually-hidden"> (opens in a new tab)</span></a></li></ul>{{/site.linkedin}}
+    <h2>Location</h2>
+    <p>{{site.office}}</p>
+  </div>
+</div>
+<div class="shell footer-bottom">
+  <p>&copy; {{year}} {{site.name}}.{{#legal.entityName}} {{site.name}} is a trading name of {{legal.entityName}}{{#legal.companyNumber}}, company number {{legal.companyNumber}}{{/legal.companyNumber}}{{#legal.addressLine}}. Registered office: {{legal.addressLine}}{{/legal.addressLine}}.{{/legal.entityName}}</p>
+</div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>

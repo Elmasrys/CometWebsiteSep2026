@@ -1,0 +1,36 @@
+{
+  "people": [
+    {
+      "slug": "sherif-elmasry",
+      "name": "Sherif Elmasry",
+      "title": "Founder & Managing Partner",
+      "linkedin": "https://www.linkedin.com/in/skm003",
+      "portrait": "",
+      "bio": [
+        "A business and technology leader with more than two decades of experience across corporate strategy, transformation, technology, business building and operating leadership.",
+        "His career spans large multinational organisations, growth businesses and entrepreneurial ventures across the UK, Middle East and Africa. He has led major transformation programmes, built and scaled businesses, worked with boards and executive teams, supported M&A and post-merger integration, and developed new ventures at the intersection of technology and commercial strategy.",
+        "At Comet, his work focuses on the economic implications of artificial intelligence: where it changes customer value, how work is organised, how enterprises operate and what new businesses become possible.",
+        "He also works with senior executives through executive education and leadership programmes, bringing together strategy, AI, innovation and practical operating experience."
+      ],
+      "expertise": [
+        "AI transformation",
+        "Corporate strategy",
+        "Venture building",
+        "Business model innovation",
+        "Operating model transformation",
+        "Technology strategy",
+        "Commercialisation",
+        "M&A and post-merger integration",
+        "Turnaround and growth",
+        "Executive education"
+      ],
+      "experience": [
+        { "heading": "Multinational transformation", "text": "Led technology, governance and transformation work within major multinational environments, including complex cross-market organisations." },
+        { "heading": "Operating leadership", "text": "Held managing director and board-level operating responsibilities across businesses spanning multiple countries and more than 1,000 employees." },
+        { "heading": "Business building", "text": "Built and developed technology and services ventures across the UK and Middle East, including fundraising, partnerships, commercialisation and market entry." },
+        { "heading": "Corporate development", "text": "Worked across M&A, post-merger integration, strategic partnerships, joint ventures and investment-led growth." },
+        { "heading": "Executive education", "text": "Works with senior leaders through international executive education programmes focused on strategy, transformation, innovation and artificial intelligence." }
+      ]
+    }
+  ]
+}

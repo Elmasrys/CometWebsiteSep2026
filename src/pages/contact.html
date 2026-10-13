@@ -1,0 +1,49 @@
+<!--meta {"title": "Contact", "description": "Start with the business question. Tell Comet Innovations where AI might be changing the economics of your business."} -->
+<section class="page-hero"><div class="shell">
+<p class="eyebrow">Contact</p>
+<h1>Start with the business question.</h1>
+<ul class="hero-structure">
+<li>What is changing in your business?</li>
+<li>Where might AI change the economics?</li>
+<li>What are you considering building?</li>
+</ul>
+<p>Tell us where the question begins.</p>
+</div></section>
+
+<section class="section"><div class="shell contact-grid">
+<div class="contact-panel">
+  <p class="eyebrow">London</p>
+  <h2>{{site.question}}</h2>
+  <p>Choose the topic that best describes where the conversation should begin.</p>
+</div>
+<form class="form" id="contact-form" action="/api/contact" method="post">
+  <p class="form-intro">All fields are required unless marked optional.</p>
+  <div class="form-pair">
+    <label>Name<input required name="name" autocomplete="name" maxlength="200"></label>
+    <label>Business email<input required type="email" name="email" autocomplete="email" maxlength="254"></label>
+  </div>
+  <div class="form-pair">
+    <label>Organisation<input required name="organisation" autocomplete="organization" maxlength="200"></label>
+    <label>Role<input required name="role" autocomplete="organization-title" maxlength="200"></label>
+  </div>
+  <label>Country or region<input required name="country" autocomplete="country-name" maxlength="120"></label>
+  <label>What would you like to discuss?
+    <select required name="topic">
+      <option value="" disabled selected>Select a topic</option>
+      <option value="diagnostic">The Fundamentals Diagnostic</option>
+      <option value="value-creation">Value Creation</option>
+      <option value="work-redesign">Work Redesign</option>
+      <option value="operating-model">Operating Model</option>
+      <option value="venture-building">Venture Building</option>
+      <option value="education">Education and capability programmes</option>
+      <option value="other">Other</option>
+    </select>
+  </label>
+  <label>Message <span class="optional">(optional)</span><textarea name="message" maxlength="5000"></textarea></label>
+  <label class="check"><input type="checkbox" name="consent" value="yes" required><span>I agree to {{site.name}} processing my information in accordance with the <a href="privacy.html">Privacy Policy</a>.</span></label>
+  <label class="check"><input type="checkbox" name="marketing" value="yes"><span>I would like to receive occasional insights and updates from {{site.name}}. <span class="optional">(optional)</span></span></label>
+  <div class="hp" aria-hidden="true"><label>Leave this field empty<input name="website" tabindex="-1" autocomplete="off"></label></div>
+  <button type="submit">Send Enquiry</button>
+  <p class="form-status" role="status" aria-live="polite"></p>
+</form>
+</div></section>

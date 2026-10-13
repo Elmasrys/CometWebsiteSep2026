@@ -1,0 +1,47 @@
+<article class="article">
+<header class="article-head">
+  <div class="shell article-shell">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/insights.html">Insights</a><span aria-hidden="true">/</span><span>{{article.category}}</span></nav>
+    <h1 class="article-title">{{article.title}}</h1>
+    <p class="standfirst">{{article.standfirst}}</p>
+    <dl class="article-meta">
+      <div><dt>Author</dt><dd><a href="{{article.author.profileUrl}}">{{article.author.name}}</a></dd></div>
+      <div><dt>Published</dt><dd><time datetime="{{article.date}}">{{article.dateLabel}}</time></dd></div>
+      <div><dt>Reading time</dt><dd>{{article.readingTime}} minutes</dd></div>
+    </dl>
+  </div>
+</header>
+<div class="shell article-shell">
+  <div class="article-body">
+{{{bodyHtml}}}
+  </div>
+</div>
+<footer class="article-foot">
+  <div class="shell article-shell">
+    <section class="article-cta" aria-label="Next step">
+      <p>{{article.cta.lead}}</p>
+      <a class="arrow-link" href="{{article.cta.url}}"><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span>{{article.cta.label}}</a>
+    </section>
+    <section class="article-author" aria-label="About the author">
+      <p class="eyebrow">About the author</p>
+      <p class="article-author-name"><a href="{{article.author.profileUrl}}">{{article.author.name}}</a></p>
+      <p class="article-author-title">{{article.author.title}}, {{site.name}}</p>
+      <p>{{article.author.bio.0}}</p>
+      <p class="article-author-links"><a class="link" href="{{article.author.profileUrl}}">Profile</a>{{#article.author.linkedin}}<a class="link link-external" href="{{article.author.linkedin}}" rel="noopener" target="_blank">LinkedIn<span class="visually-hidden"> (opens in a new tab)</span></a>{{/article.author.linkedin}}</p>
+    </section>
+  </div>
+  {{#article.related}}
+  <section class="article-related" aria-labelledby="related-heading">
+    <div class="shell article-shell">
+      <p class="eyebrow" id="related-heading">Related insight</p>
+      <a class="related-card" href="{{url}}">
+        <span class="eyebrow">{{category}}</span>
+        <span class="related-title">{{title}}</span>
+        <span class="related-standfirst">{{standfirst}}</span>
+        <span class="link" aria-hidden="true">Read</span>
+      </a>
+    </div>
+  </section>
+  {{/article.related}}
+</footer>
+</article>

@@ -1,0 +1,18 @@
+{
+  "_note": "Only verified facts belong here. Leave a value empty (\"\" or []) when it is not confirmed: the site then omits that sentence instead of publishing a placeholder, and `npm run build` lists it as missing.",
+  "entityName": "Maverika Ltd",
+  "tradingName": "Comet Innovations",
+  "registration": "a UK-registered company",
+  "companyNumber": "15039780",
+  "registeredAddress": ["Abacus House", "14–18 Forest Road", "Loughton", "England", "IG10 1DX"],
+  "privacyEmail": "",
+  "retentionPeriod": "",
+  "governingLaw": "England and Wales",
+  "lastUpdated": "2026-10-13",
+  "serviceProviders": [
+    { "name": "Railway", "purpose": "hosts this website" },
+    { "name": "Resend", "purpose": "delivers enquiries submitted through the contact form to us by email" }
+  ],
+  "analyticsProviders": [],
+  "crmProviders": []
+}

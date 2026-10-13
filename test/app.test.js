@@ -31,7 +31,16 @@ const post = (body, json = true) =>
     body: json ? JSON.stringify(body) : new URLSearchParams(body).toString(),
   });
 
-const valid = { name: 'Ada Lovelace', organisation: 'Analytical Engines', email: 'ada@example.com', topic: 'diagnostic', message: 'Hello' };
+const valid = {
+  name: 'Ada Lovelace',
+  email: 'ada@example.com',
+  organisation: 'Analytical Engines',
+  role: 'Chief Executive',
+  country: 'United Kingdom',
+  topic: 'diagnostic',
+  message: 'Hello',
+  consent: 'yes',
+};
 
 test('serves pages with security headers', async () => {
   const res = await fetch(`${base}/index.html`);
@@ -62,7 +71,29 @@ test('accepts a valid JSON enquiry', async () => {
 test('rejects an invalid email', async () => {
   const res = await post({ ...valid, email: 'not-an-email' });
   assert.equal(res.status, 400);
-  assert.match((await res.json()).error, /valid email/);
+  assert.match((await res.json()).error, /valid business email/);
+});
+
+for (const field of ['name', 'organisation', 'role', 'country', 'topic']) {
+  test(`requires ${field}`, async () => {
+    const res = await post({ ...valid, [field]: '' });
+    assert.equal(res.status, 400);
+  });
+}
+
+test('requires privacy consent', async () => {
+  const { consent, ...withoutConsent } = valid;
+  const res = await post(withoutConsent);
+  assert.equal(res.status, 400);
+  assert.match((await res.json()).error, /Privacy Policy/);
+});
+
+test('message and marketing opt-in are optional, and opt-in defaults to no', async () => {
+  const { message, ...withoutMessage } = valid;
+  assert.equal((await post(withoutMessage)).status, 200);
+  assert.equal(sent.at(-1).marketing, false);
+  await post({ ...valid, marketing: 'yes' });
+  assert.equal(sent.at(-1).marketing, true);
 });
 
 test('drops honeypot submissions without sending', async () => {
@@ -75,7 +106,7 @@ test('drops honeypot submissions without sending', async () => {
 test('redirects plain form posts back to the contact page', async () => {
   const ok = await post(valid, false);
   assert.equal(ok.status, 303);
-  assert.equal(ok.headers.get('location'), '/contact.html?sent=1');
+  assert.equal(ok.headers.get('location'), '/enquiry-received.html');
   const bad = await post({ ...valid, name: '' }, false);
   assert.equal(bad.headers.get('location'), '/contact.html?error=1');
 });
@@ -100,10 +131,10 @@ test('rate limits repeated submissions', async () => {
   }
 });
 
-test('validateEnquiry strips newlines and defaults unknown topics', () => {
-  const { enquiry } = validateEnquiry({ ...valid, name: 'Ada\r\nBcc: x@y.z', topic: 'nonsense' });
+test('validateEnquiry strips newlines and rejects unknown topics', () => {
+  const { enquiry } = validateEnquiry({ ...valid, name: 'Ada\r\nBcc: x@y.z' });
   assert.equal(enquiry.name, 'Ada Bcc: x@y.z');
-  assert.equal(enquiry.topic, 'other');
+  assert.match(validateEnquiry({ ...valid, topic: 'nonsense' }).error, /discuss/);
 });
 
 test('sendWithResend refuses to run unconfigured', async () => {

@@ -9,7 +9,10 @@
     "node": ">=20"
   },
   "scripts": {
+    "build": "node build.js",
+    "prestart": "node build.js",
     "start": "node server.js",
+    "pretest": "node build.js",
     "test": "node --test"
   },
   "dependencies": {

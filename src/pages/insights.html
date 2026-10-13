@@ -1,0 +1,38 @@
+<!--meta {"title": "Insights", "description": "Ideas for businesses being changed by AI: the economic and organisational questions that remain important beyond the technology news cycle."} -->
+<section class="page-hero"><div class="shell">
+<p class="eyebrow">Insights</p>
+<h1>Ideas for businesses being changed by AI.</h1>
+<p>We focus on the economic and organisational questions that remain important beyond the technology news cycle.</p>
+<ul class="hero-structure">
+<li>How value changes.</li>
+<li>How work changes.</li>
+<li>How organisations change.</li>
+<li>What becomes possible to build.</li>
+</ul>
+</div></section>
+
+<section class="section"><div class="shell">
+<p class="eyebrow">Featured</p>
+<div class="featured-list">
+{{#insights}}<article class="featured reveal">
+<p class="featured-number" aria-hidden="true">{{index}}</p>
+<div class="featured-main">
+<p class="eyebrow">{{category}}</p>
+<h2><a href="{{url}}">{{title}}</a></h2>
+<p class="featured-standfirst">{{standfirst}}</p>
+</div>
+<dl class="featured-meta">
+<div><dt>Author</dt><dd>{{author.name}}</dd></div>
+<div><dt>Published</dt><dd><time datetime="{{date}}">{{dateLabel}}</time></dd></div>
+<div><dt>Reading time</dt><dd>{{readingTime}} minutes</dd></div>
+</dl>
+</article>{{/insights}}
+</div>
+</div></section>
+
+<section class="section section-ruled"><div class="shell split">
+<div><p class="eyebrow">Coming perspectives</p><h2 class="section-title">In preparation.</h2><p class="split-note">These pieces are being written and are not yet published.</p></div>
+<ul class="forthcoming-list">
+{{#forthcoming}}<li><span class="eyebrow">{{category}} · Forthcoming</span><span class="forthcoming-title">{{title}}</span><span class="forthcoming-summary">{{summary}}</span></li>
+{{/forthcoming}}</ul>
+</div></section>
