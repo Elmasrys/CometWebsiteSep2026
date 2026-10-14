@@ -8,7 +8,22 @@
   "author": "sherif-elmasry",
   "date": "2026-10-13",
   "related": "what-should-you-build-next",
-  "cta": { "lead": "Explore the Four Fundamentals.", "label": "What We Do", "url": "/what-we-do.html" }
+  "cta": {
+    "lead": "Explore the Four Fundamentals.",
+    "label": "What We Do",
+    "url": "/what-we-do.html"
+  },
+  "seo": {
+    "title": "The Four Fundamentals of AI Transformation | Comet Innovations",
+    "description": "A leadership framework for understanding how AI changes value, work, organisation and growth.",
+    "intent": {
+      "primary": "AI transformation framework",
+      "secondary": [
+        "AI strategy framework",
+        "enterprise AI transformation"
+      ]
+    }
+  }
 }
 ---
 Artificial intelligence creates an unusual strategic problem. It can potentially affect almost every function in an organisation.
@@ -34,6 +49,8 @@ The Four Fundamentals provide a simpler frame. Every business, regardless of sec
 
 AI can change each one.
 
+:: The Four Fundamentals is Comet’s framework for examining where AI changes four core dimensions of a business: value, work, organisation and growth.
+
 ## 1. Value
 
 ### How do you make money?
@@ -53,7 +70,7 @@ Leadership teams should ask:
 ? Can a product become a continuously delivered service?
 ? Where does AI materially change margin?
 
-The important question is not simply whether AI improves today's proposition. It is whether the proposition itself should change.
+The important question is not simply whether AI improves today's proposition. It is whether [the proposition itself should change](/value-creation).
 
 ## 2. Work
 
@@ -70,7 +87,7 @@ Most organisations are structured around assumptions about human labour.
 
 Software has historically automated individual steps. AI increasingly affects the connective tissue between them.
 
-This means the unit of analysis should move from task automation toward workflow redesign.
+This means the unit of analysis should move from task automation toward [workflow redesign](/work-redesign).
 
 Leadership teams should ask:
 
@@ -92,7 +109,7 @@ Technology does not transform an enterprise by itself.
 
 Organisations transform when they change how decisions are made, resources are allocated, capabilities are built and accountability is distributed.
 
-AI therefore creates operating model questions.
+AI therefore creates [operating model questions](/operating-model).
 
 ? Who sets enterprise priorities?
 ? Who owns the underlying platforms?
@@ -120,7 +137,7 @@ The final fundamental is the most forward-looking. AI does not only improve exis
 | Expertise can be embedded into digital propositions.
 | Small teams can build capabilities that once required substantial organisations.
 
-This changes venture economics. Leadership teams should therefore ask:
+This changes [venture economics](/venture-building). Leadership teams should therefore ask:
 
 ? What new markets become attractive?
 ? What propositions become economically feasible?

@@ -8,7 +8,23 @@
   "author": "sherif-elmasry",
   "date": "2026-10-13",
   "related": "the-four-fundamentals",
-  "cta": { "lead": "Find out where AI changes your economics.", "label": "Explore the Fundamentals Diagnostic", "url": "/diagnostic.html" }
+  "cta": {
+    "lead": "Find out where AI changes your economics.",
+    "label": "Explore the Fundamentals Diagnostic",
+    "url": "/diagnostic.html"
+  },
+  "seo": {
+    "title": "Where Is AI Changing Your Economics? | Comet Innovations",
+    "description": "Why AI strategy should begin with business economics rather than use cases, and how leaders can identify where AI materially changes value, work, organisation and growth.",
+    "intent": {
+      "primary": "AI economics",
+      "secondary": [
+        "AI transformation strategy",
+        "AI business value",
+        "AI value creation"
+      ]
+    }
+  }
 }
 ---
 Artificial intelligence has created no shortage of activity inside organisations.
@@ -62,7 +78,7 @@ The technology may be similar. The economic consequence is not.
 
 ## Value can move before cost does
 
-AI discussions frequently begin with cost reduction. Yet one of its largest effects may be on what customers value.
+AI discussions frequently begin with cost reduction. Yet one of its largest effects may be on [what customers value](/value-creation).
 
 When intelligence becomes cheap and widely available, capabilities that once differentiated a product may become expected features. Other capabilities become newly valuable.
 
@@ -92,7 +108,7 @@ Every organisation contains assumptions about work.
 
 Those assumptions were built under previous technological constraints. AI changes some of those constraints.
 
-The opportunity is therefore larger than putting AI inside existing workflows. Organisations need to ask whether the workflow itself still makes sense.
+The opportunity is therefore larger than putting AI inside existing workflows. Organisations need to ask whether [the workflow itself](/work-redesign) still makes sense.
 
 When AI can analyse information, coordinate activity, produce outputs, interact with systems and increasingly execute multi-step processes, the boundary between job, workflow and software starts to move.
 
@@ -107,7 +123,7 @@ AI transformation often becomes fragmented because experimentation happens faste
 | Ownership becomes unclear.
 | Technology teams focus on architecture while business units focus on use cases.
 
-Eventually the question becomes organisational:
+Eventually the question becomes [organisational](/operating-model):
 
 ? Who owns AI?
 ? What should be centralised?
@@ -123,7 +139,7 @@ The economic value of AI depends partly on answering these questions well. A tec
 
 Perhaps the least appreciated change concerns growth.
 
-The cost of creating a new digital product, testing an idea, conducting research, producing content, supporting customers and writing software is changing. That alters the economics of venture creation.
+The cost of creating a new digital product, testing an idea, conducting research, producing content, supporting customers and writing software is changing. That alters the economics of [venture creation](/venture-building).
 
 Established businesses should therefore ask not only how AI improves the core business, but what new products, services or ventures become feasible because of it.
 
@@ -133,7 +149,7 @@ This is why AI strategy and growth strategy are beginning to converge.
 
 ## Four fundamentals
 
-At Comet, we examine these questions through four fundamentals of business.
+At Comet, we examine these questions through [four fundamentals of business](/insights/the-four-fundamentals).
 
 ::: diagram four-fundamentals
 
@@ -150,7 +166,7 @@ That is why a list of AI use cases is not an AI strategy.
 
 Every organisation will use AI. That does not mean every use matters equally.
 
-The strategic task is to identify where AI changes the underlying economics enough to deserve disproportionate attention.
+The strategic task is to identify [where AI changes the underlying economics](/diagnostic) enough to deserve disproportionate attention.
 
 | That may be a workflow.
 | A proposition.

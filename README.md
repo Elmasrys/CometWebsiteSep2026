@@ -29,13 +29,31 @@ The build fails if a template refers to a missing value or if a placeholder such
 
 ## Deploy on Railway
 
-`railway.json` runs `npm run build` and then `npm start`, with a health check on `/healthz`. Set these variables so the contact form can email enquiries through [Resend](https://resend.com):
+`railway.json` runs `npm run build` and then `npm start`, with a health check on `/healthz`.
+
+Search and discovery settings (see `docs/seo-report.md`):
+
+| Variable | Purpose |
+| --- | --- |
+| `REDIRECT_TO_CANONICAL` | Set to `true` once `www.comet-innovations.com` points at Railway, so the Railway address redirects to it. Until then non-canonical hosts are served with `X-Robots-Tag: noindex`. |
+| `INDEXNOW_KEY` | A 32-character hex key (`openssl rand -hex 16`). Enables IndexNow notifications for pages that change in each deploy. `INDEXNOW_ENABLED=false` pauses them. |
+| `SITE_URL` | Optional. Overrides the canonical origin from `site.json`, for a staging service. |
+
+Set these variables so the contact form can email enquiries through [Resend](https://resend.com):
 
 | Variable | Example | Purpose |
 | --- | --- | --- |
 | `RESEND_API_KEY` | `re_...` | Resend API key |
 | `CONTACT_TO_EMAIL` | `hello@example.com` | Where enquiries are delivered (comma-separate several) |
 | `CONTACT_FROM_EMAIL` | `Comet Website <website@example.com>` | Sender; its domain must be verified in Resend |
+
+## URLs, metadata and search
+
+- Public URLs are clean (`/about`, `/insights/the-four-fundamentals`). `.html` URLs, trailing slashes, `/rd` and the bare domain redirect permanently.
+- Each page declares its exact `title`, `description`, search `intent`, `ogImage`, breadcrumb `parent` and `schema` in its `<!--meta -->` header. Insights declare theirs under `seo` in the front matter. Set `modified` on an Insight only after a substantive change.
+- The build writes `sitemap.xml`, `robots.txt`, `llms.txt` and a per-page JSON-LD graph. The crawler policy lives in `site.json`.
+- After changing a title or adding an Insight, regenerate the social images with `node tools/generate-og.mjs`.
+- `docs/seo-report.md` records the URL inventory, intents, structured data, redirects, crawler policy and open dependencies.
 
 ## Cookies and analytics
 

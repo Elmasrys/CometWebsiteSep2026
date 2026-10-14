@@ -1,0 +1,47 @@
+{
+  "_note": "Our Work case studies. Publish sector, challenge, question, intervention, modes, outcome and timeframe only when approved; empty fields are not shown. Never name a client without written approval.",
+  "cases": [
+    {
+      "id": "ai-portfolio-governance",
+      "title": "Turning fragmented AI activity into a portfolio the executive team could govern.",
+      "capabilities": "AI strategy · Operating model · Governance",
+      "pillarName": "Operating Model",
+      "pillarUrl": "/operating-model",
+      "sector": "",
+      "challenge": "",
+      "question": "",
+      "intervention": "",
+      "modes": "",
+      "outcome": "",
+      "timeframe": ""
+    },
+    {
+      "id": "new-business-validation",
+      "title": "Taking a new business from strategic hypothesis to validated commercial proposition.",
+      "capabilities": "Venture strategy · Validation · Build",
+      "pillarName": "Venture Building",
+      "pillarUrl": "/venture-building",
+      "sector": "",
+      "challenge": "",
+      "question": "",
+      "intervention": "",
+      "modes": "",
+      "outcome": "",
+      "timeframe": ""
+    },
+    {
+      "id": "decision-rights-redesign",
+      "title": "Redesigning how a multi market organisation makes decisions and allocates resources.",
+      "capabilities": "Operating model transformation",
+      "pillarName": "Operating Model",
+      "pillarUrl": "/operating-model",
+      "sector": "",
+      "challenge": "",
+      "question": "",
+      "intervention": "",
+      "modes": "",
+      "outcome": "",
+      "timeframe": ""
+    }
+  ]
+}

@@ -8,7 +8,23 @@
   "author": "sherif-elmasry",
   "date": "2026-10-13",
   "related": "where-is-ai-changing-your-economics",
-  "cta": { "lead": "Build what comes next.", "label": "Explore Venture Building", "url": "/venture-building.html" }
+  "cta": {
+    "lead": "Build what comes next.",
+    "label": "Explore Venture Building",
+    "url": "/venture-building.html"
+  },
+  "seo": {
+    "title": "What Should You Build Next? Corporate Venture Building | Comet",
+    "description": "How established organisations can turn customers, capital, data, expertise and distribution into validated new businesses and AI-native ventures.",
+    "intent": {
+      "primary": "corporate venture building",
+      "secondary": [
+        "corporate innovation",
+        "new business building",
+        "AI venture building"
+      ]
+    }
+  }
 }
 ---
 Large companies should be exceptionally good at building new businesses.
@@ -31,7 +47,7 @@ A venture needs a customer. A proposition. Economics. Distribution. An operating
 
 ## Start with advantage
 
-Corporate venture building should not attempt to imitate startups. Established organisations possess different advantages.
+[Corporate venture building](/venture-building) should not attempt to imitate startups. Established organisations possess different advantages.
 
 The better question is:
 
@@ -65,7 +81,7 @@ AI is producing several such discontinuities simultaneously.
 | Research and analysis can happen at greater scale.
 | Entire services can be redesigned around intelligent agents.
 
-This does not mean every AI idea deserves a venture. It means the economics of venture creation need to be reconsidered.
+This does not mean every AI idea deserves a venture. It means [the economics of venture creation](/insights/where-is-ai-changing-your-economics) need to be reconsidered.
 
 ## Opportunity before solution
 
@@ -92,7 +108,7 @@ An executive sponsors an idea. A business case is written. A budget is approved.
 
 Venture building should reverse this sequence. The early objective is not to prove the idea is right. It is to discover whether it is wrong while the cost of being wrong remains low.
 
-Validation should test:
+[Validation](/venture-building#venture-validation) should test:
 
 ? Does the problem exist?
 ? Who experiences it most strongly?

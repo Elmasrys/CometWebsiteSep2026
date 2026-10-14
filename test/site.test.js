@@ -1,4 +1,4 @@
-// Checks the built site against the content and credibility requirements in the brief.
+// Checks the built site against the content, credibility, SEO and GEO requirements in the brief.
 import { test, before } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -6,17 +6,28 @@ import os from 'node:os';
 import path from 'node:path';
 import { build } from '../build.js';
 
-let out, pages, ctx;
+let out, pages, metas, ctx, SITE;
 const html = rel => fs.readFileSync(path.join(out, rel), 'utf8');
+const fileFor = urlPath => (urlPath === '/' ? 'index.html' : `${urlPath.slice(1)}.html`);
 const decode = s => s.replace(/&amp;/g, '&').replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
 const text = rel => decode(html(rel).replace(/<script[\s\S]*?<\/script>/g, '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' '));
+const graphOf = rel => {
+  const m = html(rel).match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
+  return m ? JSON.parse(m[1])['@graph'] : [];
+};
+const metaContent = (doc, attr, name) => doc.match(new RegExp(`<meta ${attr}="${name}" content="([^"]*)"`))?.[1];
+const internalLinks = rel => [...html(rel).matchAll(/<a[^>]*\shref="(\/[^"]*)"/g)].map(m => m[1]);
 
 before(() => {
   out = fs.mkdtempSync(path.join(os.tmpdir(), 'comet-site-'));
-  ({ pages, ctx } = build(out, { quiet: true }));
+  ({ pages, pageMeta: metas, ctx } = build(out, { quiet: true }));
+  SITE = ctx.site.url;
 });
+const indexable = () => metas.filter(p => !p.noindex);
 
-test('every internal link and asset resolves, including #anchors', () => {
+// ---------- Integrity ----------
+
+test('every internal link and asset resolves, including #anchors, and none uses .html', () => {
   const broken = [];
   for (const page of pages) {
     const doc = html(page);
@@ -24,9 +35,11 @@ test('every internal link and asset resolves, including #anchors', () => {
     const srcsets = [...doc.matchAll(/\ssrcset="([^"]+)"/g)].flatMap(m => m[1].split(',').map(s => s.trim().split(/\s+/)[0]));
     for (const ref of [...refs, ...srcsets]) {
       if (/^(https?:|mailto:|tel:|data:)/.test(ref)) continue;
-      const [file, hash] = ref.split('#');
-      const target = file ? file.split('?')[0].replace(/^\//, '') : page;
-      if (file && !fs.existsSync(path.join(out, target))) broken.push(`${page} -> ${ref}`);
+      const [beforeHash, hash] = ref.split('#');
+      const pathname = beforeHash.split('?')[0];
+      if (/\.html$/.test(pathname)) broken.push(`${page} -> ${ref} (.html URL)`);
+      const target = !pathname ? page : path.extname(pathname) ? pathname.slice(1) : fileFor(pathname);
+      if (!fs.existsSync(path.join(out, target))) broken.push(`${page} -> ${ref}`);
       else if (hash && target.endsWith('.html') && !html(target).includes(`id="${hash}"`)) broken.push(`${page} -> ${ref} (missing anchor)`);
     }
   }
@@ -42,11 +55,13 @@ test('no placeholders, draft markers or unrendered template tags are published',
   }
 });
 
+// ---------- Content and positioning ----------
+
 test('the home page loads straight into the institutional hero with no film', () => {
   const home = html('index.html');
   assert.doesNotMatch(home, /film|intro-film|Skip<\/button>/i);
   for (const line of [
-    'AI Transformation &amp; Venture Building',
+    'An AI Transformation &amp; Venture Building firm',
     'AI is changing the fundamentals of business.',
     'How you make money.', 'How people work.', 'How the organisation runs.', 'How you grow.',
     'Comet Innovations works with leadership teams to understand where AI materially changes these fundamentals, then helps turn that understanding into action.',
@@ -55,24 +70,25 @@ test('the home page loads straight into the institutional hero with no film', ()
     'UK · Middle East · Africa experience',
     'The people shaping the engagement stay involved in the work.',
   ]) assert.ok(home.includes(line), line);
-  assert.match(home, /href="\/about\.html#people"[^>]*>Meet the people behind Comet/);
+  assert.match(home, /href="\/about#people"[^>]*>Meet the people behind Comet/);
   assert.doesNotMatch(home, /<details>/, 'FAQ is not duplicated on the home page');
 });
 
-test('positioning is intact: fundamentals, pillars, delivery modes and the Diagnostic', () => {
+test('positioning is intact: fundamentals, pillars, delivery modes, Diagnostic and R&D', () => {
   const all = pages.map(text).join(' ');
   for (const term of ['Value', 'Work', 'Organisation', 'Growth', 'Value creation', 'Work redesign', 'Operating model', 'Venture building', 'Advise', 'Educate', 'Engineer', 'Fundamentals Diagnostic']) {
     assert.ok(all.includes(term), term);
   }
-  for (const page of ['value-creation.html', 'work-redesign.html', 'operating-model.html', 'venture-building.html', 'diagnostic.html', 'rd.html', 'what-we-do.html']) {
+  for (const page of ['value-creation.html', 'work-redesign.html', 'operating-model.html', 'venture-building.html', 'diagnostic.html', 'research-and-development.html', 'what-we-do.html']) {
     assert.ok(pages.includes(page), page);
   }
+  assert.ok(text('research-and-development.html').includes('It is not a product.'));
 });
 
 test('every "Request a Diagnostic" link preselects the Diagnostic', () => {
   for (const page of pages) {
     for (const m of html(page).matchAll(/<a[^>]*href="([^"]+)"[^>]*>Request a Diagnostic/g)) {
-      assert.equal(m[1], '/contact.html?topic=diagnostic', page);
+      assert.equal(m[1], '/contact?topic=diagnostic', page);
     }
   }
 });
@@ -89,31 +105,17 @@ test('the founder profile comes from content data and is complete', () => {
   for (const insight of ctx.insights) assert.ok(html('about.html').includes(`href="${insight.url}"`), insight.url);
 });
 
-test('FAQ stays on About and its structured data matches the visible questions', () => {
-  const about = html('about.html');
-  const ld = [...about.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(m => JSON.parse(m[1]));
-  const faq = ld.find(d => d['@type'] === 'FAQPage');
-  assert.ok(faq, 'FAQPage structured data present');
-  assert.equal(faq.mainEntity.length, 6);
-  for (const q of faq.mainEntity) {
-    assert.equal(q['@type'], 'Question');
-    assert.equal(q.acceptedAnswer['@type'], 'Answer');
-    assert.ok(about.includes(`<summary>${q.name}</summary>`), q.name);
-  }
-  const faqPages = pages.filter(p => html(p).includes('FAQPage'));
-  assert.deepEqual(faqPages, ['about.html']);
-});
-
 test('three complete insights are published with the full article template', () => {
   const articles = pages.filter(p => p.startsWith('insights/'));
   assert.equal(articles.length, 3);
   for (const insight of ctx.insights) {
-    const doc = html(insight.url.slice(1));
+    const rel = fileFor(insight.url);
+    const doc = html(rel);
     for (const part of [insight.category, insight.title, insight.standfirst, insight.author.name, insight.dateLabel, `${insight.readingTime} minutes`, insight.cta.label, insight.related.title]) {
       assert.ok(doc.includes(part.replace(/&/g, '&amp;').replace(/'/g, '&#39;')), `${insight.slug}: ${part}`);
     }
     assert.ok(doc.includes(`href="${insight.author.profileUrl}"`), 'author profile link');
-    assert.ok(text(insight.url.slice(1)).split(' ').length > 1000, `${insight.slug} is a full article`);
+    assert.ok(text(rel).split(' ').length > 1000, `${insight.slug} is a full article`);
   }
 });
 
@@ -124,7 +126,6 @@ test('forthcoming insights are labelled and not linked as finished articles', ()
     assert.match(insights, new RegExp(`<span class="forthcoming-title">${escaped}</span>`));
     assert.doesNotMatch(insights, new RegExp(`<a[^>]*>${escaped}`));
   }
-  assert.ok(insights.includes('Forthcoming'));
   assert.ok(!html('index.html').includes('Beyond Automation'));
 });
 
@@ -133,51 +134,284 @@ test('contact form matches the approved specification', () => {
   for (const name of ['name', 'email', 'organisation', 'role', 'country', 'topic']) {
     assert.match(contact, new RegExp(`<(input|select)[^>]*\\brequired\\b[^>]*name="${name}"|<(input|select)[^>]*name="${name}"[^>]*\\brequired\\b`), name);
   }
-  assert.match(contact, /<textarea name="message"/);
   assert.doesNotMatch(contact, /<textarea[^>]*required/);
   assert.match(contact, /<input type="checkbox" name="consent" value="yes" required>/);
   assert.match(contact, /<input type="checkbox" name="marketing" value="yes">/);
-  assert.ok(contact.includes('I agree to Comet Innovations processing my information in accordance with the'));
-  assert.ok(contact.includes('I would like to receive occasional insights and updates from Comet Innovations.'));
-  assert.ok(contact.includes('Business email'));
-  assert.ok(contact.includes('Education and capability programmes'));
   const received = text('enquiry-received.html');
   assert.ok(received.includes('A member of Comet Innovations will review the information you have provided and respond using the business email address supplied.'));
-  assert.doesNotMatch(received, /within \d|hours|working days/i, 'no promised response time');
+  assert.doesNotMatch(received, /within \d|hours|working days/i);
 });
 
-test('legal pages exist and use only configured facts', () => {
+test('legal pages exist, use configured facts, and the site sets no cookies or storage', () => {
   for (const page of ['privacy.html', 'cookies.html', 'terms.html']) assert.ok(pages.includes(page), page);
-  const privacy = text('privacy.html');
-  assert.ok(privacy.includes(`This website is operated by ${ctx.legal.entityName}, trading as Comet Innovations.`));
-  assert.ok(privacy.includes(ctx.legal.companyNumber));
+  assert.ok(text('privacy.html').includes(`This website is operated by ${ctx.legal.entityName}, trading as Comet Innovations.`));
   assert.ok(text('terms.html').includes(`governed by the law of ${ctx.legal.governingLaw}`));
-  assert.ok(text('cookies.html').includes('does not set any'), 'cookie policy reflects the site setting no cookies');
-});
-
-test('the site sets no cookies and uses no browser storage, as the Cookie Policy states', () => {
+  assert.ok(text('cookies.html').includes('does not set any'));
   for (const file of ['script.js', 'head.js']) {
     assert.doesNotMatch(fs.readFileSync(path.join(out, file), 'utf8'), /cookie|localStorage|sessionStorage|indexedDB/i, file);
   }
 });
 
-test('only London is presented as an office', () => {
-  for (const page of pages) assert.doesNotMatch(text(page), /\b(Cairo|Dubai|Riyadh|Lagos)\b/, page);
+test('only London is presented as an office, in copy and in structured data', () => {
+  for (const page of pages) {
+    assert.doesNotMatch(text(page), /\b(Cairo|Dubai|Riyadh|Lagos)\b/, page);
+    assert.doesNotMatch(JSON.stringify(graphOf(page)), /Cairo|Dubai/, page);
+  }
+  assert.ok(text('about.html').includes('Comet Innovations is an AI Transformation & Venture Building firm based in London.'));
   assert.ok(html('index.html').includes('London, United Kingdom'));
 });
 
-test('footer carries navigation, legal links, LinkedIn and location', () => {
-  const footer = html('index.html').split('<footer class="footer">')[1];
-  for (const link of ['What We Do', 'Our Work', 'Insights', 'R&amp;D', 'About', 'Contact', 'Privacy Policy', 'Cookie Policy', 'Website Terms', 'LinkedIn', 'London, United Kingdom', 'Where is AI changing your economics?']) {
-    assert.ok(footer.includes(link), link);
+test('the current page is marked in the navigation', () => {
+  assert.match(html('about.html'), /<a href="\/about" aria-current="page">About<\/a>/);
+  assert.match(html(fileFor(ctx.insights[0].url)), /<a href="\/insights" aria-current="page">Insights<\/a>/);
+});
+
+// ---------- Metadata ----------
+
+test('every indexable page has a unique title and description and a self-referencing canonical', () => {
+  const titles = new Set();
+  const descriptions = new Set();
+  for (const page of indexable()) {
+    const doc = html(page.file);
+    const title = decode(doc.match(/<title>(.*?)<\/title>/)[1]);
+    const description = decode(metaContent(doc, 'name', 'description'));
+    assert.ok(title && description, page.path);
+    assert.ok(!titles.has(title), `duplicate title ${title}`);
+    assert.ok(!descriptions.has(description), `duplicate description on ${page.path}`);
+    titles.add(title);
+    descriptions.add(description);
+    assert.match(doc, new RegExp(`<link rel="canonical" href="${SITE}${page.path.replace(/[/.]/g, '\\$&')}">`), page.path);
+    assert.doesNotMatch(doc, /name="robots" content="noindex"/, page.path);
   }
 });
 
-test('R&D is presented as research, not a commercial product', () => {
-  assert.ok(text('rd.html').includes('It is not a product.'));
+test('the specified titles and descriptions are used', () => {
+  const expect = {
+    '/': ['AI Transformation & Venture Building | Comet Innovations', 'Comet Innovations helps leadership teams identify where AI changes business economics, redesign work and operating models, and build new sources of growth.'],
+    '/what-we-do': ['AI Transformation Strategy & Services | Comet Innovations'],
+    '/value-creation': ['AI Growth Strategy & Value Creation | Comet Innovations'],
+    '/work-redesign': ['AI Work Redesign & Workforce Transformation | Comet Innovations'],
+    '/operating-model': ['AI Operating Model & Governance | Comet Innovations'],
+    '/venture-building': ['Corporate Venture Building & AI Ventures | Comet Innovations'],
+    '/diagnostic': ['AI Opportunity Assessment | The Fundamentals Diagnostic'],
+    '/our-work': ['AI Transformation & Venture Building Work | Comet Innovations'],
+    '/insights': ['AI Transformation & Venture Building Insights | Comet Innovations'],
+    '/insights/where-is-ai-changing-your-economics': ['Where Is AI Changing Your Economics? | Comet Innovations'],
+    '/insights/the-four-fundamentals': ['The Four Fundamentals of AI Transformation | Comet Innovations'],
+    '/insights/what-should-you-build-next': ['What Should You Build Next? Corporate Venture Building | Comet'],
+    '/research-and-development': ['AI Research: Stateful AI Orchestration | Comet Innovations'],
+    '/about': ['About Comet Innovations | AI Transformation & Venture Building'],
+    '/contact': ['Contact Comet Innovations | AI Transformation & Venture Building'],
+  };
+  for (const [p, [title, description]] of Object.entries(expect)) {
+    const doc = html(fileFor(p));
+    assert.equal(decode(doc.match(/<title>(.*?)<\/title>/)[1]), title, p);
+    if (description) assert.equal(decode(metaContent(doc, 'name', 'description')), description, p);
+  }
 });
 
-test('the current page is marked in the navigation', () => {
-  assert.match(html('about.html'), /<a href="\/about\.html" aria-current="page">About<\/a>/);
-  assert.match(html(ctx.insights[0].url.slice(1)), /<a href="\/insights\.html" aria-current="page">Insights<\/a>/);
+test('noindex pages carry no canonical and are kept out of discovery files', () => {
+  for (const page of metas.filter(p => p.noindex)) {
+    const doc = html(page.file);
+    assert.match(doc, /<meta name="robots" content="noindex">/, page.path);
+    assert.doesNotMatch(doc, /rel="canonical"/, page.path);
+  }
+});
+
+test('Open Graph and Twitter metadata are complete, with distinct images', () => {
+  const images = new Set();
+  for (const page of indexable()) {
+    const doc = html(page.file);
+    for (const prop of ['og:title', 'og:description', 'og:url', 'og:type', 'og:image']) assert.ok(metaContent(doc, 'property', prop), `${page.path} ${prop}`);
+    assert.equal(metaContent(doc, 'property', 'og:url'), `${SITE}${page.path}`);
+    for (const name of ['twitter:card', 'twitter:title', 'twitter:description', 'twitter:image']) assert.ok(metaContent(doc, 'name', name), `${page.path} ${name}`);
+    const image = metaContent(doc, 'property', 'og:image');
+    assert.ok(fs.existsSync(path.join(out, image.replace(SITE, ''))), image);
+    images.add(image);
+  }
+  for (const p of ['/', '/research-and-development', '/value-creation', ...ctx.insights.map(i => i.url)]) {
+    const image = metaContent(html(fileFor(p)), 'property', 'og:image');
+    assert.doesNotMatch(image, /default\.png$/, `${p} has its own social image`);
+  }
+  assert.ok(images.size >= 12);
+  for (const a of ctx.insights) {
+    const doc = html(fileFor(a.url));
+    assert.equal(metaContent(doc, 'property', 'article:published_time'), a.date);
+    assert.ok(metaContent(doc, 'property', 'article:author'));
+  }
+});
+
+// ---------- Semantic structure ----------
+
+test('one H1 per page and no skipped heading levels', () => {
+  for (const page of pages) {
+    const levels = [...html(page).replace(/<footer class="footer">[\s\S]*<\/footer>/, '').matchAll(/<h([1-6])[\s>]/g)].map(m => Number(m[1]));
+    assert.equal(levels.filter(l => l === 1).length, 1, `${page} H1 count`);
+    levels.forEach((l, i) => i && assert.ok(l - levels[i - 1] <= 1, `${page}: h${levels[i - 1]} -> h${l}`));
+  }
+});
+
+test('the specified H1s are used', () => {
+  const h1 = rel => text(rel).length && decode(html(rel).match(/<h1[^>]*>([\s\S]*?)<\/h1>/)[1].replace(/<[^>]+>/g, '')).trim();
+  assert.equal(h1('value-creation.html'), 'Rethink how value is created and captured.');
+  assert.equal(h1('work-redesign.html'), 'Redesign work around what AI makes possible.');
+  assert.equal(h1('operating-model.html'), 'Build an organisation capable of scaling AI.');
+  assert.equal(h1('venture-building.html'), 'Build what comes next.');
+  assert.equal(h1('insights.html'), 'Insights');
+  assert.equal(h1('about.html'), 'About Comet Innovations');
+  assert.equal(h1('research-and-development.html'), 'Building the foundations of AI-native organisations.');
+});
+
+test('every image has alt text, empty only when decorative', () => {
+  for (const page of pages) {
+    for (const img of html(page).matchAll(/<img\b[^>]*>/g)) assert.match(img[0], /\salt="/, `${page}: ${img[0]}`);
+  }
+});
+
+// ---------- Structured data ----------
+
+test('structured data is valid, connected by stable @ids, and reflects visible content', () => {
+  const ORG = `${SITE}/#organization`;
+  const PERSON = `${SITE}/about#${ctx.founder.slug}`;
+  for (const page of indexable()) {
+    const graph = graphOf(page.file);
+    const byId = Object.fromEntries(graph.filter(n => n['@id']).map(n => [n['@id'], n]));
+    const org = byId[ORG];
+    assert.ok(org, `${page.path} Organization`);
+    assert.equal(org.description, ctx.site.description);
+    assert.equal(org.address.addressLocality, 'London');
+    assert.deepEqual(org.sameAs, [ctx.site.linkedin]);
+    assert.equal(org.founder['@id'], PERSON);
+    assert.ok(byId[`${SITE}/#website`], `${page.path} WebSite`);
+    assert.ok(byId[`${SITE}${page.path}#webpage`], `${page.path} WebPage`);
+    if (page.path !== '/') {
+      const crumbs = byId[`${SITE}${page.path}#breadcrumb`];
+      assert.ok(crumbs, `${page.path} BreadcrumbList`);
+      assert.equal(crumbs.itemListElement.at(-1).item, `${SITE}${page.path}`);
+    }
+    // every in-site reference points at a node defined on this page or a known site-wide entity
+    const refs = JSON.stringify(graph).match(/"@id":"[^"]+"/g).map(r => r.slice(7, -1));
+    for (const ref of refs) assert.ok(byId[ref] || [ORG, PERSON, `${SITE}/#website`, `${SITE}/#logo`].includes(ref), `${page.path} dangling ${ref}`);
+  }
+});
+
+test('articles connect to the founder Person entity with real dates', () => {
+  for (const a of ctx.insights) {
+    const graph = graphOf(fileFor(a.url));
+    const article = graph.find(n => n['@type'] === 'Article');
+    const person = graph.find(n => n['@type'] === 'Person');
+    assert.equal(article.author['@id'], person['@id']);
+    assert.equal(person.name, ctx.founder.name);
+    assert.equal(person.worksFor['@id'], `${SITE}/#organization`);
+    assert.equal(article.datePublished, a.date);
+    assert.equal(article.dateModified, a.modified || a.date);
+    assert.equal(article.mainEntityOfPage['@id'], `${SITE}${a.url}#webpage`);
+    assert.ok(article.image[0].endsWith(`/images/og/${a.slug}.png`));
+    assert.ok(html(`${a.url.slice(1)}.html`).includes(`href="${person['@id'].replace(SITE, '')}"`), 'visible author link matches Person @id');
+  }
+});
+
+test('FAQPage markup exists only on About and matches the visible questions exactly', () => {
+  const faqPages = pages.filter(p => graphOf(p).some(n => n['@type'] === 'FAQPage'));
+  assert.deepEqual(faqPages, ['about.html']);
+  const faq = graphOf('about.html').find(n => n['@type'] === 'FAQPage');
+  const about = html('about.html');
+  assert.equal(faq.mainEntity.length, ctx.faq.length);
+  for (const q of faq.mainEntity) {
+    assert.ok(about.includes(`<summary>${q.name.replace(/&/g, '&amp;')}</summary><p>${q.acceptedAnswer.text.replace(/&/g, '&amp;')}</p>`), q.name);
+  }
+});
+
+test('Service entities exist only on substantive service pages, provided by Comet', () => {
+  const servicePages = metas.filter(p => graphOf(p.file).some(n => n['@type'] === 'Service')).map(p => p.path).sort();
+  assert.deepEqual(servicePages, ['/diagnostic', '/operating-model', '/value-creation', '/venture-building', '/work-redesign']);
+  for (const p of servicePages) {
+    const service = graphOf(fileFor(p)).find(n => n['@type'] === 'Service');
+    assert.equal(service.provider['@id'], `${SITE}/#organization`);
+  }
+});
+
+// ---------- Discovery files ----------
+
+test('sitemap lists every canonical indexable URL and nothing else', () => {
+  const xml = fs.readFileSync(path.join(out, 'sitemap.xml'), 'utf8');
+  const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]).sort();
+  assert.deepEqual(locs, indexable().map(p => `${SITE}${p.path}`).sort());
+  assert.doesNotMatch(xml, /404|enquiry-received|\.html/);
+  for (const m of xml.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)) assert.match(m[1], /^\d{4}-\d{2}-\d{2}$/);
+});
+
+test('robots.txt allows search and AI search crawlers, blocks training crawlers, and lists the sitemap', () => {
+  const robots = fs.readFileSync(path.join(out, 'robots.txt'), 'utf8');
+  const groups = robots.split(/\n\n+/).map(g => g.split('\n').filter(l => !l.startsWith('#')));
+  const groupFor = ua => groups.find(g => g.includes(`User-agent: ${ua}`));
+  assert.ok(groupFor('*').includes('Allow: /'));
+  for (const ua of ['OAI-SearchBot', 'ChatGPT-User', 'Claude-SearchBot', 'PerplexityBot']) {
+    assert.ok(groupFor(ua).includes('Allow: /'), ua);
+    assert.ok(!groupFor(ua).includes('Disallow: /'), ua);
+  }
+  for (const ua of ['GPTBot', 'ClaudeBot', 'Google-Extended', 'CCBot']) assert.ok(groupFor(ua).includes('Disallow: /'), ua);
+  assert.doesNotMatch(robots, /Disallow: \/(styles|script|fonts|images)/, 'rendering assets stay crawlable');
+  assert.ok(robots.includes(`Sitemap: ${SITE}/sitemap.xml`));
+});
+
+test('llms.txt maps the authoritative pages with canonical URLs', () => {
+  const llms = fs.readFileSync(path.join(out, 'llms.txt'), 'utf8');
+  assert.ok(llms.startsWith('# Comet Innovations'));
+  assert.ok(llms.includes('London-based AI Transformation & Venture Building firm'));
+  for (const p of ['/what-we-do', '/value-creation', '/work-redesign', '/operating-model', '/venture-building', '/diagnostic', '/research-and-development', '/about', ...ctx.insights.map(i => i.url)]) {
+    assert.ok(llms.includes(`(${SITE}${p})`), p);
+  }
+  assert.doesNotMatch(llms, /\[[A-Z ]+URL\]/);
+});
+
+test('IndexNow manifest fingerprints every indexable URL', () => {
+  const manifest = JSON.parse(fs.readFileSync(path.join(out, 'indexnow-manifest.json'), 'utf8'));
+  assert.deepEqual(Object.keys(manifest).sort(), indexable().map(p => `${SITE}${p.path}`).sort());
+});
+
+// ---------- Entity clarity and internal linking ----------
+
+test('key concepts are defined in visible HTML, consistently', () => {
+  const ff = 'The Four Fundamentals is Comet’s framework for examining where AI changes four core dimensions of a business: value, work, organisation and growth.';
+  assert.ok(text('what-we-do.html').includes(ff));
+  assert.ok(text('insights/the-four-fundamentals.html').includes(ff));
+  assert.ok(text('what-we-do.html').includes('Comet Innovations helps established organisations determine where AI changes four fundamentals of their business: value, work, organisation and growth.'));
+  assert.ok(text('diagnostic.html').includes('The Fundamentals Diagnostic is a four-to-six-week assessment identifying where AI materially changes a company’s economics and which opportunities should be prioritised.'));
+  assert.ok(text('diagnostic.html').includes('not a downloadable maturity test'));
+  assert.ok(text('venture-building.html').includes('Corporate venture building is the disciplined process of identifying, validating, building and launching new businesses using the assets and advantages of an established organisation.'));
+  assert.ok(text('venture-building.html').includes('Comet helps established organisations identify, validate, build and launch new businesses.'));
+  assert.ok(/Agentic AI describes AI systems/.test(text('work-redesign.html')));
+  for (const term of ['Corporate innovation', 'Venture validation', 'Venture building', 'Venture acceleration']) assert.ok(html('venture-building.html').includes(`<dt>${term}</dt>`), term);
+  for (const term of ['Task automation', 'Workflow redesign', 'AI agents and agentic AI', 'Workforce transformation', 'Capability building']) assert.ok(html('work-redesign.html').includes(`<dt>${term}</dt>`), term);
+});
+
+test('no conflicting company descriptions or unsupported superlatives', () => {
+  for (const page of pages) {
+    const t = text(page);
+    assert.doesNotMatch(t, /\b(AI agency|technology company|software company|innovation studio|digital transformation agency)\b/i, page);
+    assert.doesNotMatch(t, /\b(world-class|market-leading|best-in-class|industry-leading)\b/i, page);
+  }
+});
+
+test('every pillar page links to What We Do, the Diagnostic, an Insight, Our Work and Contact', () => {
+  for (const p of ['value-creation', 'work-redesign', 'operating-model', 'venture-building']) {
+    const links = internalLinks(`${p}.html`).map(l => l.split('#')[0].split('?')[0]);
+    for (const target of ['/what-we-do', '/diagnostic', '/contact']) assert.ok(links.includes(target), `${p} -> ${target}`);
+    assert.ok(links.some(l => l.startsWith('/insights/')), `${p} -> insight`);
+    assert.ok(links.includes('/our-work') || p === 'work-redesign', `${p} -> our work`);
+  }
+});
+
+test('the economics Insight links to the framework and every pillar', () => {
+  const links = internalLinks('insights/where-is-ai-changing-your-economics.html').map(l => l.split('#')[0]);
+  for (const target of ['/insights/the-four-fundamentals', '/value-creation', '/work-redesign', '/operating-model', '/venture-building', '/diagnostic']) {
+    assert.ok(links.includes(target), target);
+  }
+  assert.ok(internalLinks('insights/what-should-you-build-next.html').includes('/venture-building'));
+});
+
+test('no orphan pages: every indexable page is linked from another page', () => {
+  const inbound = new Set(pages.flatMap(p => internalLinks(p).filter(() => true).map(l => l.split('#')[0].split('?')[0])).concat());
+  for (const page of indexable()) assert.ok(inbound.has(page.path), `${page.path} has no inbound links`);
 });

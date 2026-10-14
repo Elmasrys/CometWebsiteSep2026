@@ -3,14 +3,32 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{{page.title}} | {{site.name}}</title>
+<title>{{page.title}}</title>
 <meta name="description" content="{{page.description}}">
-<meta property="og:site_name" content="{{site.name}}">
-<meta property="og:title" content="{{page.title}}">
-<meta property="og:description" content="{{page.description}}">
-<meta property="og:type" content="{{#page.ogType}}{{page.ogType}}{{/page.ogType}}{{^page.ogType}}website{{/page.ogType}}">
-{{#site.url}}<link rel="canonical" href="{{site.url}}{{page.path}}">{{/site.url}}
 {{#page.noindex}}<meta name="robots" content="noindex">{{/page.noindex}}
+{{^page.noindex}}<link rel="canonical" href="{{page.canonical}}">{{/page.noindex}}
+<meta property="og:site_name" content="{{site.name}}">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="{{page.ogTitle}}">
+<meta property="og:description" content="{{page.ogDescription}}">
+<meta property="og:url" content="{{page.canonical}}">
+<meta property="og:type" content="{{#page.ogType}}{{page.ogType}}{{/page.ogType}}{{^page.ogType}}website{{/page.ogType}}">
+<meta property="og:image" content="{{page.ogImageUrl}}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{page.ogTitle}}">
+{{#page.article}}<meta property="article:published_time" content="{{page.article.date}}">
+<meta property="article:modified_time" content="{{page.updated}}">
+<meta property="article:author" content="{{site.url}}{{page.article.author.profileUrl}}">
+<meta property="article:section" content="{{page.article.category}}">
+<meta name="author" content="{{page.article.author.name}}">{{/page.article}}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{page.ogTitle}}">
+<meta name="twitter:description" content="{{page.ogDescription}}">
+<meta name="twitter:image" content="{{page.ogImageUrl}}">
+{{#site.verification.google}}<meta name="google-site-verification" content="{{site.verification.google}}">{{/site.verification.google}}
+{{#site.verification.bing}}<meta name="msvalidate.01" content="{{site.verification.bing}}">{{/site.verification.bing}}
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <link rel="icon" href="comet-favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/cormorant-garamond-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
@@ -35,7 +53,7 @@
   </div>
   <a href="our-work.html">Work</a>
   <a href="insights.html">Insights</a>
-  <a href="rd.html">R&amp;D</a>
+  <a href="research-and-development.html">R&amp;D</a>
   <a href="about.html">About</a>
   <a class="nav-cta" href="contact.html">Start a conversation</a>
 </div>
@@ -58,7 +76,7 @@
       <li><a href="what-we-do.html">What We Do</a></li>
       <li><a href="our-work.html">Our Work</a></li>
       <li><a href="insights.html">Insights</a></li>
-      <li><a href="rd.html">R&amp;D</a></li>
+      <li><a href="research-and-development.html">R&amp;D</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>

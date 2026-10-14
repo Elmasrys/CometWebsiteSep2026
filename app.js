@@ -1,9 +1,17 @@
+import compression from 'compression';
 import express from 'express';
+import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+const ROOT = path.dirname(fileURLToPath(import.meta.url));
 // The built site (see build.js). `npm start` builds it first.
-const siteDir = path.join(path.dirname(fileURLToPath(import.meta.url)), 'dist');
+const siteDir = path.join(ROOT, 'dist');
+const configuredSiteUrl = () =>
+  process.env.SITE_URL || JSON.parse(fs.readFileSync(path.join(ROOT, 'src', 'content', 'site.json'), 'utf8')).url;
+
+/** Old URLs that map to a different page, one to one. `.html` suffixes are handled generically. */
+export const LEGACY_REDIRECTS = { '/rd': '/research-and-development', '/index': '/' };
 
 export const TOPICS = {
   diagnostic: 'The Fundamentals Diagnostic',
@@ -106,7 +114,7 @@ const wantsJson = req => (req.get('accept') || '').includes('application/json');
 function reply(req, res, status, body) {
   if (wantsJson(req)) return res.status(status).json(body);
   // Without JavaScript the form posts normally: send the visitor back to the page.
-  return res.redirect(303, status < 300 ? '/enquiry-received.html' : '/contact.html?error=1');
+  return res.redirect(303, status < 300 ? '/enquiry-received' : '/contact?error=1');
 }
 
 const SECURITY_HEADERS = {
@@ -128,7 +136,16 @@ const SECURITY_HEADERS = {
   'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
 };
 
-export function createApp({ sendEnquiry = sendWithResend, log = console, rateLimit = {} } = {}) {
+export function createApp({
+  sendEnquiry = sendWithResend,
+  log = console,
+  rateLimit = {},
+  siteUrl = configuredSiteUrl(),
+  redirectToCanonical = process.env.REDIRECT_TO_CANONICAL === 'true',
+  indexNowKey = process.env.INDEXNOW_KEY,
+} = {}) {
+  const canonical = new URL(siteUrl);
+  const apexHost = canonical.hostname.replace(/^www\./, '');
   const app = express();
   app.disable('x-powered-by');
   app.set('trust proxy', 1); // Railway terminates TLS in front of the app
@@ -137,8 +154,39 @@ export function createApp({ sendEnquiry = sendWithResend, log = console, rateLim
     res.set(SECURITY_HEADERS);
     next();
   });
+  app.use(compression());
 
   app.get('/healthz', (req, res) => res.type('text').send('ok'));
+
+  // One host, one protocol: the bare domain and http go to the canonical origin. Other hosts (the Railway
+  // address, previews) are redirected only when REDIRECT_TO_CANONICAL=true, and are never indexed.
+  app.use((req, res, next) => {
+    const host = req.hostname;
+    const local = host === 'localhost' || host === '127.0.0.1';
+    const toCanonical = () => res.redirect(301, `${canonical.origin}${req.originalUrl}`);
+    if (host === apexHost && apexHost !== canonical.hostname) return toCanonical();
+    if (host === canonical.hostname) {
+      if (canonical.protocol === 'https:' && req.protocol !== 'https') return toCanonical();
+      return next();
+    }
+    if (redirectToCanonical && !local) return toCanonical();
+    res.set('X-Robots-Tag', 'noindex');
+    next();
+  });
+
+  // Clean, stable URLs: /about rather than /about.html, no trailing slash, legacy paths mapped one to one.
+  app.use((req, res, next) => {
+    if (req.method !== 'GET' && req.method !== 'HEAD') return next();
+    let target = req.path;
+    if (target.length > 1) target = target.replace(/\/+$/, '');
+    target = target.replace(/\.html$/, '');
+    target = LEGACY_REDIRECTS[target] ?? target;
+    if (target === req.path) return next();
+    const query = req.originalUrl.slice(req.originalUrl.indexOf('?') === -1 ? req.originalUrl.length : req.originalUrl.indexOf('?'));
+    return res.redirect(301, `${target || '/'}${query}`);
+  });
+
+  if (indexNowKey) app.get(`/${indexNowKey}.txt`, (req, res) => res.type('text').send(indexNowKey));
 
   app.post(
     '/api/contact',
@@ -161,14 +209,31 @@ export function createApp({ sendEnquiry = sendWithResend, log = console, rateLim
     },
   );
 
+  // Pages: /about -> dist/about.html, /insights/x -> dist/insights/x.html, / -> dist/index.html.
+  app.use((req, res, next) => {
+    if ((req.method !== 'GET' && req.method !== 'HEAD') || path.extname(req.path)) return next();
+    const rel = req.path === '/' ? 'index.html' : `${req.path.slice(1)}.html`;
+    if (rel === '404.html') return next();
+    const file = path.join(siteDir, rel);
+    if (!file.startsWith(siteDir + path.sep)) return next();
+    fs.stat(file, (err, stat) => {
+      if (err || !stat.isFile()) return next();
+      res.set('Cache-Control', 'no-cache');
+      res.sendFile(file);
+    });
+  });
+
   app.use(
     express.static(siteDir, {
-      extensions: ['html'],
+      index: false,
+      redirect: false,
       setHeaders(res, filePath) {
-        if (filePath.includes(`${path.sep}fonts${path.sep}`)) {
+        if (res.req?.query?.v || filePath.includes(`${path.sep}fonts${path.sep}`)) {
           res.set('Cache-Control', 'public, max-age=31536000, immutable');
         } else if (/\.(svg|png|jpe?g|webp|avif)$/.test(filePath)) {
           res.set('Cache-Control', 'public, max-age=86400');
+        } else if (/\.(txt|xml)$/.test(filePath)) {
+          res.set('Cache-Control', 'public, max-age=3600');
         } else {
           res.set('Cache-Control', 'no-cache');
         }
@@ -176,6 +241,6 @@ export function createApp({ sendEnquiry = sendWithResend, log = console, rateLim
     }),
   );
 
-  app.use((req, res) => res.status(404).sendFile(path.join(siteDir, '404.html')));
+  app.use((req, res) => res.status(404).set('Cache-Control', 'no-cache').sendFile(path.join(siteDir, '404.html')));
   return app;
 }

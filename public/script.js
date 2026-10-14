@@ -98,7 +98,7 @@ if (form) {
       });
       const body = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(body.error || 'Something went wrong sending your enquiry. Please try again.');
-      location.assign('/enquiry-received.html');
+      location.assign('/enquiry-received');
     } catch (err) {
       showError(err.message);
       button.disabled = false;

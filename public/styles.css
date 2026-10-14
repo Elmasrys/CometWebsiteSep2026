@@ -9,7 +9,7 @@
 :root{
   --night:#0B0A08;--carbon:#141412;--umber:#1C1712;
   --limestone:#F1EDE3;--chalk:#FAF8F2;--sand:#E7DFD0;
-  --stone:#7E7A71;--graphite:#3B3A36;--ink:#24231F;
+  --stone:#6B675E;--graphite:#3B3A36;--ink:#24231F;
   --gold:#D9B06F;--gold-bright:#F3CF8E;--ember:#9C6430;
   --burgundy:#4A1A22;--green:#173226;--warm-grey:#8C857B;
   --line:rgba(20,20,18,.14);--line-strong:rgba(20,20,18,.8);--line-dark:rgba(250,248,242,.14);
@@ -109,7 +109,10 @@ main:focus{outline:none}
 .hero-copy>.hero-reveal:nth-child(4){animation-delay:.18s}
 .hero-copy>.hero-reveal:nth-child(5){animation-delay:.24s}
 .hero-copy>.hero-reveal:nth-child(6){animation-delay:.3s}
-@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes rise{from{opacity:.01;transform:translateY(14px)}to{opacity:1;transform:none}}
+/* The headline is the LCP element: it moves into place but is never faded, so it paints on the first frame. */
+.js .hero h1.hero-reveal{animation-name:settle-text}
+@keyframes settle-text{from{transform:translateY(10px)}to{transform:none}}
 
 /* ---------- Sections ---------- */
 .section{padding:clamp(88px,10vw,144px) 0}
@@ -458,6 +461,44 @@ main:focus{outline:none}
 .js .reveal.in{opacity:1;transform:none}
 .js .diagram.reveal{transform:none}
 
+/* ---------- Definitions, answers and related links ---------- */
+h2.eyebrow,h3.eyebrow{font-family:var(--sans)}
+.page-hero .breadcrumb{margin-bottom:28px}
+.hero-question{font-family:var(--serif);font-style:italic;font-size:clamp(24px,2.2vw,32px)!important;line-height:1.2;color:var(--carbon)!important;margin:-6px 0 22px!important;padding-left:18px;border-left:2px solid var(--ember)}
+.lead-statement{font-family:var(--serif);font-size:clamp(26px,2.6vw,38px)!important;line-height:1.2!important;color:var(--carbon)!important;max-width:760px!important;margin:0 0 22px!important}
+.definition{font-size:17px;line-height:1.65;color:var(--ink)!important;max-width:680px;padding:18px 0 18px 22px;border-left:1px solid var(--line-strong);margin:8px 0 24px}
+.page-hero .definition{font-size:17px}
+dfn{font-style:normal;font-weight:600}
+.answers{margin:0;border-top:1px solid var(--line-strong)}
+.answers>div{padding:28px 0;border-bottom:1px solid var(--line)}
+.answers dt{font-family:var(--serif);font-size:clamp(24px,2.2vw,30px);line-height:1.15;margin-bottom:10px}
+.answers dd{margin:0;color:var(--graphite);font-size:17px;line-height:1.65;max-width:680px}
+.answers a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(20,20,18,.35)}
+.answers a:hover{text-decoration-color:currentColor}
+.distinctions{counter-reset:d}
+.distinctions>div{display:grid;grid-template-columns:48px 1fr;column-gap:0}
+.distinctions>div:before{counter-increment:d;content:counter(d,decimal-leading-zero);grid-row:span 2;font-size:10px;letter-spacing:.2em;color:var(--ember);padding-top:10px}
+.related-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line-strong)}
+.related-list a{display:grid;gap:4px;padding:20px 0;border-bottom:1px solid var(--line);position:relative;padding-right:40px}
+.related-list a:after{content:"\2192";position:absolute;right:4px;top:50%;transform:translateY(-50%);transition:transform .3s var(--ease);color:var(--ember)}
+.related-list a:hover:after{transform:translate(4px,-50%)}
+.related-list-title{font-family:var(--serif);font-size:clamp(22px,2vw,28px);line-height:1.15}
+.related-list-note{font-size:14px;color:var(--graphite)}
+.related-list a:hover .related-list-title{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+.after-list-split{display:flex;flex-wrap:wrap;align-items:center;gap:20px 32px}
+.step a,.copy a:not(.link):not(.nav-cta){text-decoration:underline;text-underline-offset:3px}
+.dark .copy a{color:var(--chalk)}
+
+/* Case studies */
+.case-studies{border-top:1px solid var(--line-strong)}
+.case-study{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:16px clamp(40px,6vw,96px);padding:44px 0;border-bottom:1px solid var(--line);scroll-margin-top:calc(var(--nav-h) + 24px)}
+.case-study h2{font-family:var(--serif);font-weight:400;font-size:clamp(28px,2.8vw,40px);line-height:1.1;margin:0;grid-row:span 2}
+.case-capabilities{margin:0;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ember)}
+.case-facts{margin:0;display:grid;gap:12px}
+.case-facts dt{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--stone)}
+.case-facts dd{margin:2px 0 0}
+.case-facts a{text-decoration:underline;text-underline-offset:3px}
+
 /* ---------- Responsive ---------- */
 @media(max-width:1200px) and (min-width:981px){
  .steps{grid-template-columns:repeat(3,1fr)}
@@ -501,6 +542,8 @@ main:focus{outline:none}
  .featured-number{font-size:40px}
  .featured-meta{grid-column:2;grid-template-columns:repeat(3,auto);justify-content:start;gap:12px 32px}
  .profile-head{flex-direction:column;align-items:flex-start}
+ .case-study{grid-template-columns:1fr}
+ .case-study h2{grid-row:auto}
  .stages{grid-template-columns:1fr;gap:20px}
  .stages:before{left:5px;right:auto;top:0;bottom:0;width:1px;height:auto;transform-origin:top}
  .js .diagram-stages .stages:before{transform:scaleY(0)}
