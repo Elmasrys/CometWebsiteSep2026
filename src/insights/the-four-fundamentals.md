@@ -7,6 +7,8 @@
   "standfirst": "AI creates hundreds of possible use cases. Leadership teams need a simpler way to decide which changes actually matter.",
   "author": "sherif-elmasry",
   "date": "2026-10-13",
+  "modified": "2026-10-16",
+  "frameworkNotice": true,
   "related": "what-should-you-build-next",
   "cta": {
     "lead": "Explore the Four Fundamentals.",

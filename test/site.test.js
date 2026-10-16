@@ -152,6 +152,22 @@ test('legal pages exist, use configured facts, and the site sets no cookies or s
   }
 });
 
+test('the Four Fundamentals carry the proprietary notice, and the Terms protect the framework', () => {
+  const notice = 'The Four Fundamentals framework and associated methodology are proprietary to Maverika Ltd, trading as Comet Innovations. © Maverika Ltd. All rights reserved.';
+  assert.equal(ctx.legal.frameworkNotice, notice);
+  for (const page of ['index.html', 'what-we-do.html', 'diagnostic.html', 'insights/the-four-fundamentals.html', 'insights/where-is-ai-changing-your-economics.html']) {
+    assert.ok(text(page).includes(notice), page);
+  }
+  assert.ok(fs.readFileSync(path.join(out, 'llms.txt'), 'utf8').includes(notice));
+  const terms = text('terms.html');
+  for (const sentence of [
+    'Unless otherwise stated, the content of this website, including text, graphics, frameworks, methodologies, branding and original materials, is owned by or licensed to Maverika Ltd.',
+    'The Four Fundamentals framework and associated methodology are proprietary to Maverika Ltd and are protected by applicable intellectual property rights.',
+    'No part of the Four Fundamentals framework or associated methodology may be reproduced, adapted, distributed or used commercially without prior written permission from Maverika Ltd.',
+  ]) assert.ok(terms.includes(sentence), sentence);
+  assert.ok(terms.includes(`Effective date: ${ctx.legal.termsLastUpdatedLabel}`));
+});
+
 test('only London is presented as an office, in copy and in structured data', () => {
   for (const page of pages) {
     assert.doesNotMatch(text(page), /\b(Cairo|Dubai|Riyadh|Lagos)\b/, page);

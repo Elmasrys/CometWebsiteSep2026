@@ -104,6 +104,7 @@ function loadContent() {
   site.url = (process.env.SITE_URL || site.url).replace(/\/$/, '');
   legal.addressLine = legal.registeredAddress.join(', ');
   legal.lastUpdatedLabel = legal.lastUpdated ? formatDate(legal.lastUpdated) : '';
+  legal.termsLastUpdatedLabel = legal.termsLastUpdated ? formatDate(legal.termsLastUpdated) : '';
   for (const person of people) person.profileUrl = `/about#${person.slug}`;
 
   const insights = fs
@@ -379,6 +380,8 @@ function llmsTxt(ctx, pages) {
     '- Work: How do people work?',
     '- Organisation: How does the organisation run?',
     '- Growth: How do you grow?',
+    '',
+    ctx.legal.frameworkNotice,
     '',
     `Office: ${site.office}. Market experience: United Kingdom, Middle East and Africa.`,
     `Founder & Managing Partner: ${ctx.founder.name} (${site.url}${ctx.founder.profileUrl}).`,

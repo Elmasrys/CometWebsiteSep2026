@@ -7,6 +7,8 @@
   "standfirst": "Most organisations are asking where they can use AI. The more consequential question is where AI changes the economics of the business enough to demand a different strategic answer.",
   "author": "sherif-elmasry",
   "date": "2026-10-13",
+  "modified": "2026-10-16",
+  "frameworkNotice": true,
   "related": "the-four-fundamentals",
   "cta": {
     "lead": "Find out where AI changes your economics.",

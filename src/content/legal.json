@@ -9,6 +9,8 @@
   "retentionPeriod": "",
   "governingLaw": "England and Wales",
   "lastUpdated": "2026-10-13",
+  "termsLastUpdated": "2026-10-16",
+  "frameworkNotice": "The Four Fundamentals framework and associated methodology are proprietary to Maverika Ltd, trading as Comet Innovations. © Maverika Ltd. All rights reserved.",
   "serviceProviders": [
     { "name": "Railway", "purpose": "hosts this website" },
     { "name": "Resend", "purpose": "delivers enquiries submitted through the contact form to us by email" }
