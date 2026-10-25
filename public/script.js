@@ -85,8 +85,9 @@ document.querySelectorAll('[data-market-index]').forEach(index => {
   const slides = [...index.querySelectorAll('[data-market-slide]')];
   if (slides.length < 2) return;
   const show = key => {
-    if (!slides.some(s => s.dataset.marketSlide === key)) return;
-    slides.forEach(s => s.classList.toggle('is-active', s.dataset.marketSlide === key));
+    // A market without its own photograph returns to the featured one.
+    const target = slides.find(s => s.dataset.marketSlide === key) || slides[0];
+    slides.forEach(s => s.classList.toggle('is-active', s === target));
   };
   index.querySelectorAll('[data-market]').forEach(item => {
     item.addEventListener('mouseenter', () => show(item.dataset.market));

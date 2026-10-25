@@ -2,7 +2,7 @@
 
 Generated from `src/content/images.json` by `node tools/image-inventory.mjs`. Do not edit by hand.
 
-**2 of 25 slots are live; 23 await approved photography.** Slots without photography keep their typographic composition, so nothing placeholder-like is published. The visual redesign is not final until these photographs are integrated and reviewed.
+**7 of 25 slots are live; 18 await approved photography.** Slots without photography keep their typographic composition, so nothing placeholder-like is published. The visual redesign is not final until these photographs are integrated and reviewed.
 
 ## How to add a photograph
 
@@ -21,10 +21,10 @@ Contemporary editorial, medium-format character, restrained saturation, neutral 
 | --- | --- | --- | --- | --- | --- |
 | Live | `home_opening` | `assets/source/gateway.jpg` | Home | 3:4 frame (master 16:10) | Master at least 2400 × 1500; existing 1586 × 992 accepted, 2400 × 1500 re-export preferred |
 | Live | `about_plate` | `assets/source/gateway.jpg` | About | fills hero plate (about 2:3) | Shares the Gateway master |
-| Awaiting | `home_fundamentals` | `assets/source/fundamentals-architecture.jpg` | Home | 4:5 | 2000 × 2500 minimum |
-| Awaiting | `industry_private_equity` | `assets/source/industry-private-equity.jpg` | Private Equity; Home section 04; Industries | 4:5 (hero) and 3:2 (home markets) | 2400 × 3000 minimum (subject centred so a 3:2 crop also works) |
-| Awaiting | `industry_private_equity_detail` | `assets/source/industry-private-equity-detail.jpg` | Private Equity | 21:9 | 3000 × 1286 minimum |
-| Awaiting | `industry_government` | `assets/source/industry-government.jpg` | Government; Home section 04; Industries | 3:2 | 2400 × 1600 minimum |
+| Live | `home_fundamentals` | `assets/source/fundamentals-architecture.jpg` | Home | 4:5 | 2000 × 2500 minimum |
+| Live | `industry_private_equity` | `assets/source/industry-private-equity.jpg` | Private Equity; Home section 04; Industries | 4:5 (hero) and 3:2 (home markets) | 2400 × 3000 minimum (subject centred so a 3:2 crop also works) |
+| Live | `industry_private_equity_detail` | `assets/source/industry-private-equity-detail.jpg` | Private Equity | 21:9 | 3000 × 1286 minimum |
+| Live | `industry_government` | `assets/source/industry-government.jpg` | Government; Home section 04; Industries | 3:2 | 2400 × 1600 minimum |
 | Awaiting | `industry_government_detail` | `assets/source/industry-government-detail.jpg` | Government | 21:9 | 3000 × 1286 minimum |
 | Awaiting | `industry_energy` | `assets/source/industry-energy.jpg` | Energy; Home section 04; Industries | 21:9 (hero) and 3:2 (home markets) | 3600 × 1543 minimum (subject centred for a 3:2 crop) |
 | Awaiting | `industry_energy_detail` | `assets/source/industry-energy-detail.jpg` | Energy | 4:5 | 2000 × 2500 minimum |
@@ -32,7 +32,7 @@ Contemporary editorial, medium-format character, restrained saturation, neutral 
 | Awaiting | `advise_context` | `assets/source/advise-context.jpg` | Advise | 16:9 | 3000 × 1688 minimum |
 | Awaiting | `educate_hero` | `assets/source/educate.jpg` | Educate | 16:9 | 3000 × 1688 minimum |
 | Awaiting | `educate_detail` | `assets/source/educate-detail.jpg` | Educate | 4:5 | 2000 × 2500 minimum |
-| Awaiting | `engineer_hero` | `assets/source/engineer.jpg` | Engineer | 3:2 | 2400 × 1600 minimum |
+| Live | `engineer_hero` | `assets/source/engineer.jpg` | Engineer | 3:2 | 2400 × 1600 minimum |
 | Awaiting | `engineer_artefact` | `assets/source/engineer-artefact.png` | Engineer | 16:10 | 2560 × 1600 minimum |
 | Awaiting | `fundamentals_overview` | `assets/source/fundamentals-overview.jpg` | The Four Fundamentals | 21:9 | 3600 × 1543 minimum |
 | Awaiting | `fundamentals_value` | `assets/source/fundamentals-value.jpg` | The Four Fundamentals | 4:5 | 2000 × 2500 minimum |
@@ -67,45 +67,45 @@ Contemporary editorial, medium-format character, restrained saturation, neutral 
 - **Master:** `assets/source/gateway.jpg`, Shares the Gateway master; outputs `public/images/home-hero-{960,1586}.{avif,webp}` and `.jpg` at 1586px
 - **Credit and licence:** Comet Innovations commissioned artwork
 
-### `home_fundamentals` (awaiting photography)
+### `home_fundamentals` (live)
 
 - **Page:** Home
 - **Placement:** Section 05, The Four Fundamentals: tall image in the left columns beside the four questions
 - **Subject:** Contemporary monumental architecture with Egyptian proportions: tapered planes, a deep threshold or a colonnade in diffused daylight
 - **Composition:** Strong verticals, one dominant mass, generous negative space at top; no pyramids, temples or hieroglyphs
 - **Aspect ratio:** 4:5; **focal point:** 50% 50%
-- **Master:** `assets/source/fundamentals-architecture.jpg`, 2000 × 2500 minimum; outputs `public/images/fundamentals-architecture-{960,1600}.{avif,webp}` and `.jpg` at 1600px
-- **Credit and licence:** to be recorded on delivery
+- **Master:** `assets/source/fundamentals-architecture.jpg`, 2000 × 2500 minimum; outputs `public/images/fundamentals-architecture-{960,1122}.{avif,webp}` and `.jpg` at 1122px
+- **Credit and licence:** Supplied by Comet Innovations (curated collection, October 2026)
 
-### `industry_private_equity` (awaiting photography)
+### `industry_private_equity` (live)
 
 - **Page:** Private Equity; Home section 04; Industries
 - **Placement:** Private Equity opening (image left half); featured image in the homepage markets section; Industries band
 - **Subject:** An operating business: a production floor, distribution centre or industrial workshop at work
 - **Composition:** People at work but not posed, depth through the space, calm light; no trading floors, skyscrapers or boardrooms
-- **Aspect ratio:** 4:5 (hero) and 3:2 (home markets); **focal point:** 50% 50%
-- **Master:** `assets/source/industry-private-equity.jpg`, 2400 × 3000 minimum (subject centred so a 3:2 crop also works); outputs `public/images/industry-private-equity-{960,1600,2400}.{avif,webp}` and `.jpg` at 2400px
-- **Credit and licence:** to be recorded on delivery
+- **Aspect ratio:** 4:5 (hero) and 3:2 (home markets); **focal point:** 38% 34%
+- **Master:** `assets/source/industry-private-equity.jpg`, 2400 × 3000 minimum (subject centred so a 3:2 crop also works); outputs `public/images/industry-private-equity-{960,1122}.{avif,webp}` and `.jpg` at 1122px
+- **Credit and licence:** Supplied by Comet Innovations (curated collection, October 2026)
 
-### `industry_private_equity_detail` (awaiting photography)
+### `industry_private_equity_detail` (live)
 
 - **Page:** Private Equity
 - **Placement:** Full-bleed pause between 'An investment perspective on AI' and 'Where we focus'
 - **Subject:** Portfolio-company operations at scale: a logistics yard, plant exterior or line seen from above
 - **Composition:** Wide, orderly, operational; horizon or structure on a third; no logos
 - **Aspect ratio:** 21:9; **focal point:** 50% 55%
-- **Master:** `assets/source/industry-private-equity-detail.jpg`, 3000 × 1286 minimum; outputs `public/images/industry-private-equity-detail-{1280,2400}.{avif,webp}` and `.jpg` at 2400px
-- **Credit and licence:** to be recorded on delivery
+- **Master:** `assets/source/industry-private-equity-detail.jpg`, 3000 × 1286 minimum; outputs `public/images/industry-private-equity-detail-{1280,1916}.{avif,webp}` and `.jpg` at 1916px
+- **Credit and licence:** Supplied by Comet Innovations (curated collection, October 2026)
 
-### `industry_government` (awaiting photography)
+### `industry_government` (live)
 
 - **Page:** Government; Home section 04; Industries
 - **Placement:** Government opening (offset image beneath the title); homepage markets; Industries band
 - **Subject:** A civic institution in use: the hall of a public building, a library or a transport concourse with people
 - **Composition:** Institutional architecture with human scale; no flags, politicians, handshakes or ceremonies
-- **Aspect ratio:** 3:2; **focal point:** 50% 50%
-- **Master:** `assets/source/industry-government.jpg`, 2400 × 1600 minimum; outputs `public/images/industry-government-{960,1600,2400}.{avif,webp}` and `.jpg` at 2400px
-- **Credit and licence:** to be recorded on delivery
+- **Aspect ratio:** 3:2; **focal point:** 42% 62%
+- **Master:** `assets/source/industry-government.jpg`, 2400 × 1600 minimum; outputs `public/images/industry-government-{960,1536}.{avif,webp}` and `.jpg` at 1536px
+- **Credit and licence:** Supplied by Comet Innovations (curated collection, October 2026)
 
 ### `industry_government_detail` (awaiting photography)
 
@@ -177,15 +177,15 @@ Contemporary editorial, medium-format character, restrained saturation, neutral 
 - **Master:** `assets/source/educate-detail.jpg`, 2000 × 2500 minimum; outputs `public/images/educate-detail-{960,1600}.{avif,webp}` and `.jpg` at 1600px
 - **Credit and licence:** to be recorded on delivery
 
-### `engineer_hero` (awaiting photography)
+### `engineer_hero` (live)
 
 - **Page:** Engineer
 - **Placement:** Opening: offset image beneath the title
 - **Subject:** Technical work in progress: engineers at workstations, a whiteboard architecture session or hardware on a bench
 - **Composition:** Precise and practical; screens unreadable unless showing genuine Comet work
-- **Aspect ratio:** 3:2; **focal point:** 50% 50%
-- **Master:** `assets/source/engineer.jpg`, 2400 × 1600 minimum; outputs `public/images/engineer-{960,1600,2400}.{avif,webp}` and `.jpg` at 2400px
-- **Credit and licence:** to be recorded on delivery
+- **Aspect ratio:** 3:2; **focal point:** 52% 40%
+- **Master:** `assets/source/engineer.jpg`, 2400 × 1600 minimum; outputs `public/images/engineer-{960,1536}.{avif,webp}` and `.jpg` at 1536px
+- **Credit and licence:** Supplied by Comet Innovations (curated collection, October 2026)
 
 ### `engineer_artefact` (awaiting photography)
 

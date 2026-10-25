@@ -43,7 +43,7 @@
       "master": "fundamentals-architecture.jpg",
       "widths": [
         960,
-        1600
+        1122
       ],
       "ratio": "4:5",
       "focal": "50% 50%",
@@ -54,18 +54,17 @@
       "dimensions": "2000 × 2500 minimum",
       "subject": "Contemporary monumental architecture with Egyptian proportions: tapered planes, a deep threshold or a colonnade in diffused daylight",
       "composition": "Strong verticals, one dominant mass, generous negative space at top; no pyramids, temples or hieroglyphs",
-      "credit": ""
+      "credit": "Supplied by Comet Innovations (curated collection, October 2026)"
     },
     "industry_private_equity": {
       "file": "industry-private-equity",
       "master": "industry-private-equity.jpg",
       "widths": [
         960,
-        1600,
-        2400
+        1122
       ],
       "ratio": "4:5 (hero) and 3:2 (home markets)",
-      "focal": "50% 50%",
+      "focal": "38% 34%",
       "sizes": "(max-width: 980px) 100vw, 50vw",
       "alt": "",
       "page": "Private Equity; Home section 04; Industries",
@@ -73,14 +72,14 @@
       "dimensions": "2400 × 3000 minimum (subject centred so a 3:2 crop also works)",
       "subject": "An operating business: a production floor, distribution centre or industrial workshop at work",
       "composition": "People at work but not posed, depth through the space, calm light; no trading floors, skyscrapers or boardrooms",
-      "credit": ""
+      "credit": "Supplied by Comet Innovations (curated collection, October 2026)"
     },
     "industry_private_equity_detail": {
       "file": "industry-private-equity-detail",
       "master": "industry-private-equity-detail.jpg",
       "widths": [
         1280,
-        2400
+        1916
       ],
       "ratio": "21:9",
       "focal": "50% 55%",
@@ -91,18 +90,17 @@
       "dimensions": "3000 × 1286 minimum",
       "subject": "Portfolio-company operations at scale: a logistics yard, plant exterior or line seen from above",
       "composition": "Wide, orderly, operational; horizon or structure on a third; no logos",
-      "credit": ""
+      "credit": "Supplied by Comet Innovations (curated collection, October 2026)"
     },
     "industry_government": {
       "file": "industry-government",
       "master": "industry-government.jpg",
       "widths": [
         960,
-        1600,
-        2400
+        1536
       ],
       "ratio": "3:2",
-      "focal": "50% 50%",
+      "focal": "42% 62%",
       "sizes": "(max-width: 980px) 100vw, 58vw",
       "alt": "",
       "page": "Government; Home section 04; Industries",
@@ -110,7 +108,7 @@
       "dimensions": "2400 × 1600 minimum",
       "subject": "A civic institution in use: the hall of a public building, a library or a transport concourse with people",
       "composition": "Institutional architecture with human scale; no flags, politicians, handshakes or ceremonies",
-      "credit": ""
+      "credit": "Supplied by Comet Innovations (curated collection, October 2026)"
     },
     "industry_government_detail": {
       "file": "industry-government-detail",
@@ -243,11 +241,10 @@
       "master": "engineer.jpg",
       "widths": [
         960,
-        1600,
-        2400
+        1536
       ],
       "ratio": "3:2",
-      "focal": "50% 50%",
+      "focal": "52% 40%",
       "sizes": "(max-width: 980px) 100vw, 58vw",
       "alt": "",
       "page": "Engineer",
@@ -255,7 +252,7 @@
       "dimensions": "2400 × 1600 minimum",
       "subject": "Technical work in progress: engineers at workstations, a whiteboard architecture session or hardware on a bench",
       "composition": "Precise and practical; screens unreadable unless showing genuine Comet work",
-      "credit": ""
+      "credit": "Supplied by Comet Innovations (curated collection, October 2026)"
     },
     "engineer_artefact": {
       "file": "engineer-artefact",
