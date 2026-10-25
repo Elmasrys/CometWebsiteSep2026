@@ -64,13 +64,13 @@ Many of the first benefits of generative AI are productivity benefits.
 | A customer service agent handles more cases.
 | A marketing team produces more content.
 
-These improvements can be valuable. But making an existing activity 20 percent more efficient does not necessarily change the economics of the business.
+These improvements can be valuable. But making an existing activity 20 per cent more efficient does not necessarily change the economics of the business.
 
 > Transformation begins when the economics move enough to require a different answer.
 
 Consider a workflow that historically required ten people.
 
-Reducing the effort by 15 percent is an efficiency programme.
+Reducing the effort by 15 per cent is an efficiency programme.
 
 Redesigning the workflow so that AI performs most of the coordination, analysis and execution while three people provide judgement and exception management is an operating model question.
 

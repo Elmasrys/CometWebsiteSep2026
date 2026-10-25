@@ -66,11 +66,11 @@ test('the home page uses the revised copy: three services, three markets, one fr
     'Explore Our Services', 'Start a Conversation',
     'The opportunity is bigger than technology.',
     'Three ways to work with Comet.',
-    'Independent judgment for consequential decisions.', 'Develop the leaders the AI economy demands.', 'Engineering that works inside the business.',
+    'Independent judgement for consequential decisions.', 'Develop the leaders the AI economy demands.', 'Engineering that works inside the business.',
     'Where we focus.', 'Private Equity', 'Government', 'Energy',
     'AI is changing the fundamentals of business.',
     'How do you create and capture value?', 'How should work be performed?', 'How should the organisation operate?', 'What becomes possible next?',
-    'From understanding to action.', 'Business before technology.', 'Independence of judgment.', 'Close to operating reality.',
+    'From understanding to action.', 'Business before technology.', 'Independence of judgement.', 'Close to operating reality.',
     'Thinking matters. What changes matters more.',
     'Beyond intelligent responses.',
     'Ideas for decisions that matter.',
@@ -108,7 +108,7 @@ test('What We Do presents three independent services, the framework and venture 
 test('Advise is a service page linked from the navigation, home and What We Do', () => {
   const page = text('advise.html');
   for (const line of [
-    'Independent judgment for an AI-shaped economy.',
+    'Independent judgement for an AI-shaped economy.',
     'Strategic questions, not technology prescriptions.',
     'Our advice is independent of any particular AI model, software vendor or implementation platform.',
     'AI strategy and investment priorities', 'Business model and value creation', 'Operating model transformation',
@@ -478,6 +478,15 @@ test('key concepts are defined in visible HTML, consistently', () => {
   assert.ok(/Agentic AI describes AI systems/.test(text('work-redesign.html')));
   for (const term of ['Corporate innovation', 'Venture validation', 'Venture building', 'Venture acceleration']) assert.ok(html('venture-building.html').includes(`<dt>${term}</dt>`), term);
   for (const term of ['Task automation', 'Workflow redesign', 'AI agents and agentic AI', 'Workforce transformation', 'Capability building']) assert.ok(html('work-redesign.html').includes(`<dt>${term}</dt>`), term);
+});
+
+test('British English is used throughout the visible copy', () => {
+  const american = /\b(judgment|judgments|percent|toward|afterward|color|colors|center|centered|behavior|behaviors|favor|favorite|honor|labor|analyze|analyzed|catalog|defense|fulfill|enroll|modeling|modeled|traveled|organizational|organization|organizations|optimize|optimized|optimizing|prioritize|prioritized|prioritizing|recognize|recognized|realize|realized|utilize|utilized|specialize|specialized|standardize|minimize|maximize|summarize|emphasize|program|programs)\b/i;
+  for (const page of pages) {
+    const match = text(page).match(american);
+    assert.equal(match, null, `${page}: "${match?.[0]}"`);
+  }
+  assert.doesNotMatch(fs.readFileSync(path.join(out, 'llms.txt'), 'utf8'), american);
 });
 
 test('no conflicting company descriptions or unsupported superlatives', () => {

@@ -89,7 +89,7 @@ Most organisations are structured around assumptions about human labour.
 
 Software has historically automated individual steps. AI increasingly affects the connective tissue between them.
 
-This means the unit of analysis should move from task automation toward [workflow redesign](/work-redesign).
+This means the unit of analysis should move from task automation towards [workflow redesign](/work-redesign).
 
 Leadership teams should ask:
 
