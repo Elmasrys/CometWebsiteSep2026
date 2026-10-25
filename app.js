@@ -16,6 +16,7 @@ export const LEGACY_REDIRECTS = { '/rd': '/research-and-development', '/index': 
 export const TOPICS = {
   advisory: 'An advisory engagement',
   engineering: 'An engineering engagement',
+  'private-equity': 'Private equity',
   diagnostic: 'The Fundamentals Diagnostic',
   'value-creation': 'Value Creation',
   'work-redesign': 'Work Redesign',

@@ -187,9 +187,35 @@ test('Industries overview presents the three markets and the navigation points t
   const doc = html('industries.html');
   for (const id of ['private-equity', 'government', 'energy']) {
     assert.match(doc, new RegExp(`<section[^>]*id="${id}"`), id);
-    assert.match(doc, new RegExp(`<a href="/industries#${id}">`), `nav -> ${id}`);
+    assert.match(doc, new RegExp(`<a href="/industries(#|/)${id}">`), `nav -> ${id}`);
   }
   assert.match(doc, /<div class="menu current"><button[^>]*>Industries<\/button>/);
+});
+
+test('Private Equity is an industry page under /industries, linked from the menu and the overview', () => {
+  const file = 'industries/private-equity.html';
+  const page = text(file);
+  for (const line of [
+    'AI as a lever for portfolio value creation.',
+    'It is which changes can create meaningful, defensible investment value.',
+    'An investment perspective on AI.',
+    'Commercial performance', 'Operating performance', 'Business model resilience', 'Portfolio-wide capabilities', 'New products and growth',
+    'How Comet supports private equity',
+    'Executive education programmes designed to strengthen AI judgement',
+    'A consistent method. Business-specific decisions.',
+    'The measure is investment relevance.',
+    'AI activity is not a substitute for investment performance.',
+    'A partner for the investment and operating agenda.',
+  ]) assert.ok(page.includes(line), line);
+  const doc = html(file);
+  assert.match(doc, /<link rel="canonical" href="https:\/\/www\.comet-innovations\.com\/industries\/private-equity">/);
+  assert.match(doc, /<a href="\/industries\/private-equity" aria-current="page">Private Equity<\/a>/);
+  assert.match(doc, /href="\/contact\?topic=private-equity"[^>]*>Discuss Private Equity Opportunities/);
+  for (const s of ['advise', 'educate', 'engineer']) assert.match(doc, new RegExp(`href="/${s}"`));
+  assert.match(html('industries.html'), /href="\/industries\/private-equity"[^>]*>Explore Private Equity/);
+  const graph = JSON.parse(doc.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1])['@graph'];
+  const crumbs = graph.find(n => n['@type'] === 'BreadcrumbList').itemListElement.map(i => i.name);
+  assert.deepEqual(crumbs, ['Home', 'Industries', 'Private Equity']);
 });
 
 test('positioning is intact: fundamentals, pillars, delivery modes, Diagnostic and R&D', () => {
@@ -350,6 +376,7 @@ test('the specified titles and descriptions are used', () => {
     '/educate': ['AI Executive Education & Leadership Programmes | Comet Innovations'],
     '/engineer': ['Forward-Deployed AI Engineering | Comet Innovations'],
     '/industries': ['AI for Private Equity, Government & Energy | Comet Innovations'],
+    '/industries/private-equity': ['AI for Private Equity: Portfolio Value Creation | Comet Innovations'],
     '/value-creation': ['AI Growth Strategy & Value Creation | Comet Innovations'],
     '/work-redesign': ['AI Work Redesign & Workforce Transformation | Comet Innovations'],
     '/operating-model': ['AI Operating Model & Governance | Comet Innovations'],

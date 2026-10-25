@@ -371,7 +371,7 @@ function llmsTxt(ctx, pages) {
   const { site } = ctx;
   const link = (name, p, note) => `- [${name}](${site.url}${p})${note ? `: ${note}` : ''}`;
   const byPath = Object.fromEntries(pages.map(p => [p.path, p]));
-  const key = ['/what-we-do', '/advise', '/educate', '/engineer', '/industries', '/value-creation', '/work-redesign', '/operating-model', '/venture-building', '/diagnostic', '/research-and-development', '/our-work', '/about', '/contact'];
+  const key = ['/what-we-do', '/advise', '/educate', '/engineer', '/industries', '/industries/private-equity', '/value-creation', '/work-redesign', '/operating-model', '/venture-building', '/diagnostic', '/research-and-development', '/our-work', '/about', '/contact'];
   return [
     `# ${site.name}`,
     '',
@@ -446,7 +446,8 @@ export function build(outDir = DIST, { quiet = false, checkImages = true } = {})
     pages.push({ ...page, file: rel, fingerprint: fingerprint(html) });
   };
 
-  for (const file of fs.readdirSync(path.join(SRC, 'pages')).filter(f => f.endsWith('.html'))) {
+  // Pages, including nested ones: src/pages/industries/energy.html -> /industries/energy.
+  for (const file of fs.readdirSync(path.join(SRC, 'pages'), { recursive: true }).filter(f => f.endsWith('.html')).map(f => f.split(path.sep).join('/'))) {
     const source = readSrc(`pages/${file}`);
     const [, metaJson, body] = source.match(/^<!--meta (.*?) -->\n([\s\S]*)$/);
     const page = pageMeta(ctx, { ...JSON.parse(metaJson), path: cleanPath(file) }, { checkImages });
