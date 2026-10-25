@@ -627,7 +627,8 @@ test('FAQPage markup exists only on About and matches the visible questions exac
   const about = html('about.html');
   assert.equal(faq.mainEntity.length, ctx.faq.length);
   for (const q of faq.mainEntity) {
-    assert.ok(about.includes(`<summary>${q.name.replace(/&/g, '&amp;')}</summary><p>${q.acceptedAnswer.text.replace(/&/g, '&amp;')}</p>`), q.name);
+    const paras = q.acceptedAnswer.text.split('\n\n').map(p => `<p>${p.replace(/&/g, '&amp;')}</p>`).join('');
+    assert.ok(about.includes(`<summary>${q.name.replace(/&/g, '&amp;')}</summary>${paras}</details>`), q.name);
   }
 });
 

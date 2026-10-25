@@ -299,7 +299,7 @@ function pageGraph(ctx, page) {
         '@id': `${url}#faq`,
         url: `${url}#faq`,
         isPartOf: { '@id': id.website },
-        mainEntity: ctx.faq.map(({ question, answer }) => ({ '@type': 'Question', name: question, acceptedAnswer: { '@type': 'Answer', text: answer } })),
+        mainEntity: ctx.faq.map(({ question, answer }) => ({ '@type': 'Question', name: question, acceptedAnswer: { '@type': 'Answer', text: answer.join('\n\n') } })),
       });
     }
     if (kind === 'service') {

@@ -72,5 +72,5 @@
 </div></section>
 
 <section class="section section-ruled" id="faq"><div class="shell faq"><p class="eyebrow">FAQ</p><h2 class="section-title">Frequently Asked Questions</h2>
-{{#faq}}<details><summary>{{question}}</summary><p>{{answer}}</p></details>
-{{/faq}}</div></section>
+{{#faq}}<details><summary>{{question}}</summary>{{#answer}}<p>{{.}}</p>{{/answer}}</details>
+{{/faq}}{{> framework-notice}}</div></section>
