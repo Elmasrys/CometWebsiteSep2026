@@ -84,6 +84,26 @@ test('the home page uses the revised copy: three services, three markets, one fr
   assert.doesNotMatch(home, /<details>/, 'FAQ is not duplicated on the home page');
 });
 
+test('What We Do presents three independent services, the framework and venture building', () => {
+  const page = text('what-we-do.html');
+  for (const line of [
+    'Different challenges. Different expertise. One firm.',
+    'Three independent services for organisations navigating the AI economy.',
+    'Each service addresses a distinct client need and can be commissioned independently.',
+    'Better decisions in a changing economic landscape.',
+    'Leadership capability for an AI-shaped future.',
+    'Forward-deployed engineering for real operational challenges.',
+    'They are not mandatory stages of an engagement.',
+    'Creating what comes next.',
+    'Engage us where you need us.',
+    'Discuss Your Requirements',
+  ]) assert.ok(page.includes(line), line);
+  const doc = html('what-we-do.html');
+  for (const id of ['advise', 'educate', 'engineer', 'four-fundamentals', 'venture-building']) assert.match(doc, new RegExp(`<section[^>]*id="${id}"`), id);
+  assert.match(doc, /href="\/insights\/the-four-fundamentals"[^>]*>Explore the Framework/);
+  assert.match(doc, /href="\/venture-building"[^>]*>Explore Venture Building/);
+});
+
 test('positioning is intact: fundamentals, pillars, delivery modes, Diagnostic and R&D', () => {
   const all = pages.map(text).join(' ');
   for (const term of ['Value', 'Work', 'Organisation', 'Growth', 'Value creation', 'Work redesign', 'Operating model', 'Venture building', 'Advise', 'Educate', 'Engineer', 'Fundamentals Diagnostic']) {
@@ -423,9 +443,8 @@ test('IndexNow manifest fingerprints every indexable URL', () => {
 
 test('key concepts are defined in visible HTML, consistently', () => {
   const ff = 'The Four Fundamentals is Comet’s framework for examining where AI changes four core dimensions of a business: value, work, organisation and growth.';
-  assert.ok(text('what-we-do.html').includes(ff));
   assert.ok(text('insights/the-four-fundamentals.html').includes(ff));
-  assert.ok(text('what-we-do.html').includes('Comet Innovations helps established organisations determine where AI changes four fundamentals of their business: value, work, organisation and growth.'));
+  assert.ok(text('what-we-do.html').includes('Across our work, we examine how AI changes value, work, organisation and growth.'));
   assert.ok(text('diagnostic.html').includes('The Fundamentals Diagnostic is a four-to-six-week assessment identifying where AI materially changes a company’s economics and which opportunities should be prioritised.'));
   assert.ok(text('diagnostic.html').includes('not a downloadable maturity test'));
   assert.ok(text('venture-building.html').includes('Corporate venture building is the disciplined process of identifying, validating, building and launching new businesses using the assets and advantages of an established organisation.'));

@@ -504,6 +504,11 @@ dfn{font-style:normal;font-weight:600}
 .dark .copy a{color:var(--chalk)}
 .dark .copy p{color:var(--on-dark)}
 .hero-tagline span{display:inline-block;margin-right:.6em}
+.copy p.framework-notice{font-size:13px}
+.dark .framework-notice,.dark .copy p.framework-notice{color:var(--on-dark-muted)}
+.dark .copy p.lead{color:var(--chalk)}
+.close p+p{margin-top:12px}
+.page-hero .hero-tagline{font-size:13px;max-width:760px;margin:8px 0 28px}
 
 /* Case studies */
 .case-studies{border-top:1px solid var(--line-strong)}
