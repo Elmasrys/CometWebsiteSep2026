@@ -60,8 +60,8 @@ main:focus{outline:none}
 .menu{position:relative}
 .menu>button{background:none;border:0;padding:6px 0;color:var(--graphite);font-size:inherit;letter-spacing:inherit;text-transform:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:8px;border-bottom:1px solid transparent}
 .menu>button:after{content:"";width:5px;height:5px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .2s}
-.menu>button:hover,.menu:has([aria-current])>button{color:var(--carbon)}
-.menu:has([aria-current])>button{border-bottom-color:var(--ember)}
+.menu>button:hover,.menu.current>button,.menu:has([aria-current])>button{color:var(--carbon)}
+.menu.current>button,.menu:has([aria-current])>button{border-bottom-color:var(--ember)}
 .dropdown{position:absolute;top:calc(100% + 16px);left:-22px;background:var(--chalk);border:1px solid var(--line);box-shadow:0 18px 40px -24px rgba(20,20,18,.35);padding:10px;min-width:250px;display:none;text-transform:none;letter-spacing:.01em}
 .dropdown:before{content:"";position:absolute;left:0;right:0;top:-18px;height:18px}
 .menu:hover .dropdown,.menu:focus-within .dropdown,.menu.open .dropdown{display:grid}
@@ -181,6 +181,7 @@ main:focus{outline:none}
 .card:hover .card-art img{transform:scale(1.03)}
 .card-art+.meta+h3{margin-top:16px}
 .cards-text .card{min-height:0}
+.card[id]{scroll-margin-top:32px}
 .cards-text .card h3{margin:0 0 16px}
 .card-lead{font-family:var(--serif);font-size:clamp(21px,1.7vw,24px);line-height:1.25;color:var(--carbon)!important;margin:0 0 18px!important}
 .dark .card-lead{color:var(--chalk)!important}
@@ -531,10 +532,14 @@ dfn{font-style:normal;font-weight:600}
  .nav-links>a{padding:18px 0;border-bottom:1px solid var(--line);color:var(--carbon)}
  .nav-links>a[aria-current]:not(.nav-cta){border-bottom-color:var(--line);color:var(--ember)}
  .nav-links>a.nav-cta{align-self:start;margin-top:28px;padding:13px 20px;border:1px solid var(--carbon)}
- .menu>button{display:none}
- .dropdown,.menu:hover .dropdown,.menu:focus-within .dropdown{display:grid;position:static;background:none;border:0;box-shadow:none;padding:0;min-width:0}
+ .menu>button{display:flex;width:100%;justify-content:space-between;padding:18px 0;border-bottom:1px solid var(--line);color:var(--carbon)}
+ .menu.current>button,.menu:has([aria-current])>button{border-bottom-color:var(--line);color:var(--ember)}
+ .menu:hover>button:after{transform:translateY(-2px) rotate(45deg)}
+ .menu.open>button:after{transform:translateY(1px) rotate(-135deg)}
+ .dropdown,.menu:hover .dropdown,.menu:focus-within .dropdown{display:none;position:static;background:none;border:0;box-shadow:none;padding:0 0 8px;min-width:0}
+ .menu.open .dropdown{display:grid}
  .dropdown:before{display:none}
- .dropdown a{padding:16px 0;font-size:21px;font-family:var(--serif);letter-spacing:0;border-bottom:1px solid var(--line);color:var(--carbon)}
+ .dropdown a{padding:14px 0 14px 16px;font-size:21px;font-family:var(--serif);letter-spacing:0;border-bottom:1px solid var(--line);color:var(--carbon)}
  .dropdown a:hover,.dropdown a[aria-current]{background:none;color:var(--ember)}
  .hero-grid,.intro-grid,.rnd,.split,.contact-grid,.profile-body{grid-template-columns:1fr}
  .hero-media{aspect-ratio:4/3}

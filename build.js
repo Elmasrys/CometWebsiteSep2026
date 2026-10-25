@@ -172,10 +172,15 @@ function normaliseLinks(html) {
 }
 
 /** Marks the current page in the main navigation. */
-function markCurrent(html, navPath) {
-  return html.replace(/(<nav class="nav"[\s\S]*?<\/nav>)/, nav =>
-    nav.replace(new RegExp(`href="${navPath.replace(/[.]/g, '\\.')}"`, 'g'), `href="${navPath}" aria-current="page"`),
-  );
+/** Marks the page's own nav link, or failing that its parent section's (page.nav), and the dropdown it sits in. */
+function markCurrent(html, pagePath, fallback = pagePath) {
+  return html.replace(/(<nav class="nav"[\s\S]*?<\/nav>)/, nav => {
+    const navPath = nav.includes(`href="${pagePath}"`) ? pagePath : fallback;
+    return nav
+      .replace(new RegExp(`href="${navPath.replace(/[.]/g, '\\.')}"`, 'g'), `href="${navPath}" aria-current="page"`)
+      .replace(/<div class="menu" data-section="([^"]*)">/g, (tag, section) =>
+        section.split(' ').includes(navPath) ? '<div class="menu current">' : '<div class="menu">');
+  });
 }
 
 /** Cache-busting query strings for the unhashed CSS and JS files, so they can be cached for a year. */
@@ -409,7 +414,7 @@ const fingerprint = html => crypto.createHash('sha256').update(html.replace(/<fo
 
 function renderPage({ ctx, page, main, file, versions }) {
   const html = render(readSrc('layout.html'), { ...ctx, page, main }, `layout (${file})`);
-  return markCurrent(normaliseLinks(html), page.nav || page.path)
+  return markCurrent(normaliseLinks(html), page.path, page.nav || page.path)
     .replace(/(href|src)="\/(styles\.css|script\.js|head\.js)"/g, (_, attr, f) => `${attr}="/${f}?v=${versions[f]}"`);
 }
 

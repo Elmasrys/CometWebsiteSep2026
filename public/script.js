@@ -1,10 +1,9 @@
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// ---------- Navigation: mobile menu and "What we do" dropdown ----------
+// ---------- Navigation: mobile menu and dropdowns ----------
 const nav = document.querySelector('.nav');
 const navToggle = document.querySelector('.nav-toggle');
-const menu = document.querySelector('.menu');
-const menuButton = menu?.querySelector('button');
+const menus = [...document.querySelectorAll('.menu')];
 
 const onScroll = () => nav?.classList.toggle('scrolled', window.scrollY > 8);
 onScroll();
@@ -18,17 +17,27 @@ const setMobileMenu = open => {
 };
 navToggle?.addEventListener('click', () => setMobileMenu(!nav.classList.contains('open')));
 
-const setDropdown = open => {
+const setDropdown = (menu, open) => {
   menu.classList.toggle('open', open);
-  menuButton.setAttribute('aria-expanded', String(open));
+  menu.querySelector('button').setAttribute('aria-expanded', String(open));
 };
-menuButton?.addEventListener('click', () => setDropdown(!menu.classList.contains('open')));
+menus.forEach(menu => menu.querySelector('button').addEventListener('click', () => {
+  const open = !menu.classList.contains('open');
+  menus.forEach(other => other !== menu && setDropdown(other, false));
+  setDropdown(menu, open);
+}));
+// Following an in-page link (e.g. /about#people while on /about) closes the menus.
+document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => {
+  menus.forEach(menu => setDropdown(menu, false));
+  if (nav?.classList.contains('open')) setMobileMenu(false);
+}));
 document.addEventListener('click', e => {
-  if (menu && !menu.contains(e.target)) setDropdown(false);
+  menus.forEach(menu => !menu.contains(e.target) && setDropdown(menu, false));
 });
 document.addEventListener('keydown', e => {
   if (e.key !== 'Escape') return;
-  if (menu?.classList.contains('open')) { setDropdown(false); menuButton.focus(); }
+  const open = menus.find(menu => menu.classList.contains('open'));
+  if (open) { setDropdown(open, false); open.querySelector('button').focus(); }
   if (nav?.classList.contains('open')) { setMobileMenu(false); navToggle.focus(); }
 });
 window.matchMedia('(min-width: 981px)').addEventListener('change', e => {

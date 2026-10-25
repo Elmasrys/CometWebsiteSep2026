@@ -87,7 +87,7 @@ test('the home page uses the revised copy: three services, three markets, one fr
 test('positioning is intact: fundamentals, pillars, delivery modes, Diagnostic and R&D', () => {
   const all = pages.map(text).join(' ');
   for (const term of ['Value', 'Work', 'Organisation', 'Growth', 'Value creation', 'Work redesign', 'Operating model', 'Venture building', 'Advise', 'Educate', 'Engineer', 'Fundamentals Diagnostic']) {
-    assert.ok(all.includes(term), term);
+    assert.ok(all.toLowerCase().includes(term.toLowerCase()), term);
   }
   for (const page of ['value-creation.html', 'work-redesign.html', 'operating-model.html', 'venture-building.html', 'diagnostic.html', 'research-and-development.html', 'what-we-do.html']) {
     assert.ok(pages.includes(page), page);
@@ -187,8 +187,31 @@ test('only London is presented as an office, in copy and in structured data', ()
   assert.ok(html('index.html').includes('London, United Kingdom'));
 });
 
+test('the main navigation follows the institutional structure, and every link resolves', () => {
+  const nav = html('index.html').match(/<nav class="nav"[\s\S]*?<\/nav>/)[0];
+  const labels = [...nav.matchAll(/<button type="button" aria-expanded="false" aria-controls="menu-[^"]+">([^<]+)<\/button>|<a (?:class="nav-cta" )?href="[^"]*">([^<]+)<\/a>(?=\s*(?:<div class="menu"|<a class="nav-cta"|<\/div>\s*<\/div><\/nav>))/g)].map(m => m[1] || m[2]);
+  assert.deepEqual(labels, ['What We Do', 'Industries', 'Our Thinking', 'Our Work', 'About', 'Contact']);
+  const items = {
+    'menu-what-we-do': ['Advise', 'Educate', 'Engineer', 'Venture Building'],
+    'menu-industries': ['Private Equity', 'Government', 'Energy'],
+    'menu-our-thinking': ['The Four Fundamentals', 'Insights', 'Research &amp; Development'],
+    'menu-about': ['Firm', 'People', 'Approach'],
+  };
+  for (const [id, expected] of Object.entries(items)) {
+    const dropdown = nav.match(new RegExp(`<div class="dropdown" id="${id}">([\\s\\S]*?)</div>`))[1];
+    assert.deepEqual([...dropdown.matchAll(/>([^<]+)<\/a>/g)].map(m => m[1]), expected, id);
+  }
+  for (const [, href] of nav.matchAll(/href="([^"]+)"/g)) {
+    const [p, anchor] = href.split('#');
+    const doc = html(fileFor(p));
+    if (anchor) assert.match(doc, new RegExp(`id="${anchor}"`), href);
+  }
+});
+
 test('the current page is marked in the navigation', () => {
-  assert.match(html('about.html'), /<a href="\/about" aria-current="page">About<\/a>/);
+  assert.match(html('about.html'), /<div class="menu current"><button[^>]*>About<\/button>[\s\S]*?<a href="\/about" aria-current="page">Firm<\/a>/);
+  assert.match(html('value-creation.html'), /<div class="menu current"><button[^>]*>What We Do<\/button>/);
+  assert.match(html('insights/the-four-fundamentals.html'), /<a href="\/insights\/the-four-fundamentals" aria-current="page">The Four Fundamentals<\/a>/);
   assert.match(html(fileFor(ctx.insights[0].url)), /<a href="\/insights" aria-current="page">Insights<\/a>/);
 });
 
