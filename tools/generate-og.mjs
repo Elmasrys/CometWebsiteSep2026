@@ -33,7 +33,7 @@ body{width:1200px;height:630px;overflow:hidden;background:${dark ? '#101010' : '
 h1{font-family:Cormorant;font-weight:400;font-size:${title.length > 60 ? 60 : 72}px;line-height:1;letter-spacing:-.01em;margin:22px 0 40px;max-width:${dark ? 620 : image || glyph ? 760 : 980}px}
 .foot{display:flex;justify-content:space-between;border-top:1px solid ${dark ? 'rgba(255,255,255,.25)' : 'rgba(16,16,16,.85)'};padding-top:20px;font-size:17px;letter-spacing:.06em;color:${dark ? 'rgba(255,255,255,.72)' : '#44423F'}}
 .side{width:400px;position:relative;overflow:hidden;background:#101010}
-.side img{width:100%;height:100%;object-fit:cover;object-position:68% 58%;filter:grayscale(1) contrast(1.04)}
+.side img{width:100%;height:100%;object-fit:cover;object-position:68% 58%}
 .glyph{position:absolute;right:72px;top:64px;width:120px;height:120px;color:#101010}
 .eclipse{position:absolute;right:120px;top:120px;width:260px;height:260px;border-radius:50%;background:#050505;box-shadow:0 0 0 1px rgba(255,255,255,.42),0 0 40px 4px rgba(255,255,255,.16),0 0 140px 30px rgba(202,196,188,.1)}
 </style></head><body>

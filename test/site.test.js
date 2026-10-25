@@ -334,7 +334,7 @@ test('the Four Fundamentals questions come from one canonical definition and app
   assert.deepEqual(terms.map(n => [n.name, n.description]), canonical.map(f => [f.name, f.question]));
 });
 
-test('art direction: monochrome palette, no inline styles, services never numbered as stages', () => {
+test('art direction: monochrome palette, graded photography, no inline styles, services never numbered as stages', () => {
   const css = fs.readFileSync(path.join(out, 'styles.css'), 'utf8');
   for (const hex of ['#101010', '#262626', '#44423F', '#77736E', '#A7A19A', '#CAC4BC', '#E6E2DC', '#F5F4F1', '#FFFFFF']) assert.ok(css.includes(hex), hex);
   assert.doesNotMatch(css, /#F1EDE3|#D9B06F|#9C6430|#0B0A08/i, 'old beige and gold palette is gone');
@@ -342,7 +342,10 @@ test('art direction: monochrome palette, no inline styles, services never number
   for (const page of ['index.html', 'what-we-do.html']) {
     assert.doesNotMatch(html(page), /<p class="eyebrow">0[1-3]<\/p>\s*<h[23][^>]*>(Advise|Educate|Engineer)</, `${page} numbers the services`);
   }
-  for (const img of ['art-arch.svg', 'art-columns.svg', 'art-stone.svg', 'art-horizon.svg']) assert.ok(fs.existsSync(path.join(out, 'images', img)), img);
+  // Photography is graded at build time of the assets, never by CSS; code-built textures are retired.
+  assert.doesNotMatch(css, /filter:\s*grayscale/);
+  for (const img of ['art-arch.svg', 'art-columns.svg', 'art-stone.svg', 'art-horizon.svg']) assert.ok(!fs.existsSync(path.join(out, 'images', img)), img);
+  for (const page of pages) assert.doesNotMatch(html(page), /rnd-visual|rnd-circle/, `${page} still uses the eclipse graphic`);
 });
 
 test('Our Work is withheld until approved case studies exist', () => {
@@ -361,7 +364,7 @@ test('positioning is intact: fundamentals, pillars, delivery modes and R&D', () 
   }
   const rd = text('research-and-development.html');
   for (const line of ['Engineering intelligence beyond the conversation.', 'Stateful AI Orchestration', 'Validation-gated execution.', 'This work has contributed to patent-pending intellectual property.', 'Why it matters.', 'Research with practical relevance.', 'Beyond the model.']) assert.ok(rd.includes(line), line);
-  assert.match(html('research-and-development.html'), /<section class="rnd" id="stateful-ai-orchestration"/);
+  assert.match(html('research-and-development.html'), /<section [^>]*id="stateful-ai-orchestration"/);
   assert.match(html('research-and-development.html'), /href="\/contact\?topic=engineering"[^>]*>Discuss Applied AI Engineering/);
 });
 
@@ -751,4 +754,17 @@ test('the economics Insight links to the framework and every pillar', () => {
 test('no orphan pages: every indexable page is linked from another page', () => {
   const inbound = new Set(pages.flatMap(p => internalLinks(p).filter(() => true).map(l => l.split('#')[0].split('?')[0])).concat());
   for (const page of indexable()) assert.ok(inbound.has(page.path), `${page.path} has no inbound links`);
+});
+
+test('graded photography keeps lifted shadows and soft highlights', async () => {
+  // The JPEG master output of tools/grade-images.py: sample its luminance range via the AVIF-independent JPEG.
+  const { execFileSync } = await import('node:child_process');
+  const stats = execFileSync('python3', ['-c', `
+from PIL import Image
+import numpy as np
+y = np.asarray(Image.open("public/images/home-hero-1586.jpg").convert("L"), dtype=float) / 255
+print(round(float(np.percentile(y, 0.5)), 3), round(float(np.percentile(y, 99.5)), 3))
+`], { cwd: root }).toString().trim().split(' ').map(Number);
+  assert.ok(stats[0] >= 0.09, `shadows are crushed (0.5th percentile ${stats[0]})`);
+  assert.ok(stats[1] <= 0.97, `highlights clip (99.5th percentile ${stats[1]})`);
 });
