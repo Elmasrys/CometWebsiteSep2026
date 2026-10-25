@@ -218,6 +218,28 @@ test('Private Equity is an industry page under /industries, linked from the menu
   assert.deepEqual(crumbs, ['Home', 'Industries', 'Private Equity']);
 });
 
+test('Government is an industry page under /industries, linked from the menu and the overview', () => {
+  const file = 'industries/government.html';
+  const page = text(file);
+  for (const line of [
+    'Building the capabilities of government in the AI economy.',
+    'Realising these opportunities requires sound institutional judgement, accountable governance and practical execution.',
+    'Technology must serve public value.',
+    'Institutional AI Strategy', 'Public Service Transformation', 'Government Operating Models',
+    'Policy and Strategic Decision Support', 'Public-Sector Innovation', 'Data and AI Governance',
+    'with human judgement and accountability retained.',
+    'How Comet supports government',
+    'Responsible deployment by design.',
+    'We do not assume that a public institution should adopt a particular platform or hosting model.',
+    'From institutional ambition to practical capability.',
+  ]) assert.ok(page.includes(line), line);
+  const doc = html(file);
+  assert.match(doc, /<a href="\/industries\/government" aria-current="page">Government<\/a>/);
+  assert.match(doc, /href="\/contact\?topic=government"[^>]*>Discuss a Government Engagement/);
+  for (const s of ['advise', 'educate', 'engineer']) assert.match(doc, new RegExp(`href="/${s}"`));
+  assert.match(html('industries.html'), /href="\/industries\/government"[^>]*>Explore Government/);
+});
+
 test('positioning is intact: fundamentals, pillars, delivery modes, Diagnostic and R&D', () => {
   const all = pages.map(text).join(' ');
   for (const term of ['Value', 'Work', 'Organisation', 'Growth', 'Value creation', 'Work redesign', 'Operating model', 'Venture building', 'Advise', 'Educate', 'Engineer', 'Fundamentals Diagnostic']) {
@@ -377,6 +399,7 @@ test('the specified titles and descriptions are used', () => {
     '/engineer': ['Forward-Deployed AI Engineering | Comet Innovations'],
     '/industries': ['AI for Private Equity, Government & Energy | Comet Innovations'],
     '/industries/private-equity': ['AI for Private Equity: Portfolio Value Creation | Comet Innovations'],
+    '/industries/government': ['AI for Government & Public Sector | Comet Innovations'],
     '/value-creation': ['AI Growth Strategy & Value Creation | Comet Innovations'],
     '/work-redesign': ['AI Work Redesign & Workforce Transformation | Comet Innovations'],
     '/operating-model': ['AI Operating Model & Governance | Comet Innovations'],

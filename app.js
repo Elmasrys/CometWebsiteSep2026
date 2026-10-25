@@ -17,6 +17,7 @@ export const TOPICS = {
   advisory: 'An advisory engagement',
   engineering: 'An engineering engagement',
   'private-equity': 'Private equity',
+  government: 'Government',
   diagnostic: 'The Fundamentals Diagnostic',
   'value-creation': 'Value Creation',
   'work-redesign': 'Work Redesign',
