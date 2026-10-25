@@ -289,7 +289,10 @@ test('positioning is intact: fundamentals, pillars, delivery modes and R&D', () 
   for (const page of ['value-creation.html', 'work-redesign.html', 'operating-model.html', 'venture-building.html', 'research-and-development.html', 'what-we-do.html']) {
     assert.ok(pages.includes(page), page);
   }
-  assert.ok(text('research-and-development.html').includes('It is not a product.'));
+  const rd = text('research-and-development.html');
+  for (const line of ['Engineering intelligence beyond the conversation.', 'Stateful AI Orchestration', 'Validation-gated execution.', 'This work has contributed to patent-pending intellectual property.', 'Why it matters.', 'Research with practical relevance.', 'Beyond the model.']) assert.ok(rd.includes(line), line);
+  assert.match(html('research-and-development.html'), /<section class="rnd" id="stateful-ai-orchestration"/);
+  assert.match(html('research-and-development.html'), /href="\/contact\?topic=engineering"[^>]*>Discuss Applied AI Engineering/);
 });
 
 test('the Fundamentals Diagnostic is retired: no page, links, mentions or contact topic', () => {
@@ -511,7 +514,7 @@ test('the specified H1s are used', () => {
   assert.equal(h1('venture-building.html'), 'Growth');
   assert.equal(h1('insights.html'), 'Insights');
   assert.equal(h1('about.html'), 'About Comet Innovations');
-  assert.equal(h1('research-and-development.html'), 'Building the foundations of AI-native organisations.');
+  assert.equal(h1('research-and-development.html'), 'Research & Development');
 });
 
 test('every image has alt text, empty only when decorative', () => {
