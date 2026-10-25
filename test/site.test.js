@@ -240,6 +240,28 @@ test('Government is an industry page under /industries, linked from the menu and
   assert.match(html('industries.html'), /href="\/industries\/government"[^>]*>Explore Government/);
 });
 
+test('Energy is an industry page under /industries, linked from the menu and the overview', () => {
+  const file = 'industries/energy.html';
+  const page = text(file);
+  for (const line of [
+    'Applying intelligence to a complex energy future.',
+    'Business value in the physical world.',
+    'Operational Performance', 'Asset and Infrastructure Intelligence', 'Forecasting and Decision Support',
+    'Enterprise AI Strategy', 'Operating Model Transformation', 'Energy Innovation and New Ventures',
+    'How Comet supports energy organisations',
+    'Engineering in operationally sensitive environments.',
+    'AI systems intended to inform consequential operating decisions require appropriate validation, oversight and safety controls.',
+    'Experience that understands the environment.',
+    'Intelligence with an economic purpose.',
+  ]) assert.ok(page.includes(line), line);
+  const doc = html(file);
+  assert.match(doc, /<a href="\/industries\/energy" aria-current="page">Energy<\/a>/);
+  assert.match(doc, /<div class="menu current"><button[^>]*>Industries<\/button>/);
+  assert.match(doc, /href="\/contact\?topic=energy"[^>]*>Discuss an Energy Engagement/);
+  for (const s of ['advise', 'educate', 'engineer']) assert.match(doc, new RegExp(`href="/${s}"`));
+  assert.match(html('industries.html'), /href="\/industries\/energy"[^>]*>Explore Energy/);
+});
+
 test('positioning is intact: fundamentals, pillars, delivery modes, Diagnostic and R&D', () => {
   const all = pages.map(text).join(' ');
   for (const term of ['Value', 'Work', 'Organisation', 'Growth', 'Value creation', 'Work redesign', 'Operating model', 'Venture building', 'Advise', 'Educate', 'Engineer', 'Fundamentals Diagnostic']) {
@@ -400,6 +422,7 @@ test('the specified titles and descriptions are used', () => {
     '/industries': ['AI for Private Equity, Government & Energy | Comet Innovations'],
     '/industries/private-equity': ['AI for Private Equity: Portfolio Value Creation | Comet Innovations'],
     '/industries/government': ['AI for Government & Public Sector | Comet Innovations'],
+    '/industries/energy': ['AI for Energy, Utilities & Infrastructure | Comet Innovations'],
     '/value-creation': ['AI Growth Strategy & Value Creation | Comet Innovations'],
     '/work-redesign': ['AI Work Redesign & Workforce Transformation | Comet Innovations'],
     '/operating-model': ['AI Operating Model & Governance | Comet Innovations'],
