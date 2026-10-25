@@ -477,7 +477,7 @@ div.section-intro p{margin:0 0 14px}
 h2.eyebrow,h3.eyebrow{font-family:var(--sans)}
 .page-hero .breadcrumb{margin-bottom:28px}
 .hero-question{font-family:var(--serif);font-style:italic;font-size:clamp(24px,2.2vw,32px)!important;line-height:1.2;color:var(--carbon)!important;margin:-6px 0 22px!important;padding-left:18px;border-left:2px solid var(--ember)}
-.lead-statement{font-family:var(--serif);font-size:clamp(26px,2.6vw,38px)!important;line-height:1.2!important;color:var(--carbon)!important;max-width:760px!important;margin:0 0 22px!important}
+.lead-statement{font-family:var(--serif);font-weight:400;font-size:clamp(26px,2.6vw,38px)!important;line-height:1.2!important;color:var(--carbon)!important;max-width:760px!important;margin:0 0 22px!important}
 .definition{font-size:17px;line-height:1.65;color:var(--ink)!important;max-width:680px;padding:18px 0 18px 22px;border-left:1px solid var(--line-strong);margin:8px 0 24px}
 .framework-notice{font-size:13px;line-height:1.6;color:var(--stone);max-width:680px;margin:40px 0 0}
 .article-body .framework-notice{margin-top:56px;padding-top:20px;border-top:1px solid var(--line)}

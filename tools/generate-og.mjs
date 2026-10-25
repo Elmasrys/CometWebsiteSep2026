@@ -40,7 +40,7 @@ h1{font-family:Cormorant;font-weight:400;font-size:${title.length > 60 ? 60 : 72
 <div class="main">
 <img class="logo" src="${asset(dark ? 'comet-lockup-horizontal-white.svg' : 'comet-lockup-horizontal-carbon.svg')}">
 <div class="eyebrow">${esc(eyebrow)}</div>
-<h1>${esc(title)}</h1>
+<h1>${esc(title).replace(/(\S+-\S+)/g, "<span style=\"white-space:nowrap\">$1</span>")}</h1>
 <div class="foot"><span>${esc(footer)}</span><span>comet-innovations.com</span></div>
 </div>
 ${image ? `<div class="side"><img src="${asset(image)}"></div>` : ''}
@@ -69,7 +69,7 @@ for (const page of pageMeta) {
     jobs.push({
       file: slug,
       eyebrow: page.heading === 'Research & Development' ? 'Research & Development' : page.parent ? `What we do · ${page.heading}` : page.heading,
-      title: page.heading === 'Research & Development' ? 'Stateful AI orchestration.' : page.path === '/about' ? `An ${category} firm based in London.` : h1Of(page.file),
+      title: page.ogHeadline ? page.ogHeadline : page.heading === 'Research & Development' ? 'Stateful AI orchestration.' : page.path === '/about' ? `An ${category} firm based in London.` : h1Of(page.file),
       footer: ctx.site.name,
       glyph: glyphFor[slug],
       variant: slug === 'research-and-development' ? 'dark' : 'light',

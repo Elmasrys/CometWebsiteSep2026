@@ -76,7 +76,8 @@ test('the home page uses the revised copy: three services, three markets, one fr
     'Ideas for decisions that matter.',
     'The next decision starts here.',
   ]) assert.ok(home.includes(line), line);
-  for (const anchor of ['advise', 'educate', 'engineer']) {
+  assert.match(home, /href="\/advise"[^>]*>Explore Advisory/);
+  for (const anchor of ['educate', 'engineer']) {
     assert.match(home, new RegExp(`href="/what-we-do#${anchor}"`));
     assert.match(html('what-we-do.html'), new RegExp(`id="${anchor}"`));
   }
@@ -102,6 +103,30 @@ test('What We Do presents three independent services, the framework and venture 
   for (const id of ['advise', 'educate', 'engineer', 'four-fundamentals', 'venture-building']) assert.match(doc, new RegExp(`<section[^>]*id="${id}"`), id);
   assert.match(doc, /href="\/insights\/the-four-fundamentals"[^>]*>Explore the Framework/);
   assert.match(doc, /href="\/venture-building"[^>]*>Explore Venture Building/);
+});
+
+test('Advise is a service page linked from the navigation, home and What We Do', () => {
+  const page = text('advise.html');
+  for (const line of [
+    'Independent judgment for an AI-shaped economy.',
+    'Strategic questions, not technology prescriptions.',
+    'Our advice is independent of any particular AI model, software vendor or implementation platform.',
+    'AI strategy and investment priorities', 'Business model and value creation', 'Operating model transformation',
+    'AI governance and strategic oversight', 'Corporate venture strategy', 'Portfolio transformation',
+    'Find out where AI changes your economics.',
+    'There is no requirement to engage Comet for any subsequent work.',
+    'How advisory engagements work.', 'Who we advise.',
+    'The value of independent thinking.',
+    ctx.legal.frameworkNotice,
+  ]) assert.ok(page.includes(line), line);
+  const doc = html('advise.html');
+  assert.match(doc, /href="\/diagnostic"[^>]*>Explore the Fundamentals Diagnostic/);
+  assert.match(doc, /href="\/contact\?topic=advisory"[^>]*>Discuss an Advisory Engagement/);
+  assert.match(doc, /<a href="\/advise" aria-current="page">Advise<\/a>/);
+  assert.match(html('what-we-do.html'), /href="\/advise"[^>]*>Explore Advise/);
+  assert.match(html('contact.html'), /<option value="advisory">/);
+  const graph = JSON.parse(doc.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1])['@graph'];
+  assert.ok(graph.some(n => n['@type'] === 'Service' && n.name === 'AI strategy and advisory'));
 });
 
 test('positioning is intact: fundamentals, pillars, delivery modes, Diagnostic and R&D', () => {
@@ -258,6 +283,7 @@ test('the specified titles and descriptions are used', () => {
   const expect = {
     '/': ['AI Transformation & Venture Building | Comet Innovations', 'London-based AI transformation and venture building firm offering independent advisory, executive education and forward-deployed AI engineering.'],
     '/what-we-do': ['AI Transformation Strategy & Services | Comet Innovations'],
+    '/advise': ['AI Strategy & Advisory Services | Comet Innovations'],
     '/value-creation': ['AI Growth Strategy & Value Creation | Comet Innovations'],
     '/work-redesign': ['AI Work Redesign & Workforce Transformation | Comet Innovations'],
     '/operating-model': ['AI Operating Model & Governance | Comet Innovations'],
@@ -393,7 +419,7 @@ test('FAQPage markup exists only on About and matches the visible questions exac
 
 test('Service entities exist only on substantive service pages, provided by Comet', () => {
   const servicePages = metas.filter(p => graphOf(p.file).some(n => n['@type'] === 'Service')).map(p => p.path).sort();
-  assert.deepEqual(servicePages, ['/diagnostic', '/operating-model', '/value-creation', '/venture-building', '/work-redesign']);
+  assert.deepEqual(servicePages, ['/advise', '/diagnostic', '/operating-model', '/value-creation', '/venture-building', '/work-redesign']);
   for (const p of servicePages) {
     const service = graphOf(fileFor(p)).find(n => n['@type'] === 'Service');
     assert.equal(service.provider['@id'], `${SITE}/#organization`);
