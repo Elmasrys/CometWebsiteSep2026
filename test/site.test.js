@@ -77,7 +77,8 @@ test('the home page uses the revised copy: three services, three markets, one fr
     'The next decision starts here.',
   ]) assert.ok(home.includes(line), line);
   assert.match(home, /href="\/advise"[^>]*>Explore Advisory/);
-  for (const anchor of ['educate', 'engineer']) {
+  assert.match(home, /href="\/educate"[^>]*>Explore Executive Education/);
+  for (const anchor of ['engineer']) {
     assert.match(home, new RegExp(`href="/what-we-do#${anchor}"`));
     assert.match(html('what-we-do.html'), new RegExp(`id="${anchor}"`));
   }
@@ -127,6 +128,26 @@ test('Advise is a service page linked from the navigation, home and What We Do',
   assert.match(html('contact.html'), /<option value="advisory">/);
   const graph = JSON.parse(doc.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1])['@graph'];
   assert.ok(graph.some(n => n['@type'] === 'Service' && n.name === 'AI strategy and advisory'));
+});
+
+test('Educate is a service page linked from the navigation, home and What We Do', () => {
+  const page = text('educate.html');
+  for (const line of [
+    'Developing leadership for the AI economy.',
+    'Executive education for leaders navigating technological and strategic change.',
+    'Beyond AI literacy.',
+    'AI for Boards and Executive Committees', 'AI as a Strategic Thinking Partner', 'Leading AI Transformation',
+    'AI, Innovation and New Business Models', 'Custom Executive Leadership Programmes',
+    'How we teach.', 'Formats and delivery', 'Facilitated strategic decision-making labs.',
+    'Sector-specific executive education',
+    'Learning grounded in operating experience.',
+    'while recognising that judgement and accountability remain with leaders.',
+    'Develop the capability to lead what comes next.',
+  ]) assert.ok(page.includes(line), line);
+  const doc = html('educate.html');
+  assert.match(doc, /href="\/contact\?topic=education"[^>]*>Discuss an Executive Programme/);
+  assert.match(doc, /<a href="\/educate" aria-current="page">Educate<\/a>/);
+  assert.match(html('what-we-do.html'), /href="\/educate"[^>]*>Explore Educate/);
 });
 
 test('positioning is intact: fundamentals, pillars, delivery modes, Diagnostic and R&D', () => {
@@ -284,6 +305,7 @@ test('the specified titles and descriptions are used', () => {
     '/': ['AI Transformation & Venture Building | Comet Innovations', 'London-based AI transformation and venture building firm offering independent advisory, executive education and forward-deployed AI engineering.'],
     '/what-we-do': ['AI Transformation Strategy & Services | Comet Innovations'],
     '/advise': ['AI Strategy & Advisory Services | Comet Innovations'],
+    '/educate': ['AI Executive Education & Leadership Programmes | Comet Innovations'],
     '/value-creation': ['AI Growth Strategy & Value Creation | Comet Innovations'],
     '/work-redesign': ['AI Work Redesign & Workforce Transformation | Comet Innovations'],
     '/operating-model': ['AI Operating Model & Governance | Comet Innovations'],
@@ -419,7 +441,7 @@ test('FAQPage markup exists only on About and matches the visible questions exac
 
 test('Service entities exist only on substantive service pages, provided by Comet', () => {
   const servicePages = metas.filter(p => graphOf(p.file).some(n => n['@type'] === 'Service')).map(p => p.path).sort();
-  assert.deepEqual(servicePages, ['/advise', '/diagnostic', '/operating-model', '/value-creation', '/venture-building', '/work-redesign']);
+  assert.deepEqual(servicePages, ['/advise', '/diagnostic', '/educate', '/operating-model', '/value-creation', '/venture-building', '/work-redesign']);
   for (const p of servicePages) {
     const service = graphOf(fileFor(p)).find(n => n['@type'] === 'Service');
     assert.equal(service.provider['@id'], `${SITE}/#organization`);

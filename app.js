@@ -20,7 +20,7 @@ export const TOPICS = {
   'work-redesign': 'Work Redesign',
   'operating-model': 'Operating Model',
   'venture-building': 'Venture Building',
-  education: 'Education and capability programmes',
+  education: 'An executive education programme',
   other: 'Other',
 };
 

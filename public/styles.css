@@ -194,6 +194,13 @@ div.section-intro p{margin:0 0 14px}
 .principles>div{padding:26px 0;border-bottom:1px solid var(--line)}
 .principles h3{font-family:var(--serif);font-weight:400;font-size:clamp(26px,2.2vw,32px);line-height:1.1;margin:0 0 10px}
 .principles p{margin:0}
+.programme-list{border-top:1px solid var(--line-dark)}
+.programme{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:16px clamp(40px,6vw,96px);padding:44px 0;border-bottom:1px solid var(--line-dark)}
+.programme h3{font-family:var(--serif);font-weight:400;font-size:clamp(28px,2.6vw,38px);line-height:1.08;margin:12px 0 14px}
+.programme p{margin:0;max-width:620px}
+.programme>div:last-child p+p{margin-top:14px}
+.format-list{list-style:none;margin:8px 0 28px;padding:0;border-top:1px solid var(--line-strong)}
+.format-list li{font-family:var(--serif);font-size:clamp(22px,1.9vw,26px);line-height:1.25;padding:16px 0;border-bottom:1px solid var(--line)}
 
 /* Insight cards (home) */
 .insight-list{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,44px)}
@@ -553,6 +560,7 @@ dfn{font-style:normal;font-weight:600}
  .footer-grid{grid-template-columns:1fr 1fr}
  .footer-grid>:first-child{grid-column:1/-1}
  .fund-row{grid-template-columns:44px 1fr;gap:12px 20px}
+ .programme{grid-template-columns:1fr}
  .fund-row .glyph{width:36px;height:36px;grid-row:span 3}
  .fund-row p,.fund-row .link{grid-column:2}
  .fund-row .link{justify-self:start;margin-top:8px}
