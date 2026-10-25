@@ -101,7 +101,7 @@ test('What We Do presents three independent services, the framework and venture 
   ]) assert.ok(page.includes(line), line);
   const doc = html('what-we-do.html');
   for (const id of ['advise', 'educate', 'engineer', 'four-fundamentals', 'venture-building']) assert.match(doc, new RegExp(`<section[^>]*id="${id}"`), id);
-  assert.match(doc, /href="\/insights\/the-four-fundamentals"[^>]*>Explore the Framework/);
+  assert.match(doc, /href="\/four-fundamentals"[^>]*>Explore the Framework/);
   assert.match(doc, /href="\/venture-building"[^>]*>Explore Venture Building/);
 });
 
@@ -262,6 +262,30 @@ test('Energy is an industry page under /industries, linked from the menu and the
   assert.match(html('industries.html'), /href="\/industries\/energy"[^>]*>Explore Energy/);
 });
 
+test('The Four Fundamentals has its own framework page, linked from the menu, home and What We Do', () => {
+  const page = text('four-fundamentals.html');
+  for (const line of [
+    'A framework for understanding business in the AI economy.',
+    'What artificial intelligence changes is the economics of how they are fulfilled.',
+    'Why the framework matters.',
+    'How do you create and capture value?', 'How should work be performed?', 'How should the organisation operate?', 'What becomes possible next?',
+    'Which activities require human judgement?',
+    'Should the opportunity be pursued within the existing business or through a new venture?',
+    'A strategic perspective, not a mandatory delivery process.',
+    'It is a defined advisory engagement with a clear scope and set of deliverables.',
+    'What should change?',
+  ]) assert.ok(page.includes(line), line);
+  const doc = html('four-fundamentals.html');
+  for (const [label, href] of [['Explore Value', '/value-creation'], ['Explore Work', '/work-redesign'], ['Explore Organisation', '/operating-model'], ['Explore Growth', '/venture-building'], ['Explore the Fundamentals Diagnostic', '/diagnostic']]) {
+    assert.match(doc, new RegExp(`href="${href}"[^>]*>${label}<`), label);
+  }
+  assert.match(doc, /<a href="\/four-fundamentals" aria-current="page">The Four Fundamentals<\/a>/);
+  assert.match(html('index.html'), /href="\/four-fundamentals"[^>]*>Discover the Four Fundamentals/);
+  const graph = JSON.parse(doc.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1])['@graph'];
+  assert.ok(graph.some(n => n['@type'] === 'DefinedTerm' && n.name === 'The Four Fundamentals'));
+  assert.ok(fs.readFileSync(path.join(out, 'llms.txt'), 'utf8').includes('- Value: How do you create and capture value?'));
+});
+
 test('positioning is intact: fundamentals, pillars, delivery modes, Diagnostic and R&D', () => {
   const all = pages.map(text).join(' ');
   for (const term of ['Value', 'Work', 'Organisation', 'Growth', 'Value creation', 'Work redesign', 'Operating model', 'Venture building', 'Advise', 'Educate', 'Engineer', 'Fundamentals Diagnostic']) {
@@ -343,7 +367,7 @@ test('legal pages exist, use configured facts, and the site sets no cookies or s
 test('the Four Fundamentals carry the proprietary notice, and the Terms protect the framework', () => {
   const notice = 'The Four Fundamentals framework and associated methodology are proprietary to Maverika Ltd, trading as Comet Innovations. © Maverika Ltd. All rights reserved.';
   assert.equal(ctx.legal.frameworkNotice, notice);
-  for (const page of ['index.html', 'what-we-do.html', 'diagnostic.html', 'insights/the-four-fundamentals.html', 'insights/where-is-ai-changing-your-economics.html']) {
+  for (const page of ['index.html', 'what-we-do.html', 'four-fundamentals.html', 'diagnostic.html', 'insights/the-four-fundamentals.html', 'insights/where-is-ai-changing-your-economics.html']) {
     assert.ok(text(page).includes(notice), page);
   }
   assert.ok(fs.readFileSync(path.join(out, 'llms.txt'), 'utf8').includes(notice));
@@ -389,7 +413,7 @@ test('the main navigation follows the institutional structure, and every link re
 test('the current page is marked in the navigation', () => {
   assert.match(html('about.html'), /<div class="menu current"><button[^>]*>About<\/button>[\s\S]*?<a href="\/about" aria-current="page">Firm<\/a>/);
   assert.match(html('value-creation.html'), /<div class="menu current"><button[^>]*>What We Do<\/button>/);
-  assert.match(html('insights/the-four-fundamentals.html'), /<a href="\/insights\/the-four-fundamentals" aria-current="page">The Four Fundamentals<\/a>/);
+  assert.match(html('insights/the-four-fundamentals.html'), /<a href="\/insights" aria-current="page">Insights<\/a>/);
   assert.match(html(fileFor(ctx.insights[0].url)), /<a href="\/insights" aria-current="page">Insights<\/a>/);
 });
 
@@ -423,6 +447,7 @@ test('the specified titles and descriptions are used', () => {
     '/industries/private-equity': ['AI for Private Equity: Portfolio Value Creation | Comet Innovations'],
     '/industries/government': ['AI for Government & Public Sector | Comet Innovations'],
     '/industries/energy': ['AI for Energy, Utilities & Infrastructure | Comet Innovations'],
+    '/four-fundamentals': ['The Four Fundamentals: An AI Strategy Framework | Comet Innovations'],
     '/value-creation': ['AI Growth Strategy & Value Creation | Comet Innovations'],
     '/work-redesign': ['AI Work Redesign & Workforce Transformation | Comet Innovations'],
     '/operating-model': ['AI Operating Model & Governance | Comet Innovations'],

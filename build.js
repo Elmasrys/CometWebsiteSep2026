@@ -371,7 +371,7 @@ function llmsTxt(ctx, pages) {
   const { site } = ctx;
   const link = (name, p, note) => `- [${name}](${site.url}${p})${note ? `: ${note}` : ''}`;
   const byPath = Object.fromEntries(pages.map(p => [p.path, p]));
-  const key = ['/what-we-do', '/advise', '/educate', '/engineer', '/industries', '/industries/private-equity', '/industries/government', '/industries/energy', '/value-creation', '/work-redesign', '/operating-model', '/venture-building', '/diagnostic', '/research-and-development', '/our-work', '/about', '/contact'];
+  const key = ['/what-we-do', '/four-fundamentals', '/advise', '/educate', '/engineer', '/industries', '/industries/private-equity', '/industries/government', '/industries/energy', '/value-creation', '/work-redesign', '/operating-model', '/venture-building', '/diagnostic', '/research-and-development', '/our-work', '/about', '/contact'];
   return [
     `# ${site.name}`,
     '',
@@ -379,12 +379,12 @@ function llmsTxt(ctx, pages) {
     '',
     `Core question: ${site.question}`,
     '',
-    `${site.name} examines AI transformation across four fundamentals:`,
+    `${site.name}’s Four Fundamentals framework (${site.url}/four-fundamentals) examines the strategic implications of AI across four dimensions:`,
     '',
-    '- Value: How do you make money?',
-    '- Work: How do people work?',
-    '- Organisation: How does the organisation run?',
-    '- Growth: How do you grow?',
+    '- Value: How do you create and capture value?',
+    '- Work: How should work be performed?',
+    '- Organisation: How should the organisation operate?',
+    '- Growth: What becomes possible next?',
     '',
     ctx.legal.frameworkNotice,
     '',
