@@ -17,10 +17,10 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 SRC = ROOT / "assets" / "source"
 OUT = ROOT / "public" / "images"
 
-# name -> (master file, output basename, widths)
-IMAGES = {
-    "gateway": ("gateway.jpg", "home-hero", [960, 1586]),
-}
+import json
+
+# Slots come from the central registry; every slot whose master exists in assets/source/ is graded.
+SLOTS = json.loads((ROOT / "src" / "content" / "images.json").read_text())["slots"]
 
 BLACK = 0.105   # lifted black point, about #1B1A18 (never pure black)
 WHITE = 0.945   # highlight ceiling, soft roll-off below it
@@ -60,18 +60,31 @@ def grade(img: Image.Image) -> Image.Image:
 
 
 def main():
-    for name, (master, base, widths) in IMAGES.items():
-        src = Image.open(SRC / master)
-        graded = grade(src)
-        for w in widths:
+    done = set()
+    missing = []
+    for name, slot in SLOTS.items():
+        master = SRC / slot["master"]
+        if not master.exists():
+            missing.append(name)
+            continue
+        key = (slot["file"], tuple(slot["widths"]))
+        if key in done:
+            continue
+        done.add(key)
+        graded = grade(Image.open(master))
+        for w in slot["widths"]:
+            if w > graded.width:
+                raise SystemExit(f"{name}: master is {graded.width}px wide, smaller than the {w}px output")
             h = round(graded.height * w / graded.width)
             im = graded if w == graded.width else graded.resize((w, h), Image.LANCZOS)
-            im.save(OUT / f"{base}-{w}.webp", quality=82, method=6)
-            im.save(OUT / f"{base}-{w}.avif", quality=62)
-            if w == max(widths):
-                im.save(OUT / f"{base}-{w}.jpg", quality=84, optimize=True, progressive=True)
+            im.save(OUT / f"{slot['file']}-{w}.webp", quality=82, method=6)
+            im.save(OUT / f"{slot['file']}-{w}.avif", quality=62)
+            if w == max(slot["widths"]):
+                im.save(OUT / f"{slot['file']}-{w}.jpg", quality=84, optimize=True, progressive=True)
         lum = np.asarray(graded.convert("L"), dtype=np.float64) / 255
         print(f"{name}: luminance min {lum.min():.3f}, p1 {np.percentile(lum, 1):.3f}, p99 {np.percentile(lum, 99):.3f}, max {lum.max():.3f}")
+    if missing:
+        print(f"Awaiting photography for {len(missing)} slots (see docs/image-inventory.md): {', '.join(missing)}")
 
 
 if __name__ == "__main__":

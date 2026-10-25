@@ -768,3 +768,50 @@ print(round(float(np.percentile(y, 0.5)), 3), round(float(np.percentile(y, 99.5)
   assert.ok(stats[0] >= 0.09, `shadows are crushed (0.5th percentile ${stats[0]})`);
   assert.ok(stats[1] <= 0.97, `highlights clip (99.5th percentile ${stats[1]})`);
 });
+
+// ---------- Visual redesign: photography slots, homepage sequence, motion ----------
+
+test('photography is referenced through the central slot registry', () => {
+  const { slots } = JSON.parse(fs.readFileSync(path.join(root, 'src/content/images.json'), 'utf8'));
+  for (const [name, slot] of Object.entries(slots)) {
+    for (const field of ['file', 'master', 'widths', 'ratio', 'focal', 'sizes', 'page', 'placement', 'dimensions', 'subject', 'composition']) {
+      assert.ok(slot[field] !== undefined && slot[field] !== '', `${name} lacks ${field}`);
+    }
+    assert.match(slot.focal, /^\d+% \d+%$/, `${name} focal point`);
+  }
+  // Every slot a page names exists in the registry.
+  const sources = [];
+  const walk = dir => fs.readdirSync(dir, { withFileTypes: true }).forEach(e => e.isDirectory() ? walk(path.join(dir, e.name)) : sources.push(path.join(dir, e.name)));
+  walk(path.join(root, 'src/pages'));
+  for (const file of sources) {
+    for (const [, name] of fs.readFileSync(file, 'utf8').matchAll(/images\.(\w+)\./g)) assert.ok(slots[name], `${path.basename(file)} names unknown slot ${name}`);
+  }
+  // A slot renders only when its graded files exist, so no page shows an empty frame.
+  for (const page of pages) {
+    for (const [, file] of html(page).matchAll(/<img src="\/images\/([^"]+)"/g)) assert.ok(fs.existsSync(path.join(out, 'images', file)), `${page}: ${file}`);
+    assert.doesNotMatch(html(page), /<figure[^>]*>\s*<\/figure>/, `${page} has an empty figure`);
+  }
+  // The inventory documents every slot.
+  const inventory = fs.readFileSync(path.join(root, 'docs/image-inventory.md'), 'utf8');
+  for (const name of Object.keys(slots)) assert.ok(inventory.includes(`\`${name}\``), `inventory lacks ${name}`);
+});
+
+test('the homepage follows the editorial sequence with one opening action', () => {
+  const home = html('index.html');
+  assert.match(home, /<h1[^>]*>AI is changing the fundamentals of business\.<\/h1>/);
+  const opening = home.slice(home.indexOf('<header class="hero'), home.indexOf('</header>'));
+  assert.equal((opening.match(/<a /g) || []).length, 1, 'the opening carries a single action');
+  assert.ok(opening.includes('Helping organisations navigate, lead and build in the AI economy.'));
+  const marks = [...home.matchAll(/<p class="section-mark"><span>(\d\d)<\/span>/g)].map(m => m[1]);
+  assert.deepEqual(marks, ['02', '03', '04', '05', '06', '07', '08']);
+  for (const id of ['private-equity', 'government', 'energy']) assert.match(home, new RegExp(`id="${id}"[^>]*><h3><a href="/industries/${id}"`), `${id} is linked without hover`);
+  assert.ok(text('index.html').includes('The Four Fundamentals framework and associated methodology are proprietary'), 'framework notice');
+});
+
+test('motion never hides text', () => {
+  const css = fs.readFileSync(path.join(out, 'styles.css'), 'utf8');
+  const layer = css.slice(css.indexOf('Visual redesign'));
+  assert.match(layer, /\.js \.reveal\{opacity:1/);
+  assert.match(layer, /prefers-reduced-motion:reduce/);
+  assert.doesNotMatch(layer, /gradient|box-shadow|border-radius/);
+});

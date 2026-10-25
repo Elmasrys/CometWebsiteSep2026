@@ -1,0 +1,463 @@
+{
+  "_note": "Central registry of every photograph on the site. Pages reference slots by name ({{#images.slot.available}} … {{{images.slot.picture}}} … {{/images.slot.available}}); a slot renders only when its graded files exist in public/images/, otherwise the page keeps its typographic composition. To add a photograph: put the licensed master in assets/source/ under the slot's 'master' name, run `python3 tools/grade-images.py`, then `node tools/image-inventory.mjs`. Focal points are 'x% y%' object positions. Licence details go in 'credit'.",
+  "slots": {
+    "home_opening": {
+      "file": "home-hero",
+      "master": "gateway.jpg",
+      "widths": [
+        960,
+        1586
+      ],
+      "ratio": "3:4 frame (master 16:10)",
+      "focal": "66% 60%",
+      "sizes": "(max-width: 980px) 100vw, 48vw",
+      "priority": true,
+      "alt": "",
+      "page": "Home",
+      "placement": "Section 01, opening: right half of the screen, full height of the opening, framed with margin",
+      "dimensions": "Master at least 2400 × 1500; existing 1586 × 992 accepted, 2400 × 1500 re-export preferred",
+      "subject": "The Gateway: a figure walking through monumental stone walls towards an opening onto a horizon",
+      "composition": "Approved. Tall walls on the left, opening and figure right of centre; crop keeps the figure and the far horizon",
+      "credit": "Comet Innovations commissioned artwork (approved October 2026)"
+    },
+    "about_plate": {
+      "file": "home-hero",
+      "master": "gateway.jpg",
+      "widths": [
+        960,
+        1586
+      ],
+      "ratio": "fills hero plate (about 2:3)",
+      "focal": "84% 60%",
+      "sizes": "(max-width: 980px) 100vw, 36vw",
+      "alt": "",
+      "page": "About",
+      "placement": "Opening plate, right third, bleeding to the right edge",
+      "dimensions": "Shares the Gateway master",
+      "subject": "Detail crop of the Gateway: the single figure and long shadow",
+      "composition": "Crop to the figure and threshold; no new master required",
+      "credit": "Comet Innovations commissioned artwork"
+    },
+    "home_fundamentals": {
+      "file": "fundamentals-architecture",
+      "master": "fundamentals-architecture.jpg",
+      "widths": [
+        960,
+        1600
+      ],
+      "ratio": "4:5",
+      "focal": "50% 50%",
+      "sizes": "(max-width: 980px) 100vw, 40vw",
+      "alt": "",
+      "page": "Home",
+      "placement": "Section 05, The Four Fundamentals: tall image in the left columns beside the four questions",
+      "dimensions": "2000 × 2500 minimum",
+      "subject": "Contemporary monumental architecture with Egyptian proportions: tapered planes, a deep threshold or a colonnade in diffused daylight",
+      "composition": "Strong verticals, one dominant mass, generous negative space at top; no pyramids, temples or hieroglyphs",
+      "credit": ""
+    },
+    "industry_private_equity": {
+      "file": "industry-private-equity",
+      "master": "industry-private-equity.jpg",
+      "widths": [
+        960,
+        1600,
+        2400
+      ],
+      "ratio": "4:5 (hero) and 3:2 (home markets)",
+      "focal": "50% 50%",
+      "sizes": "(max-width: 980px) 100vw, 50vw",
+      "alt": "",
+      "page": "Private Equity; Home section 04; Industries",
+      "placement": "Private Equity opening (image left half); featured image in the homepage markets section; Industries band",
+      "dimensions": "2400 × 3000 minimum (subject centred so a 3:2 crop also works)",
+      "subject": "An operating business: a production floor, distribution centre or industrial workshop at work",
+      "composition": "People at work but not posed, depth through the space, calm light; no trading floors, skyscrapers or boardrooms",
+      "credit": ""
+    },
+    "industry_private_equity_detail": {
+      "file": "industry-private-equity-detail",
+      "master": "industry-private-equity-detail.jpg",
+      "widths": [
+        1280,
+        2400
+      ],
+      "ratio": "21:9",
+      "focal": "50% 55%",
+      "sizes": "100vw",
+      "alt": "",
+      "page": "Private Equity",
+      "placement": "Full-bleed pause between 'An investment perspective on AI' and 'Where we focus'",
+      "dimensions": "3000 × 1286 minimum",
+      "subject": "Portfolio-company operations at scale: a logistics yard, plant exterior or line seen from above",
+      "composition": "Wide, orderly, operational; horizon or structure on a third; no logos",
+      "credit": ""
+    },
+    "industry_government": {
+      "file": "industry-government",
+      "master": "industry-government.jpg",
+      "widths": [
+        960,
+        1600,
+        2400
+      ],
+      "ratio": "3:2",
+      "focal": "50% 50%",
+      "sizes": "(max-width: 980px) 100vw, 58vw",
+      "alt": "",
+      "page": "Government; Home section 04; Industries",
+      "placement": "Government opening (offset image beneath the title); homepage markets; Industries band",
+      "dimensions": "2400 × 1600 minimum",
+      "subject": "A civic institution in use: the hall of a public building, a library or a transport concourse with people",
+      "composition": "Institutional architecture with human scale; no flags, politicians, handshakes or ceremonies",
+      "credit": ""
+    },
+    "industry_government_detail": {
+      "file": "industry-government-detail",
+      "master": "industry-government-detail.jpg",
+      "widths": [
+        1280,
+        2400
+      ],
+      "ratio": "21:9",
+      "focal": "50% 50%",
+      "sizes": "100vw",
+      "alt": "",
+      "page": "Government",
+      "placement": "Full-bleed pause before 'Responsible deployment by design'",
+      "dimensions": "3000 × 1286 minimum",
+      "subject": "Cities and urban systems: a city seen at dusk, a rail interchange or public infrastructure",
+      "composition": "Systemic and calm; repeating structure; avoid landmarks that pin the image to one country",
+      "credit": ""
+    },
+    "industry_energy": {
+      "file": "industry-energy",
+      "master": "industry-energy.jpg",
+      "widths": [
+        1280,
+        2400
+      ],
+      "ratio": "21:9 (hero) and 3:2 (home markets)",
+      "focal": "50% 55%",
+      "sizes": "100vw",
+      "alt": "",
+      "page": "Energy; Home section 04; Industries",
+      "placement": "Energy opening: full-bleed panorama under the title; homepage markets; Industries band",
+      "dimensions": "3600 × 1543 minimum (subject centred for a 3:2 crop)",
+      "subject": "Energy infrastructure at scale: a substation, transmission corridor, turbine hall or generation site",
+      "composition": "Scale and order, people small in frame for scale where possible; no stock wind-farm sunsets",
+      "credit": ""
+    },
+    "industry_energy_detail": {
+      "file": "industry-energy-detail",
+      "master": "industry-energy-detail.jpg",
+      "widths": [
+        960,
+        1600
+      ],
+      "ratio": "4:5",
+      "focal": "50% 45%",
+      "sizes": "(max-width: 980px) 100vw, 40vw",
+      "alt": "",
+      "page": "Energy",
+      "placement": "Beside 'Engineering in operationally sensitive environments'",
+      "dimensions": "2000 × 2500 minimum",
+      "subject": "A control environment or operator at physical assets: control room, switchgear, plant walkway",
+      "composition": "Operational reality, screens may show but must not be readable or invented",
+      "credit": ""
+    },
+    "advise_hero": {
+      "file": "advise",
+      "master": "advise.jpg",
+      "widths": [
+        960,
+        1600
+      ],
+      "ratio": "4:5",
+      "focal": "50% 40%",
+      "sizes": "(max-width: 980px) 100vw, 42vw",
+      "alt": "",
+      "page": "Advise",
+      "placement": "Opening: portrait image in the right columns beside the title",
+      "dimensions": "2000 × 2500 minimum",
+      "subject": "Strategic judgement: an authentic professional portrait of Comet's founder, or an executive environment without identifiable clients",
+      "composition": "Quiet, considered, eye level; never a staged meeting presented as a Comet engagement",
+      "credit": ""
+    },
+    "advise_context": {
+      "file": "advise-context",
+      "master": "advise-context.jpg",
+      "widths": [
+        1280,
+        2400
+      ],
+      "ratio": "16:9",
+      "focal": "50% 50%",
+      "sizes": "100vw",
+      "alt": "",
+      "page": "Advise",
+      "placement": "Full-bleed pause after 'Strategic questions, not technology prescriptions.'",
+      "dimensions": "3000 × 1688 minimum",
+      "subject": "Organisational complexity: a headquarters atrium or working floor seen from height",
+      "composition": "Layers of structure and people, restrained, no logos",
+      "credit": ""
+    },
+    "educate_hero": {
+      "file": "educate",
+      "master": "educate.jpg",
+      "widths": [
+        1280,
+        2400
+      ],
+      "ratio": "16:9",
+      "focal": "50% 45%",
+      "sizes": "100vw",
+      "alt": "",
+      "page": "Educate",
+      "placement": "Opening: wide image under the title, full width",
+      "dimensions": "3000 × 1688 minimum",
+      "subject": "Human presence in executive learning: leaders in focused discussion around a table or in a seminar room",
+      "composition": "Natural light, engaged expressions, no slides or logos; only authorised Comet imagery may be presented as a Comet programme",
+      "credit": ""
+    },
+    "educate_detail": {
+      "file": "educate-detail",
+      "master": "educate-detail.jpg",
+      "widths": [
+        960,
+        1600
+      ],
+      "ratio": "4:5",
+      "focal": "50% 40%",
+      "sizes": "(max-width: 980px) 100vw, 40vw",
+      "alt": "",
+      "page": "Educate",
+      "placement": "Beside 'How we teach.'",
+      "dimensions": "2000 × 2500 minimum",
+      "subject": "A single participant listening, writing or speaking; hands and notes acceptable",
+      "composition": "Intimate, shallow depth of field, warm-neutral light",
+      "credit": ""
+    },
+    "engineer_hero": {
+      "file": "engineer",
+      "master": "engineer.jpg",
+      "widths": [
+        960,
+        1600,
+        2400
+      ],
+      "ratio": "3:2",
+      "focal": "50% 50%",
+      "sizes": "(max-width: 980px) 100vw, 58vw",
+      "alt": "",
+      "page": "Engineer",
+      "placement": "Opening: offset image beneath the title",
+      "dimensions": "2400 × 1600 minimum",
+      "subject": "Technical work in progress: engineers at workstations, a whiteboard architecture session or hardware on a bench",
+      "composition": "Precise and practical; screens unreadable unless showing genuine Comet work",
+      "credit": ""
+    },
+    "engineer_artefact": {
+      "file": "engineer-artefact",
+      "master": "engineer-artefact.png",
+      "widths": [
+        1280,
+        2000
+      ],
+      "ratio": "16:10",
+      "focal": "50% 50%",
+      "sizes": "(max-width: 980px) 100vw, 60vw",
+      "alt": "Comet engineering artefact",
+      "page": "Engineer",
+      "placement": "Beside 'Our engineering capabilities'",
+      "dimensions": "2560 × 1600 minimum",
+      "subject": "A genuine Comet artefact: a real product interface, architecture diagram or demonstration still",
+      "composition": "Only authentic material; never a mock-up of a fictional project; set alt text to describe it",
+      "credit": ""
+    },
+    "fundamentals_overview": {
+      "file": "fundamentals-overview",
+      "master": "fundamentals-overview.jpg",
+      "widths": [
+        1280,
+        2400
+      ],
+      "ratio": "21:9",
+      "focal": "50% 50%",
+      "sizes": "100vw",
+      "alt": "",
+      "page": "The Four Fundamentals",
+      "placement": "Full-bleed image under the opening title",
+      "dimensions": "3600 × 1543 minimum",
+      "subject": "A monumental contemporary courtyard or long wall with Egyptian proportions",
+      "composition": "Symmetry or a single strong axis, deep lifted shadow, vast negative space",
+      "credit": ""
+    },
+    "fundamentals_value": {
+      "file": "fundamentals-value",
+      "master": "fundamentals-value.jpg",
+      "widths": [
+        960,
+        1600
+      ],
+      "ratio": "4:5",
+      "focal": "50% 50%",
+      "sizes": "(max-width: 980px) 100vw, 34vw",
+      "alt": "",
+      "page": "The Four Fundamentals",
+      "placement": "Value section, left column",
+      "dimensions": "2000 × 2500 minimum",
+      "subject": "Mass: a single monolithic volume in light",
+      "composition": "One form, one light source, no ornament",
+      "credit": ""
+    },
+    "fundamentals_work": {
+      "file": "fundamentals-work",
+      "master": "fundamentals-work.jpg",
+      "widths": [
+        960,
+        1600
+      ],
+      "ratio": "4:5",
+      "focal": "50% 50%",
+      "sizes": "(max-width: 980px) 100vw, 34vw",
+      "alt": "",
+      "page": "The Four Fundamentals",
+      "placement": "Work section, left column",
+      "dimensions": "2000 × 2500 minimum",
+      "subject": "Rhythm: a colonnade or repeated planes",
+      "composition": "Repetition receding in perspective",
+      "credit": ""
+    },
+    "fundamentals_organisation": {
+      "file": "fundamentals-organisation",
+      "master": "fundamentals-organisation.jpg",
+      "widths": [
+        960,
+        1600
+      ],
+      "ratio": "4:5",
+      "focal": "50% 50%",
+      "sizes": "(max-width: 980px) 100vw, 34vw",
+      "alt": "",
+      "page": "The Four Fundamentals",
+      "placement": "Organisation section, left column",
+      "dimensions": "2000 × 2500 minimum",
+      "subject": "Structure: a courtyard or intersecting walls seen from above or along an axis",
+      "composition": "Clear geometry, order and relationship between parts",
+      "credit": ""
+    },
+    "fundamentals_growth": {
+      "file": "fundamentals-growth",
+      "master": "fundamentals-growth.jpg",
+      "widths": [
+        960,
+        1600
+      ],
+      "ratio": "4:5",
+      "focal": "50% 50%",
+      "sizes": "(max-width: 980px) 100vw, 34vw",
+      "alt": "",
+      "page": "The Four Fundamentals",
+      "placement": "Growth section, left column",
+      "dimensions": "2000 × 2500 minimum",
+      "subject": "Aperture: a threshold opening onto light or open space",
+      "composition": "Looking through an opening towards what lies beyond",
+      "credit": ""
+    },
+    "about_founder": {
+      "file": "founder",
+      "master": "founder.jpg",
+      "widths": [
+        640,
+        1200
+      ],
+      "ratio": "4:5",
+      "focal": "50% 35%",
+      "sizes": "(max-width: 980px) 70vw, 280px",
+      "alt": "Sherif Elmasry, Founder & Managing Partner, Comet Innovations",
+      "page": "About; Home section 06",
+      "placement": "People profile portrait; credibility section on the homepage",
+      "dimensions": "1600 × 2000 minimum",
+      "subject": "Authentic portrait of Sherif Elmasry",
+      "composition": "Editorial, natural light, plain or architectural background, monochrome-ready",
+      "credit": ""
+    },
+    "research_hero": {
+      "file": "research",
+      "master": "research.jpg",
+      "widths": [
+        960,
+        1600,
+        2400
+      ],
+      "ratio": "3:2",
+      "focal": "50% 50%",
+      "sizes": "(max-width: 980px) 100vw, 58vw",
+      "alt": "",
+      "page": "Research & Development",
+      "placement": "Beside the stateful AI orchestration section",
+      "dimensions": "2400 × 1600 minimum",
+      "subject": "Evidence of research: a working session, notebooks, whiteboard derivations or compute hardware",
+      "composition": "Substantial and real; no glowing graphics or neural-network imagery",
+      "credit": ""
+    },
+    "insight_economics": {
+      "file": "insight-economics",
+      "master": "insight-economics.jpg",
+      "widths": [
+        960,
+        1600
+      ],
+      "ratio": "3:2",
+      "focal": "50% 50%",
+      "sizes": "(max-width: 980px) 100vw, 30vw",
+      "alt": "",
+      "page": "Home section 07; Insights",
+      "placement": "Cover for 'Where Is AI Changing Your Economics?'",
+      "dimensions": "2400 × 1600 minimum",
+      "subject": "Commerce in motion: a market, port or trading floor detail",
+      "composition": "Editorial cover, single idea",
+      "credit": "",
+      "insight": "where-is-ai-changing-your-economics"
+    },
+    "insight_fundamentals": {
+      "file": "insight-fundamentals",
+      "master": "insight-fundamentals.jpg",
+      "widths": [
+        960,
+        1600
+      ],
+      "ratio": "3:2",
+      "focal": "50% 50%",
+      "sizes": "(max-width: 980px) 100vw, 30vw",
+      "alt": "",
+      "page": "Home section 07; Insights",
+      "placement": "Cover for 'The Four Fundamentals'",
+      "dimensions": "2400 × 1600 minimum",
+      "subject": "Architectural detail in the fundamentals series",
+      "composition": "Editorial cover, single idea",
+      "credit": "",
+      "insight": "the-four-fundamentals"
+    },
+    "insight_build_next": {
+      "file": "insight-build-next",
+      "master": "insight-build-next.jpg",
+      "widths": [
+        960,
+        1600
+      ],
+      "ratio": "3:2",
+      "focal": "50% 50%",
+      "sizes": "(max-width: 980px) 100vw, 30vw",
+      "alt": "",
+      "page": "Home section 07; Insights",
+      "placement": "Cover for 'What Should You Build Next?'",
+      "dimensions": "2400 × 1600 minimum",
+      "subject": "Making: a workshop, prototype or construction in progress",
+      "composition": "Editorial cover, single idea",
+      "credit": "",
+      "insight": "what-should-you-build-next"
+    }
+  }
+}

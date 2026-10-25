@@ -96,6 +96,44 @@ export function markdown(src, ctx) {
     .join('\n');
 }
 
+// ---------- Photography slots ----------
+// Every photograph is a named slot in src/content/images.json. A slot is "available" only when its graded files exist,
+// so pages can offer an image-led composition without ever shipping a placeholder.
+
+function jpegSize(file) {
+  const b = fs.readFileSync(file);
+  for (let i = 2; i < b.length; ) {
+    const marker = b.readUInt16BE(i);
+    const len = b.readUInt16BE(i + 2);
+    if (marker >= 0xffc0 && marker <= 0xffcf && ![0xffc4, 0xffc8, 0xffcc].includes(marker)) return { h: b.readUInt16BE(i + 5), w: b.readUInt16BE(i + 7) };
+    i += 2 + len;
+  }
+  throw new Error(`${file}: no JPEG size found`);
+}
+
+function loadImages(slots) {
+  const out = {};
+  for (const [name, slot] of Object.entries(slots)) {
+    const max = Math.max(...slot.widths);
+    const jpg = path.join(PUBLIC, 'images', `${slot.file}-${max}.jpg`);
+    const available = slot.widths.every(w => ['avif', 'webp'].every(ext => fs.existsSync(path.join(PUBLIC, 'images', `${slot.file}-${w}.${ext}`)))) && fs.existsSync(jpg);
+    const entry = { ...slot, name, available, picture: '' };
+    if (available) {
+      const { w, h } = jpegSize(jpg);
+      const set = ext => slot.widths.map(x => `/images/${slot.file}-${x}.${ext} ${x}w`).join(', ');
+      const loading = slot.priority ? 'fetchpriority="high"' : 'loading="lazy" decoding="async"';
+      entry.picture = `<picture class="slot slot-${name}"><source type="image/avif" srcset="${set('avif')}" sizes="${slot.sizes}"><source type="image/webp" srcset="${set('webp')}" sizes="${slot.sizes}"><img src="/images/${slot.file}-${max}.jpg" alt="${escapeHtml(slot.alt || '')}" width="${w}" height="${h}" ${loading}></picture>`;
+    }
+    out[name] = entry;
+  }
+  return out;
+}
+
+/** Focal points as a stylesheet (the CSP forbids inline styles). */
+function imagesCss(images) {
+  return Object.values(images).filter(i => i.available).map(i => `.slot-${i.name} img{object-position:${i.focal}}`).join('\n') + '\n';
+}
+
 // ---------- Content ----------
 
 const formatDate = iso =>
@@ -107,6 +145,7 @@ function loadContent() {
   const { people } = readJson('people.json');
   const faq = readJson('faq.json');
   const { fundamentals } = readJson('fundamentals.json');
+  const images = loadImages(readJson('images.json').slots);
   const { forthcoming } = readJson('insights.json');
   const { cases } = readJson('cases.json');
 
@@ -115,6 +154,11 @@ function loadContent() {
   legal.lastUpdatedLabel = legal.lastUpdated ? formatDate(legal.lastUpdated) : '';
   legal.termsLastUpdatedLabel = legal.termsLastUpdated ? formatDate(legal.termsLastUpdated) : '';
   for (const person of people) person.profileUrl = `/about#${person.slug}`;
+  // The founder's portrait is a registry slot; it appears on About (and in the Person schema) once graded.
+  if (images.about_founder.available) {
+    people[0].portraitPicture = images.about_founder.picture;
+    people[0].portrait = `/images/${images.about_founder.file}-${Math.max(...images.about_founder.widths)}.jpg`;
+  }
 
   const insights = fs
     .readdirSync(path.join(SRC, 'insights'))
@@ -140,13 +184,14 @@ function loadContent() {
     })
     .sort((a, b) => a.order - b.order);
   for (const insight of insights) insight.related = insights.find(i => i.slug === insight.related);
+  for (const insight of insights) insight.cover = Object.values(images).find(i => i.insight === insight.slug && i.available) || null;
   for (const person of people) {
     person.authored = insights.filter(i => i.author.slug === person.slug);
     person.hasAuthored = person.authored.length > 0;
   }
 
   const hasServiceProviders = present(legal.serviceProviders);
-  return { site, legal, people, founder: people[0], faq, fundamentals, insights, forthcoming, cases, hasServiceProviders, year: new Date().getFullYear() };
+  return { site, legal, people, founder: people[0], faq, fundamentals, images, insights, forthcoming, cases, hasServiceProviders, year: new Date().getFullYear() };
 }
 
 /** Facts the legal pages need that are not yet confirmed. Listed at build time, never published as placeholders. */
@@ -433,7 +478,7 @@ const fingerprint = html => crypto.createHash('sha256').update(html.replace(/<fo
 function renderPage({ ctx, page, main, file, versions }) {
   const html = render(readSrc('layout.html'), { ...ctx, page, main }, `layout (${file})`);
   return markCurrent(normaliseLinks(html), page.path, page.nav || page.path)
-    .replace(/(href|src)="\/(styles\.css|script\.js|head\.js)"/g, (_, attr, f) => `${attr}="/${f}?v=${versions[f]}"`);
+    .replace(/(href|src)="\/(styles\.css|images\.css|script\.js|head\.js)"/g, (_, attr, f) => `${attr}="/${f}?v=${versions[f]}"`);
 }
 
 function pageMeta(ctx, page, { checkImages = true } = {}) {
@@ -453,6 +498,9 @@ export function build(outDir = DIST, { quiet = false, checkImages = true } = {})
   const versions = assetVersions();
   fs.rmSync(outDir, { recursive: true, force: true });
   fs.cpSync(PUBLIC, outDir, { recursive: true });
+  const focal = imagesCss(ctx.images);
+  fs.writeFileSync(path.join(outDir, 'images.css'), focal);
+  versions['images.css'] = crypto.createHash('sha256').update(focal).digest('hex').slice(0, 10);
   const written = [];
   const pages = [];
   const write = (rel, html, page) => {
