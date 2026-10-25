@@ -406,7 +406,7 @@ test('the main navigation follows the institutional structure, and every link re
 
 test('the current page is marked in the navigation', () => {
   assert.match(html('about.html'), /<div class="menu current"><button[^>]*>About<\/button>[\s\S]*?<a href="\/about" aria-current="page">Firm<\/a>/);
-  assert.match(html('value-creation.html'), /<div class="menu current"><button[^>]*>What We Do<\/button>/);
+  assert.match(html('value-creation.html'), /<div class="menu current"><button[^>]*>Our Thinking<\/button>/);
   assert.match(html('insights/the-four-fundamentals.html'), /<a href="\/insights" aria-current="page">Insights<\/a>/);
   assert.match(html(fileFor(ctx.insights[0].url)), /<a href="\/insights" aria-current="page">Insights<\/a>/);
 });
@@ -505,10 +505,10 @@ test('one H1 per page and no skipped heading levels', () => {
 
 test('the specified H1s are used', () => {
   const h1 = rel => text(rel).length && decode(html(rel).match(/<h1[^>]*>([\s\S]*?)<\/h1>/)[1].replace(/<[^>]+>/g, '')).trim();
-  assert.equal(h1('value-creation.html'), 'Rethink how value is created and captured.');
-  assert.equal(h1('work-redesign.html'), 'Redesign work around what AI makes possible.');
-  assert.equal(h1('operating-model.html'), 'Build an organisation capable of scaling AI.');
-  assert.equal(h1('venture-building.html'), 'Build what comes next.');
+  assert.equal(h1('value-creation.html'), 'Value');
+  assert.equal(h1('work-redesign.html'), 'Work');
+  assert.equal(h1('operating-model.html'), 'Organisation');
+  assert.equal(h1('venture-building.html'), 'Growth');
   assert.equal(h1('insights.html'), 'Insights');
   assert.equal(h1('about.html'), 'About Comet Innovations');
   assert.equal(h1('research-and-development.html'), 'Building the foundations of AI-native organisations.');
@@ -576,7 +576,7 @@ test('FAQPage markup exists only on About and matches the visible questions exac
 
 test('Service entities exist only on substantive service pages, provided by Comet', () => {
   const servicePages = metas.filter(p => graphOf(p.file).some(n => n['@type'] === 'Service')).map(p => p.path).sort();
-  assert.deepEqual(servicePages, ['/advise', '/educate', '/engineer', '/operating-model', '/value-creation', '/venture-building', '/work-redesign']);
+  assert.deepEqual(servicePages, ['/advise', '/educate', '/engineer']);
   for (const p of servicePages) {
     const service = graphOf(fileFor(p)).find(n => n['@type'] === 'Service');
     assert.equal(service.provider['@id'], `${SITE}/#organization`);
@@ -628,11 +628,6 @@ test('key concepts are defined in visible HTML, consistently', () => {
   const ff = 'The Four Fundamentals is Comet’s framework for examining where AI changes four core dimensions of a business: value, work, organisation and growth.';
   assert.ok(text('insights/the-four-fundamentals.html').includes(ff));
   assert.ok(text('what-we-do.html').includes('Across our work, we examine how AI changes value, work, organisation and growth.'));
-  assert.ok(text('venture-building.html').includes('Corporate venture building is the disciplined process of identifying, validating, building and launching new businesses using the assets and advantages of an established organisation.'));
-  assert.ok(text('venture-building.html').includes('Comet helps established organisations identify, validate, build and launch new businesses.'));
-  assert.ok(/Agentic AI describes AI systems/.test(text('work-redesign.html')));
-  for (const term of ['Corporate innovation', 'Venture validation', 'Venture building', 'Venture acceleration']) assert.ok(html('venture-building.html').includes(`<dt>${term}</dt>`), term);
-  for (const term of ['Task automation', 'Workflow redesign', 'AI agents and agentic AI', 'Workforce transformation', 'Capability building']) assert.ok(html('work-redesign.html').includes(`<dt>${term}</dt>`), term);
 });
 
 test('British English is used throughout the visible copy', () => {
@@ -652,13 +647,24 @@ test('no conflicting company descriptions or unsupported superlatives', () => {
   }
 });
 
-test('every pillar page links to What We Do, an Insight, Our Work and Contact', () => {
-  for (const p of ['value-creation', 'work-redesign', 'operating-model', 'venture-building']) {
-    const links = internalLinks(`${p}.html`).map(l => l.split('#')[0].split('?')[0]);
-    for (const target of ['/what-we-do', '/contact']) assert.ok(links.includes(target), `${p} -> ${target}`);
-    assert.ok(links.some(l => l.startsWith('/insights/')), `${p} -> insight`);
-    assert.ok(links.includes('/our-work') || p === 'work-redesign', `${p} -> our work`);
+test('the four Fundamentals pages sit beneath the framework and link to the services', () => {
+  const expect = {
+    'value-creation': ['Value', 'How does AI change the economics of your business?', ['/advise', '/contact?topic=value-creation']],
+    'work-redesign': ['Work', 'When intelligence changes, work should change.', ['/engineer', '/contact?topic=work-redesign']],
+    'operating-model': ['Organisation', 'An intelligent organisation needs a different operating model.', ['/advise', '/educate']],
+    'venture-building': ['Growth', 'What becomes possible when the economics of building change?', ['/advise', '/engineer', '/contact?topic=venture-building']],
+  };
+  for (const [p, [name, lead, targets]] of Object.entries(expect)) {
+    const doc = html(`${p}.html`);
+    const page = text(`${p}.html`).replace(/\s+([,.])/g, '$1');
+    for (const line of [lead, 'Areas of examination.', 'The defining question.', 'Part of Comet’s proprietary Four Fundamentals framework.', ctx.legal.frameworkNotice]) assert.ok(page.includes(line), `${p}: ${line}`);
+    const links = internalLinks(`${p}.html`);
+    for (const target of ['/four-fundamentals', ...targets]) assert.ok(links.includes(target), `${p} -> ${target}`);
+    const crumbs = graphOf(`${p}.html`).find(n => n['@type'] === 'BreadcrumbList').itemListElement.map(i => i.name);
+    assert.deepEqual(crumbs, ['Home', 'The Four Fundamentals', name], p);
+    assert.match(doc, /<nav class="breadcrumb"[^>]*><a href="\/four-fundamentals">The Four Fundamentals<\/a>/);
   }
+  for (const page of ['value-creation.html', 'work-redesign.html', 'operating-model.html']) assert.doesNotMatch(text(page), /\bjudgment\b/);
 });
 
 test('the economics Insight links to the framework and every pillar', () => {

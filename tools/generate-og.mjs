@@ -68,7 +68,7 @@ for (const page of pageMeta) {
   } else {
     jobs.push({
       file: slug,
-      eyebrow: page.heading === 'Research & Development' ? 'Research & Development' : page.parent ? `What we do · ${page.heading}` : page.heading,
+      eyebrow: page.heading === 'Research & Development' ? 'Research & Development' : page.parent ? `${page.parent.name} · ${page.heading}` : page.heading,
       title: page.ogHeadline ? page.ogHeadline : page.heading === 'Research & Development' ? 'Stateful AI orchestration.' : page.path === '/about' ? `An ${category} firm based in London.` : h1Of(page.file),
       footer: ctx.site.name,
       glyph: glyphFor[slug],

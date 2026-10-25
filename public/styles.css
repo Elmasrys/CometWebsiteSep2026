@@ -193,6 +193,13 @@ main:focus{outline:none}
 .question-list{list-style:none;margin:12px 0 28px;padding:0;max-width:660px;border-top:1px solid var(--line)}
 .question-list li{font-family:var(--serif);font-size:clamp(20px,1.8vw,24px);line-height:1.3;padding:14px 0;border-bottom:1px solid var(--line)}
 .close .framework-notice{color:var(--on-dark-muted);font-size:13px;margin-top:56px}
+.close h2.eyebrow{font-family:var(--sans);font-size:11px;line-height:1.5;letter-spacing:.22em;margin:0;max-width:none}
+.defining-question{font-family:var(--serif);font-size:clamp(30px,3.4vw,50px)!important;line-height:1.12;color:var(--chalk)!important;max-width:24ch!important;margin:20px 0 40px!important}
+.close .framework-link{font-size:15px;margin-top:48px}
+.close .framework-link a{color:var(--chalk);text-decoration:underline;text-underline-offset:3px}
+.close .framework-link+.framework-notice{margin-top:10px}
+.fundamental-mark{display:flex;align-items:center;gap:14px}
+.fundamental-mark .glyph{width:32px;height:32px;color:var(--ember)}
 .page-hero p a:not(.nav-cta):not(.btn):not(.link){text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(20,20,18,.35)}
 .page-hero p a:hover{text-decoration-color:currentColor}
 .card-action{margin-top:auto!important;padding-top:28px}
