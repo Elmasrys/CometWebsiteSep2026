@@ -335,6 +335,17 @@ test('the Four Fundamentals questions come from one canonical definition and app
   assert.deepEqual(terms.map(n => [n.name, n.description]), canonical.map(f => [f.name, f.question]));
 });
 
+test('art direction: monochrome palette, no inline styles, services never numbered as stages', () => {
+  const css = fs.readFileSync(path.join(out, 'styles.css'), 'utf8');
+  for (const hex of ['#101010', '#262626', '#44423F', '#77736E', '#A7A19A', '#CAC4BC', '#E6E2DC', '#F5F4F1', '#FFFFFF']) assert.ok(css.includes(hex), hex);
+  assert.doesNotMatch(css, /#F1EDE3|#D9B06F|#9C6430|#0B0A08/i, 'old beige and gold palette is gone');
+  for (const page of pages) assert.doesNotMatch(html(page), /\sstyle="/, `${page} has an inline style (blocked by the CSP)`);
+  for (const page of ['index.html', 'what-we-do.html']) {
+    assert.doesNotMatch(html(page), /<p class="eyebrow">0[1-3]<\/p>\s*<h[23][^>]*>(Advise|Educate|Engineer)</, `${page} numbers the services`);
+  }
+  for (const img of ['art-arch.svg', 'art-columns.svg', 'art-stone.svg', 'art-horizon.svg']) assert.ok(fs.existsSync(path.join(out, 'images', img)), img);
+});
+
 test('positioning is intact: fundamentals, pillars, delivery modes and R&D', () => {
   const all = pages.map(text).join(' ');
   for (const term of ['Value', 'Work', 'Organisation', 'Growth', 'Value creation', 'Work redesign', 'Operating model', 'Venture building', 'Advise', 'Educate', 'Engineer']) {

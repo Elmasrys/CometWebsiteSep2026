@@ -26,16 +26,16 @@ function card({ eyebrow, title, footer, variant = 'light', glyph, image }) {
 @font-face{font-family:Inter;src:url(${asset('fonts/inter-latin-var.woff2')});font-weight:100 900}
 @font-face{font-family:Cormorant;src:url(${asset('fonts/cormorant-garamond-latin-var.woff2')});font-weight:300 700}
 *{box-sizing:border-box;margin:0}
-body{width:1200px;height:630px;overflow:hidden;background:${dark ? '#0B0A08' : '#F1EDE3'};color:${dark ? '#FAF8F2' : '#141412'};font-family:Inter;display:flex}
+body{width:1200px;height:630px;overflow:hidden;background:${dark ? '#101010' : '#FFFFFF'};color:${dark ? '#F5F4F1' : '#101010'};font-family:Inter;display:flex}
 .main{flex:1;padding:64px 72px 56px;display:flex;flex-direction:column}
 .logo{width:190px}
-.eyebrow{margin-top:auto;font-size:17px;letter-spacing:.22em;text-transform:uppercase;color:${dark ? '#D9B06F' : '#9C6430'};font-weight:500}
-h1{font-family:Cormorant;font-weight:400;font-size:${title.length > 60 ? 60 : 72}px;line-height:1;letter-spacing:-.01em;margin:22px 0 40px;max-width:${image || glyph ? 760 : 980}px}
-.foot{display:flex;justify-content:space-between;border-top:1px solid ${dark ? 'rgba(250,248,242,.25)' : 'rgba(20,20,18,.8)'};padding-top:20px;font-size:17px;letter-spacing:.06em;color:${dark ? 'rgba(250,248,242,.7)' : '#3B3A36'}}
-.side{width:400px;position:relative;overflow:hidden;background:#1C1712}
-.side img{width:100%;height:100%;object-fit:cover;object-position:68% 58%}
-.glyph{position:absolute;right:72px;top:64px;width:120px;height:120px;color:#9C6430}
-.eclipse{position:absolute;right:120px;top:120px;width:260px;height:260px;border-radius:50%;background:#030302;box-shadow:0 0 0 1px rgba(255,231,176,.5),0 0 40px 4px rgba(243,207,142,.3),0 0 140px 30px rgba(185,120,58,.18)}
+.eyebrow{margin-top:auto;font-size:17px;letter-spacing:.22em;text-transform:uppercase;color:${dark ? '#A7A19A' : '#44423F'};font-weight:500}
+h1{font-family:Cormorant;font-weight:400;font-size:${title.length > 60 ? 60 : 72}px;line-height:1;letter-spacing:-.01em;margin:22px 0 40px;max-width:${dark ? 620 : image || glyph ? 760 : 980}px}
+.foot{display:flex;justify-content:space-between;border-top:1px solid ${dark ? 'rgba(255,255,255,.25)' : 'rgba(16,16,16,.85)'};padding-top:20px;font-size:17px;letter-spacing:.06em;color:${dark ? 'rgba(255,255,255,.72)' : '#44423F'}}
+.side{width:400px;position:relative;overflow:hidden;background:#101010}
+.side img{width:100%;height:100%;object-fit:cover;object-position:68% 58%;filter:grayscale(1) contrast(1.04)}
+.glyph{position:absolute;right:72px;top:64px;width:120px;height:120px;color:#101010}
+.eclipse{position:absolute;right:120px;top:120px;width:260px;height:260px;border-radius:50%;background:#050505;box-shadow:0 0 0 1px rgba(255,255,255,.42),0 0 40px 4px rgba(255,255,255,.16),0 0 140px 30px rgba(202,196,188,.1)}
 </style></head><body>
 <div class="main">
 <img class="logo" src="${asset(dark ? 'comet-lockup-horizontal-white.svg' : 'comet-lockup-horizontal-carbon.svg')}">
@@ -88,7 +88,7 @@ for (const job of jobs) {
 
 // Square logo for Organization structured data.
 await page.setViewportSize({ width: 512, height: 512 });
-await page.setContent(`<body style="margin:0;width:512px;height:512px;display:grid;place-items:center;background:#F1EDE3"><img src="${asset('comet-icon-carbon.svg')}" style="width:360px"></body>`);
+await page.setContent(`<body style="margin:0;width:512px;height:512px;display:grid;place-items:center;background:#FFFFFF"><img src="${asset('comet-icon-carbon.svg')}" style="width:360px"></body>`);
 await page.waitForTimeout(100);
 await page.screenshot({ path: path.join(PUBLIC, 'images', 'comet-logo-512.png') });
 await browser.close();

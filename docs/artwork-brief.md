@@ -54,7 +54,7 @@ The site currently uses code-built placeholders (`public/images/*.svg`). This br
 - **Composition:** A flat horizon at **about 75% down**, with the sun half-risen at **about 74% across**, between two distant tapered stone pylons. The **left half is dark, empty sky**.
 - **Prompt:** A flat dark desert at dawn under a near-black sky; a half-risen sun sits on the horizon between two distant tapered stone pylons; a thin line of gold light along the horizon and a soft reflected path of light on the ground; minimal and silent, most of the frame dark.
 
-> **Retired:** items 4–6 are no longer needed. The homepage no longer has Selected work cards, and their placeholder textures (`art-arch.svg`, `art-columns.svg`, `art-stone.svg`) have been deleted.
+> **Update (monochrome art direction):** the textures from items 4–6 (`art-arch.svg`, `art-columns.svg`, `art-stone.svg`) and the horizon (`art-horizon.svg`) are back in use as the Advise, Engineer, Educate and Industries hero plates, rendered in monochrome. Any commissioned replacements should be black-and-white or greyscale-ready, architectural and atmospheric.
 
 ### 4. Card texture: "Arch and shadow"
 - **File:** `card-arch.jpg` (replaces `art-arch.svg`)
