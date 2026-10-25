@@ -74,7 +74,6 @@ test('the home page uses the revised copy: three services, three markets, one fr
     'AI is changing the fundamentals of business.',
     'How do you create and capture value?', 'How should work be performed?', 'How should the organisation operate?', 'What becomes possible next?',
     'From understanding to action.', 'Business before technology.', 'Independence of judgement.', 'Close to operating reality.',
-    'Thinking matters. What changes matters more.',
     'Beyond intelligent responses.',
     'Ideas for decisions that matter.',
     'The next decision starts here.',
@@ -293,7 +292,7 @@ test('the global footer follows the agreed structure and corporate wording', () 
   assert.deepEqual(links, [
     'Advise /advise', 'Educate /educate', 'Engineer /engineer',
     'Private Equity /industries/private-equity', 'Government /industries/government', 'Energy /industries/energy',
-    'The Four Fundamentals /four-fundamentals', 'Selected Work /our-work', 'Insights /insights', 'Research &amp; Development /research-and-development', 'About /about', 'Contact /contact',
+    'The Four Fundamentals /four-fundamentals', 'Insights /insights', 'Research &amp; Development /research-and-development', 'About /about', 'Contact /contact',
     'Privacy Policy /privacy', 'Cookie Policy /cookies', 'Website Terms /terms',
   ]);
   const t = decode(footer.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').replace(/&copy;/g, '©'));
@@ -344,6 +343,12 @@ test('art direction: monochrome palette, no inline styles, services never number
     assert.doesNotMatch(html(page), /<p class="eyebrow">0[1-3]<\/p>\s*<h[23][^>]*>(Advise|Educate|Engineer)</, `${page} numbers the services`);
   }
   for (const img of ['art-arch.svg', 'art-columns.svg', 'art-stone.svg', 'art-horizon.svg']) assert.ok(fs.existsSync(path.join(out, 'images', img)), img);
+});
+
+test('Our Work is withheld until approved case studies exist', () => {
+  assert.ok(!pages.includes('our-work.html'));
+  for (const page of pages) assert.doesNotMatch(html(page), /href="\/our-work|Selected [Ww]ork/, page);
+  assert.doesNotMatch(fs.readFileSync(path.join(out, 'sitemap.xml'), 'utf8'), /our-work/);
 });
 
 test('positioning is intact: fundamentals, pillars, delivery modes and R&D', () => {
@@ -454,7 +459,7 @@ test('only London is presented as an office, in copy and in structured data', ()
 test('the main navigation follows the institutional structure, and every link resolves', () => {
   const nav = html('index.html').match(/<nav class="nav"[\s\S]*?<\/nav>/)[0];
   const labels = [...nav.matchAll(/<button type="button" aria-expanded="false" aria-controls="menu-[^"]+">([^<]+)<\/button>|<a (?:class="nav-cta" )?href="[^"]*">([^<]+)<\/a>(?=\s*(?:<div class="menu"|<a class="nav-cta"|<\/div>\s*<\/div><\/nav>))/g)].map(m => m[1] || m[2]);
-  assert.deepEqual(labels, ['What We Do', 'Industries', 'Our Thinking', 'Our Work', 'About', 'Contact']);
+  assert.deepEqual(labels, ['What We Do', 'Industries', 'Our Thinking', 'About', 'Contact']);
   const items = {
     'menu-what-we-do': ['Advise', 'Educate', 'Engineer', 'Venture Building'],
     'menu-industries': ['Private Equity', 'Government', 'Energy'],
@@ -514,7 +519,6 @@ test('the specified titles and descriptions are used', () => {
     '/work-redesign': ['AI Work Redesign & Workforce Transformation | Comet Innovations'],
     '/operating-model': ['AI Operating Model & Governance | Comet Innovations'],
     '/venture-building': ['Corporate Venture Building & AI Ventures | Comet Innovations'],
-    '/our-work': ['AI Transformation & Venture Building Work | Comet Innovations'],
     '/insights': ['AI Transformation & Venture Building Insights | Comet Innovations'],
     '/insights/where-is-ai-changing-your-economics': ['Where Is AI Changing Your Economics? | Comet Innovations'],
     '/insights/the-four-fundamentals': ['The Four Fundamentals of AI Transformation | Comet Innovations'],

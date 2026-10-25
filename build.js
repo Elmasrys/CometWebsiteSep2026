@@ -392,7 +392,7 @@ function llmsTxt(ctx, pages) {
   const { site } = ctx;
   const link = (name, p, note) => `- [${name}](${site.url}${p})${note ? `: ${note}` : ''}`;
   const byPath = Object.fromEntries(pages.map(p => [p.path, p]));
-  const key = ['/what-we-do', '/four-fundamentals', '/advise', '/educate', '/engineer', '/industries', '/industries/private-equity', '/industries/government', '/industries/energy', '/value-creation', '/work-redesign', '/operating-model', '/venture-building', '/research-and-development', '/our-work', '/about', '/contact'];
+  const key = ['/what-we-do', '/four-fundamentals', '/advise', '/educate', '/engineer', '/industries', '/industries/private-equity', '/industries/government', '/industries/energy', '/value-creation', '/work-redesign', '/operating-model', '/venture-building', '/research-and-development', '/about', '/contact'];
   return [
     `# ${site.name}`,
     '',
