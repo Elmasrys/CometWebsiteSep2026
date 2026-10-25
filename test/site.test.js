@@ -4,7 +4,10 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { build } from '../build.js';
+
+const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 let out, pages, metas, ctx, SITE;
 const html = rel => fs.readFileSync(path.join(out, rel), 'utf8');
@@ -303,6 +306,33 @@ test('the global footer follows the agreed structure and corporate wording', () 
     `© ${new Date().getFullYear()} Maverika Ltd. All rights reserved.`,
     'The Four Fundamentals framework and associated methodology are proprietary to Maverika Ltd, trading as Comet Innovations. All rights reserved.',
   ]) assert.ok(t.includes(line), line);
+});
+
+test('the Four Fundamentals questions come from one canonical definition and appear verbatim', () => {
+  const canonical = JSON.parse(fs.readFileSync(path.join(root, 'src', 'content', 'fundamentals.json'), 'utf8')).fundamentals;
+  assert.deepEqual(canonical.map(f => `${f.name}: ${f.question}`), [
+    'Value: How do you create and capture value?',
+    'Work: How should work be performed?',
+    'Organisation: How should the organisation operate?',
+    'Growth: What becomes possible next?',
+  ]);
+  const superseded = /how do you make money|how do people work|how does the organi[sz]ation run|how do you grow\b|where is value changing|how should work change|what does the organisation need to do differently|what new growth becomes possible/i;
+  const walk = dir => fs.readdirSync(dir, { withFileTypes: true }).flatMap(e => e.isDirectory() ? walk(path.join(dir, e.name)) : [path.join(dir, e.name)]);
+  for (const file of [...walk(path.join(root, 'src')), path.join(root, 'build.js'), path.join(root, 'CLAUDE.md')]) {
+    assert.doesNotMatch(fs.readFileSync(file, 'utf8'), superseded, path.relative(root, file));
+    if (!file.endsWith('fundamentals.json') && file.includes(`${path.sep}src${path.sep}`)) {
+      for (const f of canonical) assert.ok(!fs.readFileSync(file, 'utf8').includes(f.question), `${path.relative(root, file)} retypes "${f.question}" instead of referencing it`);
+    }
+  }
+  for (const page of pages) assert.doesNotMatch(text(page), superseded, page);
+  for (const page of ['index.html', 'about.html', 'four-fundamentals.html', 'insights/the-four-fundamentals.html', 'insights/where-is-ai-changing-your-economics.html']) {
+    for (const f of canonical) assert.ok(text(page).includes(f.question), `${page}: ${f.question}`);
+  }
+  for (const [p, f] of [['value-creation', 0], ['work-redesign', 1], ['operating-model', 2], ['venture-building', 3]]) assert.ok(text(`${p}.html`).includes(canonical[f].question), p);
+  const llms = fs.readFileSync(path.join(out, 'llms.txt'), 'utf8');
+  for (const f of canonical) assert.ok(llms.includes(`- ${f.name}: ${f.question}`), f.name);
+  const terms = graphOf('four-fundamentals.html').filter(n => n['@type'] === 'DefinedTerm' && n.inDefinedTermSet);
+  assert.deepEqual(terms.map(n => [n.name, n.description]), canonical.map(f => [f.name, f.question]));
 });
 
 test('positioning is intact: fundamentals, pillars, delivery modes and R&D', () => {

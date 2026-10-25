@@ -7,7 +7,7 @@
   "standfirst": "AI creates hundreds of possible use cases. Leadership teams need a simpler way to decide which changes actually matter.",
   "author": "sherif-elmasry",
   "date": "2026-10-13",
-  "modified": "2026-10-16",
+  "modified": "2026-10-25",
   "frameworkNotice": true,
   "related": "what-should-you-build-next",
   "cta": {
@@ -44,10 +44,10 @@ These mechanisms are useful for management. They are less useful for answering t
 
 The Four Fundamentals provide a simpler frame. Every business, regardless of sector, ultimately has to answer four questions:
 
-1. How do you make money?
-2. How do people work?
-3. How does the organisation run?
-4. How do you grow?
+1. {{fundamentals.0.question}}
+2. {{fundamentals.1.question}}
+3. {{fundamentals.2.question}}
+4. {{fundamentals.3.question}}
 
 AI can change each one.
 
@@ -55,7 +55,7 @@ AI can change each one.
 
 ## 1. Value
 
-### How do you make money?
+### {{fundamentals.0.question}}
 
 Every business exists because somebody values something enough to pay for it. AI can change both sides of that equation.
 
@@ -76,7 +76,7 @@ The important question is not simply whether AI improves today's proposition. It
 
 ## 2. Work
 
-### How do people work?
+### {{fundamentals.1.question}}
 
 Most organisations are structured around assumptions about human labour.
 
@@ -105,7 +105,7 @@ The objective is not a workplace without people. It is an organisation where peo
 
 ## 3. Organisation
 
-### How does the organisation run?
+### {{fundamentals.2.question}}
 
 Technology does not transform an enterprise by itself.
 
@@ -128,7 +128,7 @@ These are not secondary implementation questions. They determine whether AI rema
 
 ## 4. Growth
 
-### How do you grow?
+### {{fundamentals.3.question}}
 
 The final fundamental is the most forward-looking. AI does not only improve existing organisations. It changes what can be built.
 
@@ -185,9 +185,9 @@ The strategic advantage will not come from simply having access to the technolog
 
 Four questions provide a useful starting point:
 
-1. How do you make money?
-2. How do people work?
-3. How does the organisation run?
-4. How do you grow?
+1. {{fundamentals.0.question}}
+2. {{fundamentals.1.question}}
+3. {{fundamentals.2.question}}
+4. {{fundamentals.3.question}}
 
 The technology will continue to change. Those questions will remain.

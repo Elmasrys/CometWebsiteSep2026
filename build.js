@@ -59,8 +59,16 @@ const inline = s =>
     .replace(/\*(.+?)\*/g, '<em>$1</em>')
     .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>');
 
+/** Insights may reference the canonical framework: {{fundamentals.0.question}}, {{fundamentals.2.name}}. */
+const fundamentalTokens = (src, ctx) =>
+  src.replace(/\{\{\s*fundamentals\.(\d)\.(\w+)\s*\}\}/g, (tag, i, field) => {
+    const value = ctx.fundamentals?.[i]?.[field];
+    if (value === undefined) throw new Error(`Unknown framework reference ${tag}`);
+    return value;
+  });
+
 export function markdown(src, ctx) {
-  return src
+  return fundamentalTokens(src, ctx)
     .replace(/\r/g, '')
     .trim()
     .split(/\n\s*\n/)
@@ -98,6 +106,7 @@ function loadContent() {
   const legal = readJson('legal.json');
   const { people } = readJson('people.json');
   const faq = readJson('faq.json');
+  const { fundamentals } = readJson('fundamentals.json');
   const { forthcoming } = readJson('insights.json');
   const { cases } = readJson('cases.json');
 
@@ -137,7 +146,7 @@ function loadContent() {
   }
 
   const hasServiceProviders = present(legal.serviceProviders);
-  return { site, legal, people, founder: people[0], faq, insights, forthcoming, cases, hasServiceProviders, year: new Date().getFullYear() };
+  return { site, legal, people, founder: people[0], faq, fundamentals, insights, forthcoming, cases, hasServiceProviders, year: new Date().getFullYear() };
 }
 
 /** Facts the legal pages need that are not yet confirmed. Listed at build time, never published as placeholders. */
@@ -298,6 +307,18 @@ function pageGraph(ctx, page) {
       graph.push({ '@type': 'Service', '@id': `${url}#service`, name: s.name, serviceType: s.serviceType, description: s.description, provider: { '@id': id.organisation }, areaServed: areaServed(site), url });
       webPage.mainEntity = { '@id': `${url}#service` };
     }
+    if (kind === 'fundamentals') {
+      graph.push({
+        '@type': 'DefinedTermSet',
+        '@id': `${url}#fundamentals`,
+        name: 'The Four Fundamentals',
+        url,
+        hasDefinedTerm: ctx.fundamentals.map(f => ({ '@id': `${url}#${f.id}` })),
+      });
+      for (const f of ctx.fundamentals) {
+        graph.push({ '@type': 'DefinedTerm', '@id': `${url}#${f.id}`, name: f.name, description: f.question, url: `${url}#${f.id}`, inDefinedTermSet: { '@id': `${url}#fundamentals` } });
+      }
+    }
     if (kind === 'term') {
       for (const term of page.terms) graph.push({ '@type': 'DefinedTerm', '@id': `${url}#${term.id}`, name: term.name, description: term.description, url: `${url}#${term.id}` });
     }
@@ -381,10 +402,7 @@ function llmsTxt(ctx, pages) {
     '',
     `${site.name}’s Four Fundamentals framework (${site.url}/four-fundamentals) examines the strategic implications of AI across four dimensions:`,
     '',
-    '- Value: How do you create and capture value?',
-    '- Work: How should work be performed?',
-    '- Organisation: How should the organisation operate?',
-    '- Growth: What becomes possible next?',
+    ...ctx.fundamentals.map(f => `- ${f.name}: ${f.question}`),
     '',
     ctx.legal.frameworkNotice,
     '',

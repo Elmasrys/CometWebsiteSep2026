@@ -251,7 +251,7 @@ Everything else on the site is the approved copy, unchanged.
 | --- | --- |
 | Home | Eyebrow now reads "An AI Transformation & Venture Building firm", establishing the category in the first screen. Added a link: "The Four Fundamentals, in depth". R&D band: "AI-native" and "patent-pending" hyphenated, and "stateful AI orchestration" linked. |
 | What We Do | Two definitional sentences supplied in the brief. Added "Read the framework in depth" and a "Continue exploring" block. Fundamentals links now read "Explore value creation" and so on, instead of "Explore". |
-| Value Creation | The H1 is now the brief's statement; "How do you make money?" stays as a visible line. One definitional sentence. **New section: "How AI changes the economics of value"**, five answers. |
+| Value Creation | The H1 is now the brief's statement; the framework question stays as a visible line (now the canonical "How do you create and capture value?", from `src/content/fundamentals.json`). One definitional sentence. **New section: "How AI changes the economics of value"**, five answers. |
 | Work Redesign | H1 per the brief. One definitional sentence. **New section: "From task automation to workforce transformation"**, five distinctions, including the plain-language definition of agentic AI. |
 | Operating Model | H1 per the brief. A definition of an AI operating model. **New section: "Scaling AI is an organisational question"**, six answers. |
 | Venture Building | H1 per the brief. The definition and statement supplied in the brief. **New section: "Four disciplines that are often confused"**. |

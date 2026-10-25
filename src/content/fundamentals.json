@@ -1,0 +1,9 @@
+{
+  "_note": "Canonical definition of the Four Fundamentals. These four questions are the official formulations: change them here only, and every page, diagram, Insight, structured data block and llms.txt picks them up. The framework and methodology are proprietary to Maverika Ltd, trading as Comet Innovations.",
+  "fundamentals": [
+    { "number": "01", "id": "value", "name": "Value", "question": "How do you create and capture value?", "glyph": "shen", "page": "/value-creation" },
+    { "number": "02", "id": "work", "name": "Work", "question": "How should work be performed?", "glyph": "akhet", "page": "/work-redesign" },
+    { "number": "03", "id": "organisation", "name": "Organisation", "question": "How should the organisation operate?", "glyph": "columns", "page": "/operating-model" },
+    { "number": "04", "id": "growth", "name": "Growth", "question": "What becomes possible next?", "glyph": "switch", "page": "/venture-building" }
+  ]
+}
