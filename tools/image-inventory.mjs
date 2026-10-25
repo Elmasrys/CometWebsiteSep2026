@@ -27,7 +27,7 @@ const lines = [
   '',
   '## Shared photographic treatment',
   '',
-  'Contemporary editorial, medium-format character, restrained saturation, neutral and subtly warm, soft diffused natural light, deep but lifted shadows, preserved highlights, subtle grain, strong composition, authentic material texture. The grading script applies the house look; supply ungraded, naturally lit originals. Avoid stock-business clichés, futuristic AI imagery, glowing networks, holograms and robots.',
+  'Contemporary editorial, medium-format character, restrained saturation, neutral and subtly warm, soft diffused natural light, deep but lifted shadows, preserved highlights, subtle grain, strong composition, authentic material texture. The grading script keeps each photograph in colour and applies the house tone (lifted shadows, soft highlights, fine grain); supply ungraded, naturally lit colour originals. Avoid stock-business clichés, futuristic AI imagery, glowing networks, holograms and robots.',
   '',
   '## Summary',
   '',

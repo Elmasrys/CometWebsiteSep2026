@@ -769,6 +769,25 @@ print(round(float(np.percentile(y, 0.5)), 3), round(float(np.percentile(y, 99.5)
   assert.ok(stats[1] <= 0.97, `highlights clip (99.5th percentile ${stats[1]})`);
 });
 
+test('photographs are published in colour', async () => {
+  const { execFileSync } = await import('node:child_process');
+  const { slots } = JSON.parse(fs.readFileSync(path.join(root, 'src/content/images.json'), 'utf8'));
+  const files = [...new Set(Object.values(slots).map(s => `public/images/${s.file}-${Math.max(...s.widths)}.jpg`))].filter(f => fs.existsSync(path.join(root, f)));
+  assert.ok(files.length > 0);
+  const out = execFileSync('python3', ['-c', `
+import sys
+from PIL import Image
+import numpy as np
+for f in sys.argv[1:]:
+    c = np.asarray(Image.open(f).convert("HSV"), dtype=float)[..., 1].mean() / 255
+    print(f, round(c, 3))
+`, ...files], { cwd: root }).toString().trim().split('\n');
+  for (const line of out) {
+    const [file, sat] = line.split(' ');
+    assert.ok(Number(sat) > 0.08, `${file} looks monochrome (mean saturation ${sat})`);
+  }
+});
+
 // ---------- Visual redesign: photography slots, homepage sequence, motion ----------
 
 test('photography is referenced through the central slot registry', () => {

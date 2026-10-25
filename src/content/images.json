@@ -115,10 +115,10 @@
       "master": "industry-government-detail.jpg",
       "widths": [
         1280,
-        2400
+        1916
       ],
       "ratio": "21:9",
-      "focal": "50% 50%",
+      "focal": "62% 50%",
       "sizes": "100vw",
       "alt": "",
       "page": "Government",
@@ -126,17 +126,17 @@
       "dimensions": "3000 × 1286 minimum",
       "subject": "Cities and urban systems: a city seen at dusk, a rail interchange or public infrastructure",
       "composition": "Systemic and calm; repeating structure; avoid landmarks that pin the image to one country",
-      "credit": ""
+      "credit": "Supplied by Comet Innovations (curated collection, October 2026)"
     },
     "industry_energy": {
       "file": "industry-energy",
       "master": "industry-energy.jpg",
       "widths": [
         1280,
-        2400
+        1916
       ],
       "ratio": "21:9 (hero) and 3:2 (home markets)",
-      "focal": "50% 55%",
+      "focal": "70% 50%",
       "sizes": "100vw",
       "alt": "",
       "page": "Energy; Home section 04; Industries",
@@ -144,17 +144,17 @@
       "dimensions": "3600 × 1543 minimum (subject centred for a 3:2 crop)",
       "subject": "Energy infrastructure at scale: a substation, transmission corridor, turbine hall or generation site",
       "composition": "Scale and order, people small in frame for scale where possible; no stock wind-farm sunsets",
-      "credit": ""
+      "credit": "Supplied by Comet Innovations (curated collection, October 2026)"
     },
     "industry_energy_detail": {
       "file": "industry-energy-detail",
       "master": "industry-energy-detail.jpg",
       "widths": [
         960,
-        1600
+        1122
       ],
       "ratio": "4:5",
-      "focal": "50% 45%",
+      "focal": "52% 45%",
       "sizes": "(max-width: 980px) 100vw, 40vw",
       "alt": "",
       "page": "Energy",
@@ -162,17 +162,17 @@
       "dimensions": "2000 × 2500 minimum",
       "subject": "A control environment or operator at physical assets: control room, switchgear, plant walkway",
       "composition": "Operational reality, screens may show but must not be readable or invented",
-      "credit": ""
+      "credit": "Supplied by Comet Innovations (curated collection, October 2026)"
     },
     "advise_hero": {
       "file": "advise",
       "master": "advise.jpg",
       "widths": [
         960,
-        1600
+        1122
       ],
       "ratio": "4:5",
-      "focal": "50% 40%",
+      "focal": "56% 30%",
       "sizes": "(max-width: 980px) 100vw, 42vw",
       "alt": "",
       "page": "Advise",
@@ -180,7 +180,7 @@
       "dimensions": "2000 × 2500 minimum",
       "subject": "Strategic judgement: an authentic professional portrait of Comet's founder, or an executive environment without identifiable clients",
       "composition": "Quiet, considered, eye level; never a staged meeting presented as a Comet engagement",
-      "credit": ""
+      "credit": "Supplied by Comet Innovations (curated collection, October 2026)"
     },
     "advise_context": {
       "file": "advise-context",
@@ -205,10 +205,10 @@
       "master": "educate.jpg",
       "widths": [
         1280,
-        2400
+        1672
       ],
       "ratio": "16:9",
-      "focal": "50% 45%",
+      "focal": "46% 40%",
       "sizes": "100vw",
       "alt": "",
       "page": "Educate",
@@ -216,7 +216,7 @@
       "dimensions": "3000 × 1688 minimum",
       "subject": "Human presence in executive learning: leaders in focused discussion around a table or in a seminar room",
       "composition": "Natural light, engaged expressions, no slides or logos; only authorised Comet imagery may be presented as a Comet programme",
-      "credit": ""
+      "credit": "Supplied by Comet Innovations (curated collection, October 2026)"
     },
     "educate_detail": {
       "file": "educate-detail",
@@ -377,7 +377,7 @@
       "placement": "People profile portrait; credibility section on the homepage",
       "dimensions": "1600 × 2000 minimum",
       "subject": "Authentic portrait of Sherif Elmasry",
-      "composition": "Editorial, natural light, plain or architectural background, monochrome-ready",
+      "composition": "Editorial, natural light, plain or architectural background, colour, natural tones",
       "credit": ""
     },
     "research_hero": {

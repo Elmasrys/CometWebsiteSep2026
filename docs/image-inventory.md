@@ -2,7 +2,7 @@
 
 Generated from `src/content/images.json` by `node tools/image-inventory.mjs`. Do not edit by hand.
 
-**7 of 25 slots are live; 18 await approved photography.** Slots without photography keep their typographic composition, so nothing placeholder-like is published. The visual redesign is not final until these photographs are integrated and reviewed.
+**12 of 25 slots are live; 13 await approved photography.** Slots without photography keep their typographic composition, so nothing placeholder-like is published. The visual redesign is not final until these photographs are integrated and reviewed.
 
 ## How to add a photograph
 
@@ -13,7 +13,7 @@ Generated from `src/content/images.json` by `node tools/image-inventory.mjs`. Do
 
 ## Shared photographic treatment
 
-Contemporary editorial, medium-format character, restrained saturation, neutral and subtly warm, soft diffused natural light, deep but lifted shadows, preserved highlights, subtle grain, strong composition, authentic material texture. The grading script applies the house look; supply ungraded, naturally lit originals. Avoid stock-business clichés, futuristic AI imagery, glowing networks, holograms and robots.
+Contemporary editorial, medium-format character, restrained saturation, neutral and subtly warm, soft diffused natural light, deep but lifted shadows, preserved highlights, subtle grain, strong composition, authentic material texture. The grading script keeps each photograph in colour and applies the house tone (lifted shadows, soft highlights, fine grain); supply ungraded, naturally lit colour originals. Avoid stock-business clichés, futuristic AI imagery, glowing networks, holograms and robots.
 
 ## Summary
 
@@ -25,12 +25,12 @@ Contemporary editorial, medium-format character, restrained saturation, neutral 
 | Live | `industry_private_equity` | `assets/source/industry-private-equity.jpg` | Private Equity; Home section 04; Industries | 4:5 (hero) and 3:2 (home markets) | 2400 × 3000 minimum (subject centred so a 3:2 crop also works) |
 | Live | `industry_private_equity_detail` | `assets/source/industry-private-equity-detail.jpg` | Private Equity | 21:9 | 3000 × 1286 minimum |
 | Live | `industry_government` | `assets/source/industry-government.jpg` | Government; Home section 04; Industries | 3:2 | 2400 × 1600 minimum |
-| Awaiting | `industry_government_detail` | `assets/source/industry-government-detail.jpg` | Government | 21:9 | 3000 × 1286 minimum |
-| Awaiting | `industry_energy` | `assets/source/industry-energy.jpg` | Energy; Home section 04; Industries | 21:9 (hero) and 3:2 (home markets) | 3600 × 1543 minimum (subject centred for a 3:2 crop) |
-| Awaiting | `industry_energy_detail` | `assets/source/industry-energy-detail.jpg` | Energy | 4:5 | 2000 × 2500 minimum |
-| Awaiting | `advise_hero` | `assets/source/advise.jpg` | Advise | 4:5 | 2000 × 2500 minimum |
+| Live | `industry_government_detail` | `assets/source/industry-government-detail.jpg` | Government | 21:9 | 3000 × 1286 minimum |
+| Live | `industry_energy` | `assets/source/industry-energy.jpg` | Energy; Home section 04; Industries | 21:9 (hero) and 3:2 (home markets) | 3600 × 1543 minimum (subject centred for a 3:2 crop) |
+| Live | `industry_energy_detail` | `assets/source/industry-energy-detail.jpg` | Energy | 4:5 | 2000 × 2500 minimum |
+| Live | `advise_hero` | `assets/source/advise.jpg` | Advise | 4:5 | 2000 × 2500 minimum |
 | Awaiting | `advise_context` | `assets/source/advise-context.jpg` | Advise | 16:9 | 3000 × 1688 minimum |
-| Awaiting | `educate_hero` | `assets/source/educate.jpg` | Educate | 16:9 | 3000 × 1688 minimum |
+| Live | `educate_hero` | `assets/source/educate.jpg` | Educate | 16:9 | 3000 × 1688 minimum |
 | Awaiting | `educate_detail` | `assets/source/educate-detail.jpg` | Educate | 4:5 | 2000 × 2500 minimum |
 | Live | `engineer_hero` | `assets/source/engineer.jpg` | Engineer | 3:2 | 2400 × 1600 minimum |
 | Awaiting | `engineer_artefact` | `assets/source/engineer-artefact.png` | Engineer | 16:10 | 2560 × 1600 minimum |
@@ -107,45 +107,45 @@ Contemporary editorial, medium-format character, restrained saturation, neutral 
 - **Master:** `assets/source/industry-government.jpg`, 2400 × 1600 minimum; outputs `public/images/industry-government-{960,1536}.{avif,webp}` and `.jpg` at 1536px
 - **Credit and licence:** Supplied by Comet Innovations (curated collection, October 2026)
 
-### `industry_government_detail` (awaiting photography)
+### `industry_government_detail` (live)
 
 - **Page:** Government
 - **Placement:** Full-bleed pause before 'Responsible deployment by design'
 - **Subject:** Cities and urban systems: a city seen at dusk, a rail interchange or public infrastructure
 - **Composition:** Systemic and calm; repeating structure; avoid landmarks that pin the image to one country
-- **Aspect ratio:** 21:9; **focal point:** 50% 50%
-- **Master:** `assets/source/industry-government-detail.jpg`, 3000 × 1286 minimum; outputs `public/images/industry-government-detail-{1280,2400}.{avif,webp}` and `.jpg` at 2400px
-- **Credit and licence:** to be recorded on delivery
+- **Aspect ratio:** 21:9; **focal point:** 62% 50%
+- **Master:** `assets/source/industry-government-detail.jpg`, 3000 × 1286 minimum; outputs `public/images/industry-government-detail-{1280,1916}.{avif,webp}` and `.jpg` at 1916px
+- **Credit and licence:** Supplied by Comet Innovations (curated collection, October 2026)
 
-### `industry_energy` (awaiting photography)
+### `industry_energy` (live)
 
 - **Page:** Energy; Home section 04; Industries
 - **Placement:** Energy opening: full-bleed panorama under the title; homepage markets; Industries band
 - **Subject:** Energy infrastructure at scale: a substation, transmission corridor, turbine hall or generation site
 - **Composition:** Scale and order, people small in frame for scale where possible; no stock wind-farm sunsets
-- **Aspect ratio:** 21:9 (hero) and 3:2 (home markets); **focal point:** 50% 55%
-- **Master:** `assets/source/industry-energy.jpg`, 3600 × 1543 minimum (subject centred for a 3:2 crop); outputs `public/images/industry-energy-{1280,2400}.{avif,webp}` and `.jpg` at 2400px
-- **Credit and licence:** to be recorded on delivery
+- **Aspect ratio:** 21:9 (hero) and 3:2 (home markets); **focal point:** 70% 50%
+- **Master:** `assets/source/industry-energy.jpg`, 3600 × 1543 minimum (subject centred for a 3:2 crop); outputs `public/images/industry-energy-{1280,1916}.{avif,webp}` and `.jpg` at 1916px
+- **Credit and licence:** Supplied by Comet Innovations (curated collection, October 2026)
 
-### `industry_energy_detail` (awaiting photography)
+### `industry_energy_detail` (live)
 
 - **Page:** Energy
 - **Placement:** Beside 'Engineering in operationally sensitive environments'
 - **Subject:** A control environment or operator at physical assets: control room, switchgear, plant walkway
 - **Composition:** Operational reality, screens may show but must not be readable or invented
-- **Aspect ratio:** 4:5; **focal point:** 50% 45%
-- **Master:** `assets/source/industry-energy-detail.jpg`, 2000 × 2500 minimum; outputs `public/images/industry-energy-detail-{960,1600}.{avif,webp}` and `.jpg` at 1600px
-- **Credit and licence:** to be recorded on delivery
+- **Aspect ratio:** 4:5; **focal point:** 52% 45%
+- **Master:** `assets/source/industry-energy-detail.jpg`, 2000 × 2500 minimum; outputs `public/images/industry-energy-detail-{960,1122}.{avif,webp}` and `.jpg` at 1122px
+- **Credit and licence:** Supplied by Comet Innovations (curated collection, October 2026)
 
-### `advise_hero` (awaiting photography)
+### `advise_hero` (live)
 
 - **Page:** Advise
 - **Placement:** Opening: portrait image in the right columns beside the title
 - **Subject:** Strategic judgement: an authentic professional portrait of Comet's founder, or an executive environment without identifiable clients
 - **Composition:** Quiet, considered, eye level; never a staged meeting presented as a Comet engagement
-- **Aspect ratio:** 4:5; **focal point:** 50% 40%
-- **Master:** `assets/source/advise.jpg`, 2000 × 2500 minimum; outputs `public/images/advise-{960,1600}.{avif,webp}` and `.jpg` at 1600px
-- **Credit and licence:** to be recorded on delivery
+- **Aspect ratio:** 4:5; **focal point:** 56% 30%
+- **Master:** `assets/source/advise.jpg`, 2000 × 2500 minimum; outputs `public/images/advise-{960,1122}.{avif,webp}` and `.jpg` at 1122px
+- **Credit and licence:** Supplied by Comet Innovations (curated collection, October 2026)
 
 ### `advise_context` (awaiting photography)
 
@@ -157,15 +157,15 @@ Contemporary editorial, medium-format character, restrained saturation, neutral 
 - **Master:** `assets/source/advise-context.jpg`, 3000 × 1688 minimum; outputs `public/images/advise-context-{1280,2400}.{avif,webp}` and `.jpg` at 2400px
 - **Credit and licence:** to be recorded on delivery
 
-### `educate_hero` (awaiting photography)
+### `educate_hero` (live)
 
 - **Page:** Educate
 - **Placement:** Opening: wide image under the title, full width
 - **Subject:** Human presence in executive learning: leaders in focused discussion around a table or in a seminar room
 - **Composition:** Natural light, engaged expressions, no slides or logos; only authorised Comet imagery may be presented as a Comet programme
-- **Aspect ratio:** 16:9; **focal point:** 50% 45%
-- **Master:** `assets/source/educate.jpg`, 3000 × 1688 minimum; outputs `public/images/educate-{1280,2400}.{avif,webp}` and `.jpg` at 2400px
-- **Credit and licence:** to be recorded on delivery
+- **Aspect ratio:** 16:9; **focal point:** 46% 40%
+- **Master:** `assets/source/educate.jpg`, 3000 × 1688 minimum; outputs `public/images/educate-{1280,1672}.{avif,webp}` and `.jpg` at 1672px
+- **Credit and licence:** Supplied by Comet Innovations (curated collection, October 2026)
 
 ### `educate_detail` (awaiting photography)
 
@@ -252,7 +252,7 @@ Contemporary editorial, medium-format character, restrained saturation, neutral 
 - **Page:** About; Home section 06
 - **Placement:** People profile portrait; credibility section on the homepage
 - **Subject:** Authentic portrait of Sherif Elmasry
-- **Composition:** Editorial, natural light, plain or architectural background, monochrome-ready
+- **Composition:** Editorial, natural light, plain or architectural background, colour, natural tones
 - **Aspect ratio:** 4:5; **focal point:** 50% 35%
 - **Master:** `assets/source/founder.jpg`, 1600 × 2000 minimum; outputs `public/images/founder-{640,1200}.{avif,webp}` and `.jpg` at 1200px
 - **Credit and licence:** to be recorded on delivery

@@ -5,7 +5,7 @@ Masters live untouched in assets/source/; every output is regenerated from them,
 so the grade never compounds and new photography can join the set consistently.
 
 The house look (see docs/artwork-brief.md):
-  - warm-neutral monochrome: colour removed, then a faint greige warmth, no orange
+  - natural colour, kept: hue untouched, saturation eased slightly so colour stays calm
   - lifted shadows (black point about #1B1A18) and soft highlight roll-off (never clipped)
   - gentle contrast and fine, static grain for a medium-format finish
 """
@@ -24,7 +24,7 @@ SLOTS = json.loads((ROOT / "src" / "content" / "images.json").read_text())["slot
 
 BLACK = 0.105   # lifted black point, about #1B1A18 (never pure black)
 WHITE = 0.945   # highlight ceiling, soft roll-off below it
-TINT = np.array([1.000, 0.985, 0.958])  # restrained warmth towards greige
+SATURATION = 0.9  # slightly restrained, never removed
 GRAIN = 0.011   # grain strength in linear-ish luminance units
 SEED = 7
 
@@ -55,7 +55,12 @@ def grade(img: Image.Image) -> Image.Image:
     noise = rng.normal(0, 1, y.shape)
     noise = (noise + np.roll(noise, 1, 0) + np.roll(noise, 1, 1) + np.roll(np.roll(noise, 1, 0), 1, 1)) / 2
     y = y + noise * GRAIN * (0.6 + 0.4 * (1 - np.abs(y - 0.5) * 2))
-    out = np.clip(y[..., None] * TINT, 0, 1)
+    # Apply the new tone to the original colour: scale each pixel's chroma around its luminance,
+    # so the curve shapes light and shade while hues stay as photographed.
+    y0 = linear_to_srgb(0.2126 * lin[..., 0] + 0.7152 * lin[..., 1] + 0.0722 * lin[..., 2])
+    chroma = (rgb - y0[..., None]) * SATURATION
+    scale = np.where(y0 > 1e-3, np.minimum(y / np.maximum(y0, 1e-3), 1.6), 1.0)
+    out = np.clip(y[..., None] + chroma * np.clip(scale, 0.6, 1.2)[..., None], 0, 1)
     return Image.fromarray((out * 255 + 0.5).astype(np.uint8), "RGB")
 
 
