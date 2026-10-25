@@ -162,7 +162,7 @@ main:focus{outline:none}
 .fund-row{display:grid;grid-template-columns:56px minmax(0,.95fr) minmax(0,1.05fr) auto;gap:clamp(20px,3vw,48px);padding:44px 0;border-bottom:1px solid var(--line);align-items:start;position:relative}
 .fund-row:after{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:0;background:var(--ember);transition:width .8s var(--ease)}
 .fund-row:hover:after{width:100%}
-.fund-row h3{font-family:var(--serif);font-size:clamp(30px,2.8vw,42px);font-weight:400;line-height:1.05;margin:10px 0 0}
+.fund-row h3,.fund-row h4{font-family:var(--serif);font-size:clamp(30px,2.8vw,42px);font-weight:400;line-height:1.05;margin:10px 0 0}
 .fund-row p{margin:4px 0 0;color:var(--graphite);max-width:520px}
 
 /* Cards */
@@ -182,12 +182,23 @@ main:focus{outline:none}
 .card-art+.meta+h3{margin-top:16px}
 .cards-text .card{min-height:0}
 .cards-text .card h3{margin:0 0 16px}
+.card-lead{font-family:var(--serif);font-size:clamp(21px,1.7vw,24px);line-height:1.25;color:var(--carbon)!important;margin:0 0 18px!important}
+.dark .card-lead{color:var(--chalk)!important}
+.card p+p:not(.card-action){margin-top:14px}
+.card-action{margin-top:auto!important;padding-top:28px}
+.hero-tagline{font-size:13px;letter-spacing:.16em;text-transform:uppercase;line-height:1.7;color:var(--carbon);margin:0 0 28px;padding:16px 0;border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line);max-width:580px}
+.hero-body+.hero-body{margin-top:16px}
+div.section-intro p{margin:0 0 14px}
+.principles{margin-top:36px;border-top:1px solid var(--line-strong)}
+.principles>div{padding:26px 0;border-bottom:1px solid var(--line)}
+.principles h3{font-family:var(--serif);font-weight:400;font-size:clamp(26px,2.2vw,32px);line-height:1.1;margin:0 0 10px}
+.principles p{margin:0}
 
 /* Insight cards (home) */
 .insight-list{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,44px)}
 .insight{position:relative;border-top:1px solid var(--carbon);padding-top:24px;display:flex;flex-direction:column}
-.insight h3{font-family:var(--serif);font-size:clamp(28px,2.3vw,34px);font-weight:400;line-height:1.08;margin:14px 0 14px}
-.insight h3 a:after{content:"";position:absolute;inset:0}
+.insight h3,.insight h4{font-family:var(--serif);font-size:clamp(28px,2.3vw,34px);font-weight:400;line-height:1.08;margin:14px 0 14px}
+.insight h3 a:after,.insight h4 a:after{content:"";position:absolute;inset:0}
 .insight p{color:var(--graphite);margin:0 0 18px}
 .insight .insight-meta{font-size:13px;color:var(--stone);flex:1}
 .insight .link{align-self:flex-start}
@@ -350,7 +361,7 @@ main:focus{outline:none}
 /* ---------- Research band ---------- */
 .rnd{display:grid;grid-template-columns:1fr 1fr;min-height:600px;border-top:1px solid var(--line)}
 .rnd-copy{background:var(--chalk);padding:clamp(72px,8vw,120px) clamp(32px,7vw,110px);display:flex;flex-direction:column;justify-content:center}
-.rnd-copy h2{font-family:var(--serif);font-size:clamp(40px,4vw,60px);font-weight:400;line-height:1.02;margin:16px 0 26px}
+.rnd-copy h2:not(.eyebrow),.rnd-copy h3{font-family:var(--serif);font-size:clamp(40px,4vw,60px);font-weight:400;line-height:1.02;margin:16px 0 26px}
 .rnd-copy p{color:var(--graphite);max-width:560px}
 .rnd-copy .nav-cta{align-self:flex-start;margin-top:14px}
 .rnd-copy .nav-cta:hover{background:var(--carbon);color:var(--chalk)}
@@ -488,8 +499,10 @@ dfn{font-style:normal;font-weight:600}
 .related-list-note{font-size:14px;color:var(--graphite)}
 .related-list a:hover .related-list-title{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
 .after-list-split{display:flex;flex-wrap:wrap;align-items:center;gap:20px 32px}
-.step a,.copy a:not(.link):not(.nav-cta){text-decoration:underline;text-underline-offset:3px}
+.step a,.copy a:not(.link):not(.nav-cta):not(.btn){text-decoration:underline;text-underline-offset:3px}
 .dark .copy a{color:var(--chalk)}
+.dark .copy p{color:var(--on-dark)}
+.hero-tagline span{display:inline-block;margin-right:.6em}
 
 /* Case studies */
 .case-studies{border-top:1px solid var(--line-strong)}

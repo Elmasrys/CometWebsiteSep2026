@@ -57,7 +57,7 @@ const category = ctx.site.category;
 
 const jobs = [
   { file: 'default', eyebrow: category, title: ctx.site.question, footer: ctx.site.name },
-  { file: 'home', eyebrow: category, title: 'AI is changing the fundamentals of business.', footer: ctx.site.question, image: 'images/home-hero-960.webp' },
+  { file: 'home', eyebrow: category, title: 'Helping organisations navigate, lead and build in the AI economy.', footer: 'Advise · Educate · Engineer', image: 'images/home-hero-960.webp' },
 ];
 for (const page of pageMeta) {
   const slug = page.ogImage?.match(/\/images\/og\/(.+)\.png$/)?.[1];

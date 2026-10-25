@@ -57,20 +57,30 @@ test('no placeholders, draft markers or unrendered template tags are published',
 
 // ---------- Content and positioning ----------
 
-test('the home page loads straight into the institutional hero with no film', () => {
+test('the home page uses the revised copy: three services, three markets, one framework', () => {
   const home = html('index.html');
   assert.doesNotMatch(home, /film|intro-film|Skip<\/button>/i);
   for (const line of [
-    'An AI Transformation &amp; Venture Building firm',
+    'Helping organisations navigate, lead and build in the AI economy.',
+    'Comet Innovations is a London-based AI transformation and venture building firm working with investors, governments and energy businesses.',
+    'Explore Our Services', 'Start a Conversation',
+    'The opportunity is bigger than technology.',
+    'Three ways to work with Comet.',
+    'Independent judgment for consequential decisions.', 'Develop the leaders the AI economy demands.', 'Engineering that works inside the business.',
+    'Where we focus.', 'Private Equity', 'Government', 'Energy',
     'AI is changing the fundamentals of business.',
-    'How you make money.', 'How people work.', 'How the organisation runs.', 'How you grow.',
-    'Comet Innovations works with leadership teams to understand where AI materially changes these fundamentals, then helps turn that understanding into action.',
-    'Where is AI changing your economics?',
-    'Explore What We Do', 'Start a Conversation',
-    'UK · Middle East · Africa experience',
-    'The people shaping the engagement stay involved in the work.',
+    'How do you create and capture value?', 'How should work be performed?', 'How should the organisation operate?', 'What becomes possible next?',
+    'From understanding to action.', 'Business before technology.', 'Independence of judgment.', 'Close to operating reality.',
+    'Thinking matters. What changes matters more.',
+    'Beyond intelligent responses.',
+    'Ideas for decisions that matter.',
+    'The next decision starts here.',
   ]) assert.ok(home.includes(line), line);
-  assert.match(home, /href="\/about#people"[^>]*>Meet the people behind Comet/);
+  for (const anchor of ['advise', 'educate', 'engineer']) {
+    assert.match(home, new RegExp(`href="/what-we-do#${anchor}"`));
+    assert.match(html('what-we-do.html'), new RegExp(`id="${anchor}"`));
+  }
+  assert.ok(text('index.html').includes('Independent advisory. Executive education. Forward-deployed AI engineering.'));
   assert.doesNotMatch(home, /<details>/, 'FAQ is not duplicated on the home page');
 });
 
@@ -203,7 +213,7 @@ test('every indexable page has a unique title and description and a self-referen
 
 test('the specified titles and descriptions are used', () => {
   const expect = {
-    '/': ['AI Transformation & Venture Building | Comet Innovations', 'Comet Innovations helps leadership teams identify where AI changes business economics, redesign work and operating models, and build new sources of growth.'],
+    '/': ['AI Transformation & Venture Building | Comet Innovations', 'London-based AI transformation and venture building firm offering independent advisory, executive education and forward-deployed AI engineering.'],
     '/what-we-do': ['AI Transformation Strategy & Services | Comet Innovations'],
     '/value-creation': ['AI Growth Strategy & Value Creation | Comet Innovations'],
     '/work-redesign': ['AI Work Redesign & Workforce Transformation | Comet Innovations'],
