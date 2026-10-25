@@ -84,37 +84,51 @@
   <div class="footer-brand">
     <img class="footer-logo" src="comet-lockup-horizontal-white.svg" alt="{{site.name}}" width="972" height="330" loading="lazy">
     <p class="footer-category">{{site.category}}</p>
-    <p class="footer-question">{{site.question}}</p>
+    <p class="footer-tagline">Independent strategic advisory, executive education and <span class="nowrap">forward-deployed</span> AI engineering.</p>
   </div>
-  <nav class="footer-col" aria-label="Footer">
-    <h2>Navigation</h2>
+  <nav class="footer-col" aria-label="Services">
+    <h2>Services</h2>
     <ul>
-      <li><a href="what-we-do.html">What We Do</a></li>
+      <li><a href="/advise">Advise</a></li>
+      <li><a href="/educate">Educate</a></li>
+      <li><a href="/engineer">Engineer</a></li>
+    </ul>
+  </nav>
+  <nav class="footer-col" aria-label="Markets">
+    <h2>Markets</h2>
+    <ul>
+      <li><a href="/industries/private-equity">Private Equity</a></li>
+      <li><a href="/industries/government">Government</a></li>
+      <li><a href="/industries/energy">Energy</a></li>
+    </ul>
+  </nav>
+  <nav class="footer-col" aria-label="Explore">
+    <h2>Explore</h2>
+    <ul>
       <li><a href="/four-fundamentals">The Four Fundamentals</a></li>
-      <li><a href="insights.html">Insights</a></li>
-      <li><a href="research-and-development.html">Research &amp; Development</a></li>
-      <li><a href="our-work.html">Our Work</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="/our-work">Selected Work</a></li>
+      <li><a href="/insights">Insights</a></li>
+      <li><a href="/research-and-development">Research &amp; Development</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
     </ul>
   </nav>
   <div class="footer-col">
     <h2>Legal</h2>
     <ul>
-      <li><a href="privacy.html">Privacy Policy</a></li>
-      <li><a href="cookies.html">Cookie Policy</a></li>
-      <li><a href="terms.html">Website Terms</a></li>
+      <li><a href="/privacy">Privacy Policy</a></li>
+      <li><a href="/cookies">Cookie Policy</a></li>
+      <li><a href="/terms">Website Terms</a></li>
     </ul>
-  </div>
-  <div class="footer-col">
-    {{#site.linkedin}}<h2>Social</h2>
-    <ul><li><a href="{{site.linkedin}}" rel="noopener" target="_blank">LinkedIn<span class="visually-hidden"> (opens in a new tab)</span></a></li></ul>{{/site.linkedin}}
     <h2>Location</h2>
     <p>{{site.office}}</p>
   </div>
 </div>
 <div class="shell footer-bottom">
-  <p>&copy; {{year}} {{site.name}}.{{#legal.entityName}} {{site.name}} is a trading name of {{legal.entityName}}{{#legal.companyNumber}}, company number {{legal.companyNumber}}{{/legal.companyNumber}}{{#legal.addressLine}}. Registered office: {{legal.addressLine}}{{/legal.addressLine}}.{{/legal.entityName}}</p>
+  <p>{{site.name}} is a trading name of {{legal.entityName}}, registered in {{legal.registeredIn}} under company number {{legal.companyNumber}}.</p>
+  <p>Registered office: {{legal.addressLine}}.</p>
+  <p>&copy; {{year}} {{legal.entityName}}. All rights reserved.</p>
+  <p>The Four Fundamentals framework and associated methodology are proprietary to {{legal.entityName}}, trading as {{legal.tradingName}}. All rights reserved.</p>
 </div>
 </footer>
 <script src="script.js"></script>

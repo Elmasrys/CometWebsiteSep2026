@@ -281,6 +281,29 @@ test('The Four Fundamentals has its own framework page, linked from the menu, ho
   assert.ok(fs.readFileSync(path.join(out, 'llms.txt'), 'utf8').includes('- Value: How do you create and capture value?'));
 });
 
+test('the global footer follows the agreed structure and corporate wording', () => {
+  const footer = html('index.html').match(/<footer class="footer">[\s\S]*<\/footer>/)[0];
+  const heads = [...footer.matchAll(/<h2>([^<]+)<\/h2>/g)].map(m => m[1]);
+  assert.deepEqual(heads, ['Services', 'Markets', 'Explore', 'Legal', 'Location']);
+  const links = [...footer.matchAll(/<a href="([^"]+)">([^<]+)<\/a>/g)].map(m => `${m[2]} ${m[1]}`);
+  assert.deepEqual(links, [
+    'Advise /advise', 'Educate /educate', 'Engineer /engineer',
+    'Private Equity /industries/private-equity', 'Government /industries/government', 'Energy /industries/energy',
+    'The Four Fundamentals /four-fundamentals', 'Selected Work /our-work', 'Insights /insights', 'Research &amp; Development /research-and-development', 'About /about', 'Contact /contact',
+    'Privacy Policy /privacy', 'Cookie Policy /cookies', 'Website Terms /terms',
+  ]);
+  const t = decode(footer.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').replace(/&copy;/g, '©'));
+  for (const line of [
+    'AI Transformation &amp; Venture Building'.replace('&amp;', '&'),
+    'Independent strategic advisory, executive education and forward-deployed AI engineering.',
+    'London, United Kingdom',
+    'Comet Innovations is a trading name of Maverika Ltd, registered in England and Wales under company number 15039780.',
+    'Registered office: Abacus House, 14–18 Forest Road, Loughton, England, IG10 1DX.',
+    `© ${new Date().getFullYear()} Maverika Ltd. All rights reserved.`,
+    'The Four Fundamentals framework and associated methodology are proprietary to Maverika Ltd, trading as Comet Innovations. All rights reserved.',
+  ]) assert.ok(t.includes(line), line);
+});
+
 test('positioning is intact: fundamentals, pillars, delivery modes and R&D', () => {
   const all = pages.map(text).join(' ');
   for (const term of ['Value', 'Work', 'Organisation', 'Growth', 'Value creation', 'Work redesign', 'Operating model', 'Venture building', 'Advise', 'Educate', 'Engineer']) {

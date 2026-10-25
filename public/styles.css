@@ -482,10 +482,10 @@ div.section-intro p{margin:0 0 14px}
 
 /* ---------- Footer ---------- */
 .footer{padding:80px 0 36px;background:var(--night) var(--grain-dark);color:var(--chalk)}
-.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px}
+.footer-grid{display:grid;grid-template-columns:1.5fr repeat(4,1fr);gap:40px}
 .footer-logo{width:160px;margin-bottom:24px}
 .footer .footer-category{margin:0 0 6px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--on-dark-muted)}
-.footer .footer-question{margin:0;font-family:var(--serif);font-style:italic;font-size:24px;line-height:1.2;color:var(--chalk);max-width:16ch}
+.footer .footer-tagline{margin:0;font-family:var(--serif);font-size:22px;line-height:1.25;color:var(--chalk);max-width:22ch}
 .footer h2{font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin:0 0 18px}
 .footer h2:not(:first-child){margin-top:32px}
 .footer ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
@@ -493,7 +493,7 @@ div.section-intro p{margin:0 0 14px}
 .footer-col p{margin:0}
 .footer a:hover{color:var(--chalk);text-decoration:underline;text-underline-offset:3px}
 .footer-bottom{margin-top:64px;padding-top:24px;border-top:1px solid var(--line-dark)}
-.footer-bottom p{margin:0;font-size:12px;line-height:1.6;color:var(--on-dark-muted)}
+.footer-bottom p{margin:0;font-size:12px;line-height:1.7;color:var(--on-dark-muted)}
 
 /* ---------- Scroll reveal (only when JS is running) ---------- */
 .js .reveal{opacity:0;transform:translateY(18px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
