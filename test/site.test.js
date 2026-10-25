@@ -284,7 +284,8 @@ test('The Four Fundamentals has its own framework page, linked from the menu, ho
 test('the global footer follows the agreed structure and corporate wording', () => {
   const footer = html('index.html').match(/<footer class="footer">[\s\S]*<\/footer>/)[0];
   const heads = [...footer.matchAll(/<h2>([^<]+)<\/h2>/g)].map(m => m[1]);
-  assert.deepEqual(heads, ['Services', 'Markets', 'Explore', 'Legal', 'Location']);
+  assert.deepEqual(heads, ['Services', 'Markets', 'Explore', 'Legal', 'Location', 'Social']);
+  assert.match(footer, /<a href="https:\/\/www\.linkedin\.com\/company\/cometinnovations" rel="noopener" target="_blank">LinkedIn/);
   const links = [...footer.matchAll(/<a href="([^"]+)">([^<]+)<\/a>/g)].map(m => `${m[2]} ${m[1]}`);
   assert.deepEqual(links, [
     'Advise /advise', 'Educate /educate', 'Engineer /engineer',
