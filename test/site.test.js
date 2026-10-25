@@ -78,10 +78,8 @@ test('the home page uses the revised copy: three services, three markets, one fr
   ]) assert.ok(home.includes(line), line);
   assert.match(home, /href="\/advise"[^>]*>Explore Advisory/);
   assert.match(home, /href="\/educate"[^>]*>Explore Executive Education/);
-  for (const anchor of ['engineer']) {
-    assert.match(home, new RegExp(`href="/what-we-do#${anchor}"`));
-    assert.match(html('what-we-do.html'), new RegExp(`id="${anchor}"`));
-  }
+  assert.match(home, /href="\/engineer"[^>]*>Explore Engineering/);
+  for (const anchor of ['advise', 'educate', 'engineer']) assert.match(html('what-we-do.html'), new RegExp(`id="${anchor}"`));
   assert.ok(text('index.html').includes('Independent advisory. Executive education. Forward-deployed AI engineering.'));
   assert.doesNotMatch(home, /<details>/, 'FAQ is not duplicated on the home page');
 });
@@ -148,6 +146,29 @@ test('Educate is a service page linked from the navigation, home and What We Do'
   assert.match(doc, /href="\/contact\?topic=education"[^>]*>Discuss an Executive Programme/);
   assert.match(doc, /<a href="\/educate" aria-current="page">Educate<\/a>/);
   assert.match(html('what-we-do.html'), /href="\/educate"[^>]*>Explore Educate/);
+});
+
+test('Engineer is a service page linked from the navigation, home and What We Do', () => {
+  const page = text('engineer.html');
+  for (const line of [
+    'AI engineering, deployed where the work happens.',
+    'Forward-deployed engineering for enterprise AI systems, intelligent workflows and new digital products.',
+    'Engineering close to the problem.',
+    'Enterprise AI Agents', 'Intelligent Workflow Engineering', 'AI Systems Integration', 'AI-Native Products',
+    'Applied AI Prototyping', 'AI Orchestration and Persistent Workflows',
+    'The forward-deployed engineering model.', 'Operational handover',
+    'Built for the operating environment.', 'Our approach is technology-agnostic.',
+    'Engagement models', 'A prior advisory engagement is not necessary.',
+    'From prototype to operational capability.',
+    'Applied research informs practical engineering.',
+    'Build where it matters.',
+  ]) assert.ok(page.includes(line), line);
+  const doc = html('engineer.html');
+  assert.match(doc, /href="\/contact\?topic=engineering"[^>]*>Discuss an Engineering Engagement/);
+  assert.match(doc, /href="\/research-and-development#stateful-ai-orchestration"/);
+  assert.match(doc, /<a href="\/engineer" aria-current="page">Engineer<\/a>/);
+  assert.match(html('what-we-do.html'), /href="\/engineer"[^>]*>Explore Engineer/);
+  assert.match(html('contact.html'), /<option value="engineering">/);
 });
 
 test('positioning is intact: fundamentals, pillars, delivery modes, Diagnostic and R&D', () => {
@@ -306,6 +327,7 @@ test('the specified titles and descriptions are used', () => {
     '/what-we-do': ['AI Transformation Strategy & Services | Comet Innovations'],
     '/advise': ['AI Strategy & Advisory Services | Comet Innovations'],
     '/educate': ['AI Executive Education & Leadership Programmes | Comet Innovations'],
+    '/engineer': ['Forward-Deployed AI Engineering | Comet Innovations'],
     '/value-creation': ['AI Growth Strategy & Value Creation | Comet Innovations'],
     '/work-redesign': ['AI Work Redesign & Workforce Transformation | Comet Innovations'],
     '/operating-model': ['AI Operating Model & Governance | Comet Innovations'],
@@ -441,7 +463,7 @@ test('FAQPage markup exists only on About and matches the visible questions exac
 
 test('Service entities exist only on substantive service pages, provided by Comet', () => {
   const servicePages = metas.filter(p => graphOf(p.file).some(n => n['@type'] === 'Service')).map(p => p.path).sort();
-  assert.deepEqual(servicePages, ['/advise', '/diagnostic', '/educate', '/operating-model', '/value-creation', '/venture-building', '/work-redesign']);
+  assert.deepEqual(servicePages, ['/advise', '/diagnostic', '/educate', '/engineer', '/operating-model', '/value-creation', '/venture-building', '/work-redesign']);
   for (const p of servicePages) {
     const service = graphOf(fileFor(p)).find(n => n['@type'] === 'Service');
     assert.equal(service.provider['@id'], `${SITE}/#organization`);

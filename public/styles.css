@@ -186,6 +186,8 @@ main:focus{outline:none}
 .card-lead{font-family:var(--serif);font-size:clamp(21px,1.7vw,24px);line-height:1.25;color:var(--carbon)!important;margin:0 0 18px!important}
 .dark .card-lead{color:var(--chalk)!important}
 .card p+p:not(.card-action){margin-top:14px}
+.card p a{text-decoration:underline;text-underline-offset:3px}
+.nowrap{white-space:nowrap}
 .card-action{margin-top:auto!important;padding-top:28px}
 .hero-tagline{font-size:13px;letter-spacing:.16em;text-transform:uppercase;line-height:1.7;color:var(--carbon);margin:0 0 28px;padding:16px 0;border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line);max-width:580px}
 .hero-body+.hero-body{margin-top:16px}
