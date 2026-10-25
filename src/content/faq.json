@@ -1,7 +1,6 @@
 [
   { "question": "What does Comet Innovations do?", "answer": "Comet Innovations is an AI Transformation & Venture Building firm. We help organisations understand how AI is changing value, work, operating models and growth, then advise, educate and engineer what is needed to act." },
   { "question": "Are you an AI consultancy?", "answer": "AI is central to our work, but technology is not our starting point. We begin with the business question and focus on the places where AI materially changes economics, performance or strategic opportunity." },
-  { "question": "Where should we start?", "answer": "For organisations still determining where AI matters most, the Fundamentals Diagnostic provides a structured starting point. It examines value, work, organisation and growth and identifies where action is most important." },
   { "question": "Do you implement AI solutions?", "answer": "Yes. Engineering is one of our three delivery modes. We prototype, integrate and deploy AI solutions alongside client teams and specialist delivery partners." },
   { "question": "Do you build new ventures?", "answer": "Yes. We work with established organisations to identify, validate and build new products, services and businesses." },
   { "question": "Do you conduct your own AI research?", "answer": "Yes. Comet conducts applied research into AI-native system architectures, including patent-pending work in stateful AI orchestration and persistent autonomous workflows." }

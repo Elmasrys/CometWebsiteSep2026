@@ -38,7 +38,7 @@ const valid = {
   organisation: 'Analytical Engines',
   role: 'Chief Executive',
   country: 'United Kingdom',
-  topic: 'diagnostic',
+  topic: 'advisory',
   message: 'Hello',
   consent: 'yes',
 };
@@ -151,7 +151,9 @@ test('permanently redirects old and non-canonical paths, one to one', async () =
     '/insights/the-four-fundamentals.html': '/insights/the-four-fundamentals',
     '/rd.html': '/research-and-development',
     '/rd': '/research-and-development',
-    '/contact.html?topic=diagnostic': '/contact?topic=diagnostic',
+    '/contact.html?topic=advisory': '/contact?topic=advisory',
+    '/diagnostic': '/advise',
+    '/diagnostic.html': '/advise',
   };
   for (const [from, to] of Object.entries(cases)) {
     const res = await fetch(`${base}${from}`, { redirect: 'manual' });

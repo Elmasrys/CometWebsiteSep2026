@@ -11,7 +11,7 @@ const configuredSiteUrl = () =>
   process.env.SITE_URL || JSON.parse(fs.readFileSync(path.join(ROOT, 'src', 'content', 'site.json'), 'utf8')).url;
 
 /** Old URLs that map to a different page, one to one. `.html` suffixes are handled generically. */
-export const LEGACY_REDIRECTS = { '/rd': '/research-and-development', '/index': '/' };
+export const LEGACY_REDIRECTS = { '/rd': '/research-and-development', '/index': '/', '/diagnostic': '/advise' };
 
 export const TOPICS = {
   advisory: 'An advisory engagement',
@@ -19,7 +19,6 @@ export const TOPICS = {
   'private-equity': 'Private equity',
   government: 'Government',
   energy: 'Energy',
-  diagnostic: 'The Fundamentals Diagnostic',
   'value-creation': 'Value Creation',
   'work-redesign': 'Work Redesign',
   'operating-model': 'Operating Model',

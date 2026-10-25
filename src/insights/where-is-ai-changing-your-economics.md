@@ -12,8 +12,8 @@
   "related": "the-four-fundamentals",
   "cta": {
     "lead": "Find out where AI changes your economics.",
-    "label": "Explore the Fundamentals Diagnostic",
-    "url": "/diagnostic.html"
+    "label": "Explore Advise",
+    "url": "/advise"
   },
   "seo": {
     "title": "Where Is AI Changing Your Economics? | Comet Innovations",
@@ -168,7 +168,7 @@ That is why a list of AI use cases is not an AI strategy.
 
 Every organisation will use AI. That does not mean every use matters equally.
 
-The strategic task is to identify [where AI changes the underlying economics](/diagnostic) enough to deserve disproportionate attention.
+The strategic task is to identify [where AI changes the underlying economics](/advise) enough to deserve disproportionate attention.
 
 | That may be a workflow.
 | A proposition.
