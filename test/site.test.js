@@ -79,6 +79,7 @@ test('the home page uses the revised copy: three services, three markets, one fr
   assert.match(home, /href="\/advise"[^>]*>Explore Advisory/);
   assert.match(home, /href="\/educate"[^>]*>Explore Executive Education/);
   assert.match(home, /href="\/engineer"[^>]*>Explore Engineering/);
+  assert.match(home, /href="\/industries"[^>]*>Explore Our Markets/);
   for (const anchor of ['advise', 'educate', 'engineer']) assert.match(html('what-we-do.html'), new RegExp(`id="${anchor}"`));
   assert.ok(text('index.html').includes('Independent advisory. Executive education. Forward-deployed AI engineering.'));
   assert.doesNotMatch(home, /<details>/, 'FAQ is not duplicated on the home page');
@@ -169,6 +170,26 @@ test('Engineer is a service page linked from the navigation, home and What We Do
   assert.match(doc, /<a href="\/engineer" aria-current="page">Engineer<\/a>/);
   assert.match(html('what-we-do.html'), /href="\/engineer"[^>]*>Explore Engineer/);
   assert.match(html('contact.html'), /<option value="engineering">/);
+});
+
+test('Industries overview presents the three markets and the navigation points to it', () => {
+  const page = text('industries.html').replace(/\s+([,.])/g, '$1');
+  for (const line of [
+    'Focused on environments where change matters.',
+    'Private Equity. Government. Energy.',
+    'Our services remain consistent: Advise, Educate and Engineer.',
+    'From AI opportunity to portfolio value.',
+    'More capable institutions. Better public outcomes.',
+    'Intelligence across a changing energy system.',
+    'One firm. Three ways to engage.',
+    'We work from the requirements of the engagement, not from a predetermined consulting sequence.',
+  ]) assert.ok(page.includes(line), line);
+  const doc = html('industries.html');
+  for (const id of ['private-equity', 'government', 'energy']) {
+    assert.match(doc, new RegExp(`<section[^>]*id="${id}"`), id);
+    assert.match(doc, new RegExp(`<a href="/industries#${id}">`), `nav -> ${id}`);
+  }
+  assert.match(doc, /<div class="menu current"><button[^>]*>Industries<\/button>/);
 });
 
 test('positioning is intact: fundamentals, pillars, delivery modes, Diagnostic and R&D', () => {
@@ -328,6 +349,7 @@ test('the specified titles and descriptions are used', () => {
     '/advise': ['AI Strategy & Advisory Services | Comet Innovations'],
     '/educate': ['AI Executive Education & Leadership Programmes | Comet Innovations'],
     '/engineer': ['Forward-Deployed AI Engineering | Comet Innovations'],
+    '/industries': ['AI for Private Equity, Government & Energy | Comet Innovations'],
     '/value-creation': ['AI Growth Strategy & Value Creation | Comet Innovations'],
     '/work-redesign': ['AI Work Redesign & Workforce Transformation | Comet Innovations'],
     '/operating-model': ['AI Operating Model & Governance | Comet Innovations'],

@@ -188,6 +188,8 @@ main:focus{outline:none}
 .card p+p:not(.card-action){margin-top:14px}
 .card p a{text-decoration:underline;text-underline-offset:3px}
 .nowrap{white-space:nowrap}
+.page-hero p a:not(.nav-cta):not(.btn):not(.link){text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(20,20,18,.35)}
+.page-hero p a:hover{text-decoration-color:currentColor}
 .card-action{margin-top:auto!important;padding-top:28px}
 .hero-tagline{font-size:13px;letter-spacing:.16em;text-transform:uppercase;line-height:1.7;color:var(--carbon);margin:0 0 28px;padding:16px 0;border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line);max-width:580px}
 .hero-body+.hero-body{margin-top:16px}
