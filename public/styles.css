@@ -127,7 +127,7 @@ main:focus{outline:none}
 .section-intro{max-width:640px;color:var(--graphite);font-size:18px}
 .section-intro+.fund-grid{margin-top:64px}
 .after-list{margin-top:44px}
-.eyebrow+.cards3,.eyebrow+.featured-list{margin-top:32px}
+.eyebrow+.featured-list{margin-top:32px}
 
 /* Inner page hero */
 .page-hero{padding:calc(var(--nav-h) + clamp(64px,9vw,128px)) 0 clamp(56px,7vw,96px);border-bottom:1px solid var(--line)}
@@ -159,23 +159,8 @@ main:focus{outline:none}
 .fund-row p{margin:4px 0 0;color:var(--graphite);max-width:520px}
 
 /* Cards */
-.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
-.cards3>:last-child:nth-child(3n+2){grid-column:span 2}
-.card{background:var(--limestone);color:var(--carbon);padding:34px;min-height:310px;display:flex;flex-direction:column}
-.card h3{font-family:var(--serif);font-size:clamp(24px,2vw,29px);line-height:1.08;font-weight:400;margin:44px 0 14px}
-.card p{color:var(--graphite);margin:0}
-.card .meta{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);line-height:1.6;margin:0}
-.dark .cards3{background:var(--line-dark);border-color:var(--line-dark)}
-.dark .card{background:var(--night);color:var(--chalk)}
-.dark .card p{color:var(--on-dark)}
-.dark .card .meta{color:var(--gold)}
-.cards-text .card{min-height:0}
-.card[id]{scroll-margin-top:32px}
-.cards-text .card h3{margin:0 0 16px}
 .card-lead{font-family:var(--serif);font-size:clamp(21px,1.7vw,24px);line-height:1.25;color:var(--carbon)!important;margin:0 0 18px!important}
 .dark .card-lead{color:var(--chalk)!important}
-.card p+p:not(.card-action){margin-top:14px}
-.card p a{text-decoration:underline;text-underline-offset:3px}
 .nowrap{white-space:nowrap}
 .fundamental .glyph{width:44px;height:44px;color:var(--ember);display:block;margin-bottom:24px}
 .copy h4.eyebrow{margin:36px 0 0}
@@ -193,7 +178,6 @@ main:focus{outline:none}
 .fundamental-mark .glyph{width:32px;height:32px;color:var(--ember)}
 .page-hero p a:not(.nav-cta):not(.btn):not(.link){text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(16,16,16,.35)}
 .page-hero p a:hover{text-decoration-color:currentColor}
-.card-action{margin-top:auto!important;padding-top:28px}
 .hero-tagline{font-size:13px;letter-spacing:.16em;text-transform:uppercase;line-height:1.7;color:var(--carbon);margin:0 0 28px;padding:16px 0;border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line);max-width:580px}
 .hero-body+.hero-body{margin-top:16px}
 div.section-intro p{margin:0 0 14px}
@@ -405,7 +389,7 @@ div.section-intro p{margin:0 0 14px}
 
 /* ---------- Contact ---------- */
 .contact-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(40px,7vw,110px);align-items:start}
-.contact-panel{background:var(--night) var(--grain-dark);color:var(--chalk);padding:48px;position:sticky;top:calc(var(--nav-h) + 32px)}
+.contact-panel{background:var(--charcoal);color:var(--chalk);padding:48px;position:sticky;top:calc(var(--nav-h) + 32px)}
 .contact-panel .eyebrow{color:var(--gold)}
 .contact-panel h2{font-family:var(--serif);font-weight:400;font-size:clamp(29px,2.7vw,39px);line-height:1.05;margin:18px 0}
 .contact-panel p{color:var(--on-dark);margin:0}
@@ -535,8 +519,8 @@ dfn{font-style:normal;font-weight:600}
  .fund-row .glyph{width:36px;height:36px;grid-row:span 3}
  .fund-row p,.fund-row .link{grid-column:2}
  .fund-row .link{justify-self:start;margin-top:8px}
- .cards3,.insight-list,.experience-list{grid-template-columns:1fr}
- .cards3>:last-child:nth-child(3n+2),.experience-list>:last-child:nth-child(3n+2){grid-column:auto}
+ .insight-list,.experience-list{grid-template-columns:1fr}
+ .experience-list>:last-child:nth-child(3n+2){grid-column:auto}
  .service{grid-template-columns:1fr}
  .service h3{grid-row:auto}
  .featured{grid-template-columns:44px 1fr}
@@ -836,6 +820,7 @@ body{font-size:17px}
 .service-lead{grid-column:5/span 3;font-family:var(--serif);font-style:italic;font-size:clamp(21px,1.8vw,27px);line-height:1.22;color:var(--black);margin:0}
 .service-body{grid-column:8/span 5}
 .service-body p{margin:0;color:var(--graphite)}
+.service-body p+p{margin-top:12px}
 .service-body .ledger-action{margin-top:24px}
 
 /* 04 Markets: typographic navigation, with a featured photograph when supplied */
@@ -964,4 +949,11 @@ body{font-size:17px}
 @media(max-width:980px){
  .type-hero.media-offset .hero-figure,.offset-figure{margin-left:0;max-width:none}
  .side-figure{max-width:none}
+}
+
+/* Contact: the three opening questions read as one ruled list */
+.page-hero .hero-structure{grid-template-columns:1fr;max-width:640px}
+/* Small screens: panoramas take a taller crop so they do not shrink to a strip */
+@media(max-width:640px){
+ .ratio-21x9,.ratio-16x9{aspect-ratio:4/3}
 }

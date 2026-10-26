@@ -123,7 +123,7 @@ Contemporary editorial, medium-format character, restrained saturation, neutral 
 - **Placement:** Energy opening: full-bleed panorama under the title; homepage markets; Industries band
 - **Subject:** Energy infrastructure at scale: a substation, transmission corridor, turbine hall or generation site
 - **Composition:** Scale and order, people small in frame for scale where possible; no stock wind-farm sunsets
-- **Aspect ratio:** 21:9 (hero) and 3:2 (home markets); **focal point:** 70% 50%
+- **Aspect ratio:** 21:9 (hero) and 3:2 (home markets); **focal point:** 85% 50%
 - **Master:** `assets/source/industry-energy.jpg`, 3600 × 1543 minimum (subject centred for a 3:2 crop); outputs `public/images/industry-energy-{1280,1916}.{avif,webp}` and `.jpg` at 1916px
 - **Credit and licence:** Supplied by Comet Innovations (curated collection, October 2026)
 
