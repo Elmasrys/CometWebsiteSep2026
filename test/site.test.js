@@ -155,9 +155,9 @@ test('AI-Native Operating Services is distinct from engineering and honest about
     'How an operating service works.', 'How it differs from traditional outsourcing.',
     'Customer Operations', 'Revenue Operations', 'Business Process Operations', 'Industry Workflows',
     'What can be contracted.', 'Boundaries, quality and accountability.', 'Assessing the economics.',
-    'we do not promise conversion rates',
+    'We measure responsiveness, coverage and data quality.',
     'Regulated decisions, approvals and financial controls remain with the people accountable for them',
-    'We do not make statutory decisions',
+    'Statutory decisions and regulated responsibilities remain with the client’s accountable officers',
   ]) assert.ok(page.includes(line), line);
   const doc = html('operating-services.html');
   for (const id of ['customer-operations', 'revenue-operations', 'business-process-operations', 'industry-workflows']) assert.match(doc, new RegExp(`id="${id}"`), id);
@@ -408,14 +408,11 @@ test('three complete insights are published with the full article template', () 
   }
 });
 
-test('forthcoming insights are labelled and not linked as finished articles', () => {
-  const insights = html('insights.html');
-  for (const { title } of ctx.forthcoming) {
-    const escaped = title.replace(/[?]/g, '\\?');
-    assert.match(insights, new RegExp(`<span class="forthcoming-title">${escaped}</span>`));
-    assert.doesNotMatch(insights, new RegExp(`<a[^>]*>${escaped}`));
+test('unpublished insights are not advertised', () => {
+  for (const page of pages) {
+    for (const { title } of ctx.forthcoming) assert.ok(!text(page).includes(title), `${page} mentions unpublished "${title}"`);
+    assert.doesNotMatch(text(page), /\b(Forthcoming|In preparation)\b/, page);
   }
-  assert.ok(!html('index.html').includes('Beyond Automation'));
 });
 
 test('contact form matches the approved specification', () => {

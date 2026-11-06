@@ -196,11 +196,6 @@ div.section-intro p{margin:0 0 14px}
 .featured-meta,.article-meta{margin:0;display:grid;gap:16px;align-content:start}
 .featured-meta dt,.article-meta dt{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--stone)}
 .featured-meta dd,.article-meta dd{margin:4px 0 0;font-size:15px}
-.split-note{color:var(--stone);margin-top:20px}
-.forthcoming-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
-.forthcoming-list li{display:grid;gap:6px;padding:26px 0;border-bottom:1px solid var(--line)}
-.forthcoming-title{font-family:var(--serif);font-size:clamp(20px,1.8vw,25px);line-height:1.15;color:var(--graphite)}
-.forthcoming-summary{color:var(--stone)}
 
 /* ---------- Articles ---------- */
 .shell.article-shell{width:min(760px,calc(100% - 64px))}
