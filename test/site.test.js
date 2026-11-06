@@ -472,7 +472,7 @@ test('the main navigation follows the institutional structure, and every link re
     'menu-operating': ['Overview', 'Customer Operations', 'Revenue Operations', 'Business Process Operations', 'Industry Workflows'],
     'menu-industries': ['Overview', 'Private Equity', 'Government', 'Energy'],
     'menu-insights': ['All Insights', 'The Four Fundamentals', 'Research &amp; Development'],
-    'menu-about': ['Firm', 'People', 'Approach'],
+    'menu-about': ['Firm', 'Leadership', 'Approach'],
   };
   for (const [id, expected] of Object.entries(items)) {
     const dropdown = nav.match(new RegExp(`<div class="dropdown" id="${id}">([\\s\\S]*?)</div>`))[1];
