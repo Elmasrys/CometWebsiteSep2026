@@ -69,7 +69,7 @@ test('the home page states the two-offering proposition, the four outcomes and t
     'Where AI changes the economics.', 'Grow revenue', 'Improve margins', 'Increase capacity', 'Build new value',
     'Two ways to work with Comet.', 'Neither is a prerequisite for the other.',
     'AI Transformation', 'AI-Native Operating Services',
-    'From building a tool to running a service.', 'Where this stands today.',
+    'From building a tool to running a service.',
     'Where we focus.', 'Private Equity', 'Government', 'Energy',
     'Business judgement, engineering and operations in one firm.',
     'How do you create and capture value?', 'How should work be performed?', 'How should the organisation operate?', 'What becomes possible next?',
@@ -152,7 +152,6 @@ test('AI-Native Operating Services is distinct from engineering and honest about
   for (const line of [
     'Defined business functions, delivered through AI-native operating models.',
     'not access to a software platform',
-    'Where this stands today', 'Available now', 'In development', 'Illustrative',
     'How an operating service works.', 'How it differs from traditional outsourcing.',
     'Customer Operations', 'Revenue Operations', 'Business Process Operations', 'Industry Workflows',
     'What can be contracted.', 'Boundaries, quality and accountability.', 'Assessing the economics.',

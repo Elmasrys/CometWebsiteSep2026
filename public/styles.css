@@ -907,8 +907,6 @@ body{font-size:17px}
 .practice-list{grid-column:5/span 8;list-style:none;margin:0;padding:0;border-top:1px solid var(--line-dark)}
 .practice-list a{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line-dark);color:var(--white)}
 .practice-list a:after{content:"\2192";color:var(--gold)}
-.status-note{grid-column:5/span 8;margin:0;font-size:15px;line-height:1.6;color:var(--on-dark);max-width:64ch}
-.status-note strong{color:var(--white);font-weight:500}
 
 /* The Four Fundamentals as a quiet strip of questions */
 .fundamental-strip{list-style:none;margin:clamp(32px,4vw,56px) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--gutter);border-top:1px solid var(--line-strong)}
@@ -923,8 +921,7 @@ body{font-size:17px}
  .offering+.offering{margin-top:48px}
  .compare-col+.compare-col{margin-top:32px}
  .flow li{padding:20px 0 24px}
- .practice-title,.practice-list,.status-note{grid-column:1/-1}
- .fundamental-strip li{padding:18px 0;border-bottom:1px solid var(--line)}
+ .practice-title,.practice-list, .fundamental-strip li{padding:18px 0;border-bottom:1px solid var(--line)}
 }
 
 /* Capability and area rows: name and lead on the left, detail on the right */
@@ -958,12 +955,6 @@ body{font-size:17px}
 
 /* Operating services: functional titles, status, tables and measures in Inter */
 .fn-title{font-family:var(--sans);font-weight:500;font-size:13px;letter-spacing:.16em;text-transform:uppercase;margin:0;color:var(--graphite)}
-.ops-status{padding:clamp(56px,6vw,96px) 0;border-top:1px solid var(--line)}
-.status-list{margin:0;border-top:1px solid var(--line-strong)}
-.status-list>div{display:grid;grid-template-columns:minmax(0,.3fr) minmax(0,.7fr);gap:8px 24px;padding:18px 0;border-bottom:1px solid var(--line)}
-.status-list dt{font-family:var(--sans);font-weight:500;font-size:15px}
-.status-list dd{margin:0;color:var(--graphite);font-size:16px;line-height:1.6}
-.status-list a{text-decoration:underline;text-underline-offset:3px}
 .role-table{width:100%;border-collapse:collapse;margin-top:clamp(40px,5vw,64px);font-size:15px;line-height:1.5}
 .role-table caption{text-align:left;font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--graphite);padding-bottom:12px}
 .role-table th,.role-table td{text-align:left;vertical-align:top;padding:14px 16px 14px 0;border-bottom:1px solid var(--line)}
@@ -979,8 +970,7 @@ body{font-size:17px}
 @media(max-width:980px){
  .capability,.area{grid-template-columns:1fr}
  .capability-head,.area-head,.capability-body,.area-body{grid-column:1/-1}
- .status-list>div{grid-template-columns:1fr}
-}
+ }
 @media(max-width:640px){
  .measure-list{grid-template-columns:1fr}
  .role-table tbody th{width:auto}
