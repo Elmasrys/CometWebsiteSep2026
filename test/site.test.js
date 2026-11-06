@@ -214,7 +214,7 @@ test('Private Equity is an industry page under /industries, linked from the menu
   assert.match(doc, /<a href="\/industries\/private-equity" aria-current="page">Private Equity<\/a>/);
   assert.match(doc, /href="\/contact\?topic=private-equity"[^>]*>Discuss Private Equity Opportunities/);
   for (const s of ['ai-transformation', 'operating-services']) assert.match(doc, new RegExp(`href="/${s}"`));
-  assert.ok(page.includes('AI-Native Operating Services') && page.includes('These services are in development and scoped individually.'));
+  assert.ok(page.includes('AI-Native Operating Services') && page.includes('Each service is scoped individually.'));
   assert.match(html('industries.html'), /href="\/industries\/private-equity"[^>]*>Explore Private Equity/);
   const graph = JSON.parse(doc.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1])['@graph'];
   const crumbs = graph.find(n => n['@type'] === 'BreadcrumbList').itemListElement.map(i => i.name);
@@ -240,7 +240,7 @@ test('Government is an industry page under /industries, linked from the menu and
   assert.match(doc, /<a href="\/industries\/government" aria-current="page">Government<\/a>/);
   assert.match(doc, /href="\/contact\?topic=government"[^>]*>Discuss a Government Engagement/);
   for (const s of ['ai-transformation', 'operating-services']) assert.match(doc, new RegExp(`href="/${s}"`));
-  assert.ok(page.includes('AI-Native Operating Services') && page.includes('These services are in development and scoped individually.'));
+  assert.ok(page.includes('AI-Native Operating Services') && page.includes('Each service is scoped individually.'));
   assert.match(html('industries.html'), /href="\/industries\/government"[^>]*>Explore Government/);
 });
 
@@ -263,7 +263,7 @@ test('Energy is an industry page under /industries, linked from the menu and the
   assert.match(doc, /<div class="menu current"><button[^>]*>Industries<\/button>/);
   assert.match(doc, /href="\/contact\?topic=energy"[^>]*>Discuss an Energy Engagement/);
   for (const s of ['ai-transformation', 'operating-services']) assert.match(doc, new RegExp(`href="/${s}"`));
-  assert.ok(page.includes('AI-Native Operating Services') && page.includes('These services are in development and scoped individually.'));
+  assert.ok(page.includes('AI-Native Operating Services') && page.includes('Each service is scoped individually.'));
   assert.match(html('industries.html'), /href="\/industries\/energy"[^>]*>Explore Energy/);
 });
 
