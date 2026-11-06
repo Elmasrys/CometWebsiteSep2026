@@ -1,5 +1,17 @@
 # SEO and GEO implementation report
 
+> **November 2026 migration.** The service architecture moved to two offerings. The tables below predate it; where they differ, this note governs.
+>
+> | Retired URL | Redirects (301) to | Content now lives at |
+> | --- | --- | --- |
+> | `/what-we-do` | `/ai-transformation` | Offerings overview on the homepage and `/ai-transformation` |
+> | `/advise` | `/ai-transformation` | AI Strategy & Economics section (`#strategy`) |
+> | `/educate` | `/ai-transformation/executive-education` | Same copy, retitled Executive Education |
+> | `/engineer` | `/ai-transformation/engineering` | Same copy, retitled AI Engineering & Deployment |
+>
+> New indexable pages: `/ai-transformation` (intent: AI transformation services), `/operating-services` (intent: AI-native operating services; secondary: AI-enabled business process outsourcing, AI customer operations, AI revenue operations), `/ai-transformation/executive-education`, `/ai-transformation/engineering`. Service structured data now sits on these four pages.
+
+
 Comet Innovations website. Canonical origin: **https://www.comet-innovations.com**. Status as of 14 October 2026.
 
 The approved copy was not rewritten for search. Optimisation comes from metadata, semantic structure, internal linking, entity clarity and a small amount of definitional language. All new copy is listed in section 13 for approval.

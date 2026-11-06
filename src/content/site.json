@@ -2,16 +2,29 @@
   "_note": "The canonical description is the single company description used in structured data, social metadata, About and llms.txt. Change it here only. url can be overridden at build time with the SITE_URL environment variable (for example on a staging service).",
   "name": "Comet Innovations",
   "url": "https://www.comet-innovations.com",
-  "category": "AI Transformation & Venture Building",
-  "description": "Comet Innovations is an AI Transformation & Venture Building firm that helps leadership teams understand where AI changes the economics of value, work, organisation and growth, then advises, educates and engineers what is needed to act.",
+  "category": "AI Transformation & Operating Services",
+  "description": "Comet Innovations is an AI Transformation & Operating Services firm that helps organisations improve business performance and create new economic value through AI, combining project-led transformation with recurring AI-native operating services.",
   "question": "Where is AI changing your economics?",
   "office": "London, United Kingdom",
   "linkedin": "https://www.linkedin.com/company/cometinnovations",
-  "logo": { "url": "/images/comet-logo-512.png", "width": 512, "height": 512 },
+  "logo": {
+    "url": "/images/comet-logo-512.png",
+    "width": 512,
+    "height": 512
+  },
   "marketsServed": [
-    { "type": "Country", "name": "United Kingdom" },
-    { "type": "Place", "name": "Middle East" },
-    { "type": "Continent", "name": "Africa" }
+    {
+      "type": "Country",
+      "name": "United Kingdom"
+    },
+    {
+      "type": "Place",
+      "name": "Middle East"
+    },
+    {
+      "type": "Continent",
+      "name": "Africa"
+    }
   ],
   "knowsAbout": [
     "AI transformation",
@@ -28,11 +41,35 @@
     "Venture validation",
     "AI-native ventures",
     "Stateful AI orchestration",
-    "Executive education"
+    "Executive education",
+    "AI-native operating services",
+    "AI operating model transformation",
+    "AI business process operations",
+    "AI customer operations",
+    "AI revenue operations",
+    "Executive education in AI"
   ],
-  "verification": { "google": "", "bing": "" },
+  "verification": {
+    "google": "",
+    "bing": ""
+  },
   "crawlers": {
-    "search": ["OAI-SearchBot", "ChatGPT-User", "Claude-SearchBot", "Claude-User", "PerplexityBot", "Perplexity-User"],
-    "training": ["GPTBot", "ClaudeBot", "Google-Extended", "Applebot-Extended", "CCBot", "Meta-ExternalAgent", "Bytespider"]
+    "search": [
+      "OAI-SearchBot",
+      "ChatGPT-User",
+      "Claude-SearchBot",
+      "Claude-User",
+      "PerplexityBot",
+      "Perplexity-User"
+    ],
+    "training": [
+      "GPTBot",
+      "ClaudeBot",
+      "Google-Extended",
+      "Applebot-Extended",
+      "CCBot",
+      "Meta-ExternalAgent",
+      "Bytespider"
+    ]
   }
 }

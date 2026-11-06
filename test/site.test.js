@@ -60,75 +60,55 @@ test('no placeholders, draft markers or unrendered template tags are published',
 
 // ---------- Content and positioning ----------
 
-test('the home page uses the revised copy: three services, three markets, one framework', () => {
+test('the home page states the two-offering proposition, the four outcomes and the markets', () => {
   const home = html('index.html');
   assert.doesNotMatch(home, /film|intro-film|Skip<\/button>/i);
   for (const line of [
-    'Helping organisations navigate, lead and build in the AI economy.',
-    'Comet Innovations is a London-based AI transformation and venture building firm working with investors, governments and energy businesses.',
-    'Explore Our Services', 'Start a Conversation',
-    'The opportunity is bigger than technology.',
-    'Three ways to work with Comet.',
-    'Independent judgement for consequential decisions.', 'Develop the leaders the AI economy demands.', 'Engineering that works inside the business.',
+    'AI is changing the economics of business.',
+    'Comet helps organisations turn that change into measurable value through AI transformation and AI-native operating services.',
+    'Where AI changes the economics.', 'Grow revenue', 'Improve margins', 'Increase capacity', 'Build new value',
+    'Two ways to work with Comet.', 'Neither is a prerequisite for the other.',
+    'AI Transformation', 'AI-Native Operating Services',
+    'From building a tool to running a service.', 'Where this stands today.',
     'Where we focus.', 'Private Equity', 'Government', 'Energy',
-    'AI is changing the fundamentals of business.',
+    'Business judgement, engineering and operations in one firm.',
     'How do you create and capture value?', 'How should work be performed?', 'How should the organisation operate?', 'What becomes possible next?',
-    'From understanding to action.', 'Business before technology.', 'Independence of judgement.', 'Close to operating reality.',
     'Beyond intelligent responses.',
-    'Ideas for decisions that matter.',
     'The next decision starts here.',
   ]) assert.ok(home.includes(line), line);
-  assert.match(home, /href="\/advise"[^>]*>Explore Advisory/);
-  assert.match(home, /href="\/educate"[^>]*>Explore Executive Education/);
-  assert.match(home, /href="\/engineer"[^>]*>Explore Engineering/);
+  assert.match(home, /href="\/ai-transformation"[^>]*>(<span[\s\S]*?<\/span>)?Explore AI Transformation/);
+  assert.match(home, /href="\/operating-services"[^>]*>Explore Operating Services/);
+  assert.match(home, /href="\/contact\?topic=transformation"[^>]*>Discuss a Transformation Requirement/);
+  assert.match(home, /href="\/contact\?topic=operating-services"[^>]*>Discuss an Operating Services Requirement/);
   assert.match(home, /href="\/industries"[^>]*>Explore Our Markets/);
-  for (const anchor of ['advise', 'educate', 'engineer']) assert.match(html('what-we-do.html'), new RegExp(`id="${anchor}"`));
-  assert.ok(text('index.html').includes('Independent advisory. Executive education. Forward-deployed AI engineering.'));
   assert.doesNotMatch(home, /<details>/, 'FAQ is not duplicated on the home page');
 });
 
-test('What We Do presents three independent services, the framework and venture building', () => {
-  const page = text('what-we-do.html');
+test('AI Transformation presents five independently commissioned capabilities', () => {
+  const page = text('ai-transformation.html');
   for (const line of [
-    'Different challenges. Different expertise. One firm.',
-    'Three independent services for organisations navigating the AI economy.',
-    'Each service addresses a distinct client need and can be commissioned independently.',
-    'Better decisions in a changing economic landscape.',
-    'Leadership capability for an AI-shaped future.',
-    'Forward-deployed engineering for real operational challenges.',
-    'They are not mandatory stages of an engagement.',
-    'Creating what comes next.',
-    'Engage us where you need us.',
-    'Discuss Your Requirements',
-  ]) assert.ok(page.includes(line), line);
-  const doc = html('what-we-do.html');
-  for (const id of ['advise', 'educate', 'engineer', 'four-fundamentals', 'venture-building']) assert.match(doc, new RegExp(`<section[^>]*id="${id}"`), id);
-  assert.match(doc, /href="\/four-fundamentals"[^>]*>Explore the Framework/);
-  assert.match(doc, /href="\/venture-building"[^>]*>Explore Venture Building/);
-});
-
-test('Advise is a service page linked from the navigation, home and What We Do', () => {
-  const page = text('advise.html');
-  for (const line of [
-    'Independent judgement for an AI-shaped economy.',
-    'Strategic questions, not technology prescriptions.',
+    'Understand, redesign and implement AI-enabled business change.',
+    'The problems we address.',
+    'AI Strategy & Economics', 'Operating Model Redesign', 'Executive Education', 'Venture Development', 'AI Engineering & Deployment',
     'Our advice is independent of any particular AI model, software vendor or implementation platform.',
-    'AI strategy and investment priorities', 'Business model and value creation', 'Operating model transformation',
-    'AI governance and strategic oversight', 'Corporate venture strategy', 'Portfolio transformation',
-    'How advisory engagements work.', 'Who we advise.',
+    'The capabilities are not stages.',
+    'Economics and operating realities first.',
+    'How to engage us.',
+    'no transformation engagement is required before an',
     'The value of independent thinking.',
   ]) assert.ok(page.includes(line), line);
-  const doc = html('advise.html');
-  assert.match(doc, /href="\/contact\?topic=advisory"[^>]*>Discuss an Advisory Engagement/);
-  assert.match(doc, /<a href="\/advise" aria-current="page">Advise<\/a>/);
-  assert.match(html('what-we-do.html'), /href="\/advise"[^>]*>Explore Advise/);
-  assert.match(html('contact.html'), /<option value="advisory">/);
+  const doc = html('ai-transformation.html');
+  for (const id of ['strategy', 'operating-model', 'executive-education', 'venture-development', 'engineering']) assert.match(doc, new RegExp(`id="${id}"`), id);
+  assert.match(doc, /href="\/ai-transformation\/executive-education"/);
+  assert.match(doc, /href="\/ai-transformation\/engineering"/);
+  assert.match(doc, /href="\/contact\?topic=transformation"[^>]*>Discuss a Transformation Requirement/);
+  for (const option of ['transformation', 'operating-services', 'advisory', 'education', 'engineering']) assert.match(html('contact.html'), new RegExp(`<option value="${option}">`), option);
   const graph = JSON.parse(doc.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1])['@graph'];
-  assert.ok(graph.some(n => n['@type'] === 'Service' && n.name === 'AI strategy and advisory'));
+  assert.ok(graph.some(n => n['@type'] === 'Service' && n.name === 'AI Transformation'));
 });
 
-test('Educate is a service page linked from the navigation, home and What We Do', () => {
-  const page = text('educate.html');
+test('Executive Education keeps its programmes under AI Transformation', () => {
+  const page = text('ai-transformation/executive-education.html');
   for (const line of [
     'Developing leadership for the AI economy.',
     'Executive education for leaders navigating technological and strategic change.',
@@ -140,18 +120,17 @@ test('Educate is a service page linked from the navigation, home and What We Do'
     'Learning grounded in operating experience.',
     'while recognising that judgement and accountability remain with leaders.',
     'Develop the capability to lead what comes next.',
+    'commissioned independently',
   ]) assert.ok(page.includes(line), line);
-  const doc = html('educate.html');
+  const doc = html('ai-transformation/executive-education.html');
   assert.match(doc, /href="\/contact\?topic=education"[^>]*>Discuss an Executive Programme/);
-  assert.match(doc, /<a href="\/educate" aria-current="page">Educate<\/a>/);
-  assert.match(html('what-we-do.html'), /href="\/educate"[^>]*>Explore Educate/);
+  assert.match(doc, /<a href="\/ai-transformation\/executive-education" aria-current="page">Executive Education<\/a>/);
 });
 
-test('Engineer is a service page linked from the navigation, home and What We Do', () => {
-  const page = text('engineer.html');
+test('AI Engineering & Deployment keeps the engineering material under AI Transformation', () => {
+  const page = text('ai-transformation/engineering.html');
   for (const line of [
     'AI engineering, deployed where the work happens.',
-    'Forward-deployed engineering for enterprise AI systems, intelligent workflows and new digital products.',
     'Engineering close to the problem.',
     'Enterprise AI Agents', 'Intelligent Workflow Engineering', 'AI Systems Integration', 'AI-Native Products',
     'Applied AI Prototyping', 'AI Orchestration and Persistent Workflows',
@@ -162,12 +141,38 @@ test('Engineer is a service page linked from the navigation, home and What We Do
     'Applied research informs practical engineering.',
     'Build where it matters.',
   ]) assert.ok(page.includes(line), line);
-  const doc = html('engineer.html');
-  assert.match(doc, /href="\/contact\?topic=engineering"[^>]*>Discuss an Engineering Engagement/);
+  const doc = html('ai-transformation/engineering.html');
+  assert.match(doc, /href="\/contact\?topic=engineering"[^>]*>Discuss an Engineering Requirement/);
   assert.match(doc, /href="\/research-and-development#stateful-ai-orchestration"/);
-  assert.match(doc, /<a href="\/engineer" aria-current="page">Engineer<\/a>/);
-  assert.match(html('what-we-do.html'), /href="\/engineer"[^>]*>Explore Engineer/);
-  assert.match(html('contact.html'), /<option value="engineering">/);
+  assert.match(doc, /href="\/operating-services"/);
+});
+
+test('AI-Native Operating Services is distinct from engineering and honest about its status', () => {
+  const page = text('operating-services.html');
+  for (const line of [
+    'Defined business functions, delivered through AI-native operating models.',
+    'not access to a software platform',
+    'Where this stands today', 'Available now', 'In development', 'Illustrative',
+    'How an operating service works.', 'How it differs from traditional outsourcing.',
+    'Customer Operations', 'Revenue Operations', 'Business Process Operations', 'Industry Workflows',
+    'What can be contracted.', 'Boundaries, quality and accountability.', 'Assessing the economics.',
+    'we do not promise conversion rates',
+    'Regulated decisions, approvals and financial controls remain with the people accountable for them',
+    'We do not make statutory decisions',
+  ]) assert.ok(page.includes(line), line);
+  const doc = html('operating-services.html');
+  for (const id of ['customer-operations', 'revenue-operations', 'business-process-operations', 'industry-workflows']) assert.match(doc, new RegExp(`id="${id}"`), id);
+  assert.match(doc, /href="\/contact\?topic=operating-services"[^>]*>Discuss an Operating Services Requirement/);
+  assert.doesNotMatch(page, /guarantee|clients include|case study|\d+% (reduction|uplift|faster)/i, 'no unsupported claims');
+});
+
+test('the retired service pages are not published and redirect to their successors', async () => {
+  for (const page of ['advise.html', 'educate.html', 'engineer.html', 'what-we-do.html']) assert.ok(!pages.includes(page), page);
+  const { LEGACY_REDIRECTS } = await import('../app.js');
+  assert.equal(LEGACY_REDIRECTS['/advise'], '/ai-transformation');
+  assert.equal(LEGACY_REDIRECTS['/educate'], '/ai-transformation/executive-education');
+  assert.equal(LEGACY_REDIRECTS['/engineer'], '/ai-transformation/engineering');
+  assert.equal(LEGACY_REDIRECTS['/what-we-do'], '/ai-transformation');
 });
 
 test('Industries overview presents the three markets and the navigation points to it', () => {
@@ -175,11 +180,11 @@ test('Industries overview presents the three markets and the navigation points t
   for (const line of [
     'Focused on environments where change matters.',
     'Private Equity. Government. Energy.',
-    'Our services remain consistent: Advise, Educate and Engineer.',
+    'Our offerings remain consistent: AI Transformation and AI-Native Operating Services.',
     'From AI opportunity to portfolio value.',
     'More capable institutions. Better public outcomes.',
     'Intelligence across a changing energy system.',
-    'One firm. Three ways to engage.',
+    'One firm. Two ways to engage.',
     'We work from the requirements of the engagement, not from a predetermined consulting sequence.',
   ]) assert.ok(page.includes(line), line);
   const doc = html('industries.html');
@@ -209,7 +214,8 @@ test('Private Equity is an industry page under /industries, linked from the menu
   assert.match(doc, /<link rel="canonical" href="https:\/\/www\.comet-innovations\.com\/industries\/private-equity">/);
   assert.match(doc, /<a href="\/industries\/private-equity" aria-current="page">Private Equity<\/a>/);
   assert.match(doc, /href="\/contact\?topic=private-equity"[^>]*>Discuss Private Equity Opportunities/);
-  for (const s of ['advise', 'educate', 'engineer']) assert.match(doc, new RegExp(`href="/${s}"`));
+  for (const s of ['ai-transformation', 'operating-services']) assert.match(doc, new RegExp(`href="/${s}"`));
+  assert.ok(page.includes('AI-Native Operating Services') && page.includes('These services are in development and scoped individually.'));
   assert.match(html('industries.html'), /href="\/industries\/private-equity"[^>]*>Explore Private Equity/);
   const graph = JSON.parse(doc.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1])['@graph'];
   const crumbs = graph.find(n => n['@type'] === 'BreadcrumbList').itemListElement.map(i => i.name);
@@ -234,7 +240,8 @@ test('Government is an industry page under /industries, linked from the menu and
   const doc = html(file);
   assert.match(doc, /<a href="\/industries\/government" aria-current="page">Government<\/a>/);
   assert.match(doc, /href="\/contact\?topic=government"[^>]*>Discuss a Government Engagement/);
-  for (const s of ['advise', 'educate', 'engineer']) assert.match(doc, new RegExp(`href="/${s}"`));
+  for (const s of ['ai-transformation', 'operating-services']) assert.match(doc, new RegExp(`href="/${s}"`));
+  assert.ok(page.includes('AI-Native Operating Services') && page.includes('These services are in development and scoped individually.'));
   assert.match(html('industries.html'), /href="\/industries\/government"[^>]*>Explore Government/);
 });
 
@@ -256,7 +263,8 @@ test('Energy is an industry page under /industries, linked from the menu and the
   assert.match(doc, /<a href="\/industries\/energy" aria-current="page">Energy<\/a>/);
   assert.match(doc, /<div class="menu current"><button[^>]*>Industries<\/button>/);
   assert.match(doc, /href="\/contact\?topic=energy"[^>]*>Discuss an Energy Engagement/);
-  for (const s of ['advise', 'educate', 'engineer']) assert.match(doc, new RegExp(`href="/${s}"`));
+  for (const s of ['ai-transformation', 'operating-services']) assert.match(doc, new RegExp(`href="/${s}"`));
+  assert.ok(page.includes('AI-Native Operating Services') && page.includes('These services are in development and scoped individually.'));
   assert.match(html('industries.html'), /href="\/industries\/energy"[^>]*>Explore Energy/);
 });
 
@@ -290,14 +298,14 @@ test('the global footer follows the agreed structure and corporate wording', () 
   assert.match(footer, /<a href="https:\/\/www\.linkedin\.com\/company\/cometinnovations" rel="noopener" target="_blank">LinkedIn/);
   const links = [...footer.matchAll(/<a href="([^"]+)">([^<]+)<\/a>/g)].map(m => `${m[2]} ${m[1]}`);
   assert.deepEqual(links, [
-    'Advise /advise', 'Educate /educate', 'Engineer /engineer',
+    'AI Transformation /ai-transformation', 'AI-Native Operating Services /operating-services', 'Executive Education /ai-transformation/executive-education', 'AI Engineering &amp; Deployment /ai-transformation/engineering',
     'Private Equity /industries/private-equity', 'Government /industries/government', 'Energy /industries/energy',
     'The Four Fundamentals /four-fundamentals', 'Insights /insights', 'Research &amp; Development /research-and-development', 'About /about', 'Contact /contact',
     'Privacy Policy /privacy', 'Cookie Policy /cookies', 'Website Terms /terms',
   ]);
   const t = decode(footer.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').replace(/&copy;/g, '©'));
   for (const line of [
-    'AI Transformation &amp; Venture Building'.replace('&amp;', '&'),
+    'AI Transformation & Operating Services',
     'Where is AI changing your economics?',
     'London, United Kingdom',
     'Comet Innovations is a trading name of Maverika Ltd, registered in England and Wales under company number 15039780.',
@@ -334,13 +342,13 @@ test('the Four Fundamentals questions come from one canonical definition and app
   assert.deepEqual(terms.map(n => [n.name, n.description]), canonical.map(f => [f.name, f.question]));
 });
 
-test('art direction: monochrome palette, graded photography, no inline styles, services never numbered as stages', () => {
+test('art direction: monochrome palette, graded photography, no inline styles, capabilities never numbered as stages', () => {
   const css = fs.readFileSync(path.join(out, 'styles.css'), 'utf8');
   for (const hex of ['#101010', '#262626', '#44423F', '#77736E', '#A7A19A', '#CAC4BC', '#E6E2DC', '#F5F4F1', '#FFFFFF']) assert.ok(css.includes(hex), hex);
   assert.doesNotMatch(css, /#F1EDE3|#D9B06F|#9C6430|#0B0A08/i, 'old beige and gold palette is gone');
   for (const page of pages) assert.doesNotMatch(html(page), /\sstyle="/, `${page} has an inline style (blocked by the CSP)`);
-  for (const page of ['index.html', 'what-we-do.html']) {
-    assert.doesNotMatch(html(page), /<p class="eyebrow">0[1-3]<\/p>\s*<h[23][^>]*>(Advise|Educate|Engineer)</, `${page} numbers the services`);
+  for (const page of ['index.html', 'ai-transformation.html', 'operating-services.html']) {
+    assert.doesNotMatch(html(page), /<p class="eyebrow">0[1-9]<\/p>\s*<h[234][^>]*>(<a[^>]*>)?(AI Strategy|Operating Model Redesign|Executive Education|Venture Development|AI Engineering|Customer Operations|Revenue Operations|Business Process|Industry Workflows)/, `${page} numbers the capabilities`);
   }
   // Photography is graded at build time of the assets, never by CSS; code-built textures are retired.
   assert.doesNotMatch(css, /filter:\s*grayscale/);
@@ -356,10 +364,10 @@ test('Our Work is withheld until approved case studies exist', () => {
 
 test('positioning is intact: fundamentals, pillars, delivery modes and R&D', () => {
   const all = pages.map(text).join(' ');
-  for (const term of ['Value', 'Work', 'Organisation', 'Growth', 'Value creation', 'Work redesign', 'Operating model', 'Venture building', 'Advise', 'Educate', 'Engineer']) {
+  for (const term of ['Value', 'Work', 'Organisation', 'Growth', 'Value creation', 'Work redesign', 'Operating model', 'Venture building', 'AI Transformation', 'AI-Native Operating Services', 'Executive Education', 'AI Engineering & Deployment']) {
     assert.ok(all.toLowerCase().includes(term.toLowerCase()), term);
   }
-  for (const page of ['value-creation.html', 'work-redesign.html', 'operating-model.html', 'venture-building.html', 'research-and-development.html', 'what-we-do.html']) {
+  for (const page of ['value-creation.html', 'work-redesign.html', 'operating-model.html', 'venture-building.html', 'research-and-development.html', 'ai-transformation.html', 'operating-services.html']) {
     assert.ok(pages.includes(page), page);
   }
   const rd = text('research-and-development.html');
@@ -437,7 +445,7 @@ test('legal pages exist, use configured facts, and the site sets no cookies or s
 test('the Four Fundamentals carry the proprietary notice, and the Terms protect the framework', () => {
   const notice = 'The Four Fundamentals framework and associated methodology are proprietary to Maverika Ltd, trading as Comet Innovations. © Maverika Ltd. All rights reserved.';
   assert.equal(ctx.legal.frameworkNotice, notice);
-  for (const page of ['index.html', 'what-we-do.html', 'four-fundamentals.html', 'insights/the-four-fundamentals.html', 'insights/where-is-ai-changing-your-economics.html']) {
+  for (const page of ['index.html', 'ai-transformation.html', 'four-fundamentals.html', 'insights/the-four-fundamentals.html', 'insights/where-is-ai-changing-your-economics.html']) {
     assert.ok(text(page).includes(notice), page);
   }
   assert.ok(fs.readFileSync(path.join(out, 'llms.txt'), 'utf8').includes(notice));
@@ -455,18 +463,19 @@ test('only London is presented as an office, in copy and in structured data', ()
     assert.doesNotMatch(text(page), /\b(Cairo|Dubai|Riyadh|Lagos)\b/, page);
     assert.doesNotMatch(JSON.stringify(graphOf(page)), /Cairo|Dubai/, page);
   }
-  assert.ok(text('about.html').includes('Comet Innovations is an AI Transformation & Venture Building firm based in London.'));
+  assert.ok(text('about.html').includes('Comet Innovations is an AI Transformation & Operating Services firm based in London.'));
   assert.ok(html('index.html').includes('London, United Kingdom'));
 });
 
 test('the main navigation follows the institutional structure, and every link resolves', () => {
   const nav = html('index.html').match(/<nav class="nav"[\s\S]*?<\/nav>/)[0];
   const labels = [...nav.matchAll(/<button type="button" aria-expanded="false" aria-controls="menu-[^"]+">([^<]+)<\/button>|<a (?:class="nav-cta" )?href="[^"]*">([^<]+)<\/a>(?=\s*(?:<div class="menu"|<a class="nav-cta"|<\/div>\s*<\/div><\/nav>))/g)].map(m => m[1] || m[2]);
-  assert.deepEqual(labels, ['What We Do', 'Industries', 'Our Thinking', 'About', 'Contact']);
+  assert.deepEqual(labels, ['AI Transformation', 'Operating Services', 'Industries', 'Insights', 'About', 'Contact']);
   const items = {
-    'menu-what-we-do': ['Advise', 'Educate', 'Engineer', 'Venture Building'],
-    'menu-industries': ['Private Equity', 'Government', 'Energy'],
-    'menu-our-thinking': ['The Four Fundamentals', 'Insights', 'Research &amp; Development'],
+    'menu-transformation': ['Overview', 'AI Strategy &amp; Economics', 'Operating Model Redesign', 'Executive Education', 'Venture Development', 'AI Engineering &amp; Deployment'],
+    'menu-operating': ['Overview', 'Customer Operations', 'Revenue Operations', 'Business Process Operations', 'Industry Workflows'],
+    'menu-industries': ['Overview', 'Private Equity', 'Government', 'Energy'],
+    'menu-insights': ['All Insights', 'The Four Fundamentals', 'Research &amp; Development'],
     'menu-about': ['Firm', 'People', 'Approach'],
   };
   for (const [id, expected] of Object.entries(items)) {
@@ -482,9 +491,10 @@ test('the main navigation follows the institutional structure, and every link re
 
 test('the current page is marked in the navigation', () => {
   assert.match(html('about.html'), /<div class="menu current"><button[^>]*>About<\/button>[\s\S]*?<a href="\/about" aria-current="page">Firm<\/a>/);
-  assert.match(html('value-creation.html'), /<div class="menu current"><button[^>]*>Our Thinking<\/button>/);
-  assert.match(html('insights/the-four-fundamentals.html'), /<a href="\/insights" aria-current="page">Insights<\/a>/);
-  assert.match(html(fileFor(ctx.insights[0].url)), /<a href="\/insights" aria-current="page">Insights<\/a>/);
+  assert.match(html('value-creation.html'), /<div class="menu current"><button[^>]*>Insights<\/button>/);
+  assert.match(html('operating-services.html'), /<div class="menu current"><button[^>]*>Operating Services<\/button>[\s\S]*?<a href="\/operating-services" aria-current="page">Overview<\/a>/);
+  assert.match(html('ai-transformation/engineering.html'), /<div class="menu current"><button[^>]*>AI Transformation<\/button>/);
+  assert.match(html('insights.html'), /<a href="\/insights" aria-current="page">All Insights<\/a>/);
 });
 
 // ---------- Metadata ----------
@@ -508,11 +518,11 @@ test('every indexable page has a unique title and description and a self-referen
 
 test('the specified titles and descriptions are used', () => {
   const expect = {
-    '/': ['AI Transformation & Venture Building | Comet Innovations', 'London-based AI transformation and venture building firm offering independent advisory, executive education and forward-deployed AI engineering.'],
-    '/what-we-do': ['AI Transformation Strategy & Services | Comet Innovations'],
-    '/advise': ['AI Strategy & Advisory Services | Comet Innovations'],
-    '/educate': ['AI Executive Education & Leadership Programmes | Comet Innovations'],
-    '/engineer': ['Forward-Deployed AI Engineering | Comet Innovations'],
+    '/': ['AI Transformation & Operating Services | Comet Innovations', 'Comet Innovations helps organisations improve business performance through AI: project-led AI transformation and recurring AI-native operating services.'],
+    '/ai-transformation': ['AI Transformation Services | Comet Innovations'],
+    '/operating-services': ['AI-Native Operating Services | Comet Innovations'],
+    '/ai-transformation/executive-education': ['AI Executive Education & Leadership Programmes | Comet Innovations'],
+    '/ai-transformation/engineering': ['AI Engineering & Deployment | Comet Innovations'],
     '/industries': ['AI for Private Equity, Government & Energy | Comet Innovations'],
     '/industries/private-equity': ['AI for Private Equity: Portfolio Value Creation | Comet Innovations'],
     '/industries/government': ['AI for Government & Public Sector | Comet Innovations'],
@@ -522,13 +532,13 @@ test('the specified titles and descriptions are used', () => {
     '/work-redesign': ['AI Work Redesign & Workforce Transformation | Comet Innovations'],
     '/operating-model': ['AI Operating Model & Governance | Comet Innovations'],
     '/venture-building': ['Corporate Venture Building & AI Ventures | Comet Innovations'],
-    '/insights': ['AI Transformation & Venture Building Insights | Comet Innovations'],
+    '/insights': ['AI Transformation & Operating Model Insights | Comet Innovations'],
     '/insights/where-is-ai-changing-your-economics': ['Where Is AI Changing Your Economics? | Comet Innovations'],
     '/insights/the-four-fundamentals': ['The Four Fundamentals of AI Transformation | Comet Innovations'],
     '/insights/what-should-you-build-next': ['What Should You Build Next? Corporate Venture Building | Comet'],
     '/research-and-development': ['AI Research: Stateful AI Orchestration | Comet Innovations'],
-    '/about': ['About Comet Innovations | AI Transformation & Venture Building'],
-    '/contact': ['Contact Comet Innovations | AI Transformation & Venture Building'],
+    '/about': ['About Comet Innovations | AI Transformation & Operating Services'],
+    '/contact': ['Contact Comet Innovations | AI Transformation & Operating Services'],
   };
   for (const [p, [title, description]] of Object.entries(expect)) {
     const doc = html(fileFor(p));
@@ -652,7 +662,7 @@ test('FAQPage markup exists only on About and matches the visible questions exac
 
 test('Service entities exist only on substantive service pages, provided by Comet', () => {
   const servicePages = metas.filter(p => graphOf(p.file).some(n => n['@type'] === 'Service')).map(p => p.path).sort();
-  assert.deepEqual(servicePages, ['/advise', '/educate', '/engineer']);
+  assert.deepEqual(servicePages, ['/ai-transformation', '/ai-transformation/engineering', '/ai-transformation/executive-education', '/operating-services']);
   for (const p of servicePages) {
     const service = graphOf(fileFor(p)).find(n => n['@type'] === 'Service');
     assert.equal(service.provider['@id'], `${SITE}/#organization`);
@@ -686,8 +696,8 @@ test('robots.txt allows search and AI search crawlers, blocks training crawlers,
 test('llms.txt maps the authoritative pages with canonical URLs', () => {
   const llms = fs.readFileSync(path.join(out, 'llms.txt'), 'utf8');
   assert.ok(llms.startsWith('# Comet Innovations'));
-  assert.ok(llms.includes('London-based AI Transformation & Venture Building firm'));
-  for (const p of ['/what-we-do', '/value-creation', '/work-redesign', '/operating-model', '/venture-building', '/research-and-development', '/about', ...ctx.insights.map(i => i.url)]) {
+  assert.ok(llms.includes('London-based AI Transformation & Operating Services firm'));
+  for (const p of ['/ai-transformation', '/operating-services', '/ai-transformation/executive-education', '/ai-transformation/engineering', '/value-creation', '/work-redesign', '/operating-model', '/venture-building', '/research-and-development', '/about', ...ctx.insights.map(i => i.url)]) {
     assert.ok(llms.includes(`(${SITE}${p})`), p);
   }
   assert.doesNotMatch(llms, /\[[A-Z ]+URL\]/);
@@ -703,7 +713,7 @@ test('IndexNow manifest fingerprints every indexable URL', () => {
 test('key concepts are defined in visible HTML, consistently', () => {
   const ff = 'The Four Fundamentals is Comet’s framework for examining where AI changes four core dimensions of a business: value, work, organisation and growth.';
   assert.ok(text('insights/the-four-fundamentals.html').includes(ff));
-  assert.ok(text('what-we-do.html').includes('Across our work, we examine how AI changes value, work, organisation and growth.'));
+  assert.ok(text('ai-transformation.html').includes('Across our work, we examine how AI changes value, work, organisation and growth.'));
 });
 
 test('British English is used throughout the visible copy', () => {
@@ -725,10 +735,10 @@ test('no conflicting company descriptions or unsupported superlatives', () => {
 
 test('the four Fundamentals pages sit beneath the framework and link to the services', () => {
   const expect = {
-    'value-creation': ['Value', 'How does AI change the economics of your business?', ['/advise', '/contact?topic=value-creation']],
-    'work-redesign': ['Work', 'When intelligence changes, work should change.', ['/engineer', '/contact?topic=work-redesign']],
-    'operating-model': ['Organisation', 'An intelligent organisation needs a different operating model.', ['/advise', '/educate']],
-    'venture-building': ['Growth', 'What becomes possible when the economics of building change?', ['/advise', '/engineer', '/contact?topic=venture-building']],
+    'value-creation': ['Value', 'How does AI change the economics of your business?', ['/ai-transformation', '/contact?topic=value-creation']],
+    'work-redesign': ['Work', 'When intelligence changes, work should change.', ['/contact?topic=work-redesign']],
+    'operating-model': ['Organisation', 'An intelligent organisation needs a different operating model.', ['/ai-transformation', '/ai-transformation/executive-education']],
+    'venture-building': ['Growth', 'What becomes possible when the economics of building change?', ['/ai-transformation', '/ai-transformation/engineering', '/contact?topic=venture-building']],
   };
   for (const [p, [name, lead, targets]] of Object.entries(expect)) {
     const doc = html(`${p}.html`);
@@ -745,7 +755,7 @@ test('the four Fundamentals pages sit beneath the framework and link to the serv
 
 test('the economics Insight links to the framework and every pillar', () => {
   const links = internalLinks('insights/where-is-ai-changing-your-economics.html').map(l => l.split('#')[0]);
-  for (const target of ['/insights/the-four-fundamentals', '/value-creation', '/work-redesign', '/operating-model', '/venture-building', '/advise']) {
+  for (const target of ['/insights/the-four-fundamentals', '/value-creation', '/work-redesign', '/operating-model', '/venture-building', '/ai-transformation']) {
     assert.ok(links.includes(target), target);
   }
   assert.ok(internalLinks('insights/what-should-you-build-next.html').includes('/venture-building'));
@@ -815,12 +825,14 @@ test('photography is referenced through the central slot registry', () => {
   for (const name of Object.keys(slots)) assert.ok(inventory.includes(`\`${name}\``), `inventory lacks ${name}`);
 });
 
-test('the homepage follows the editorial sequence with one opening action', () => {
+test('the homepage follows the agreed section order and opens with both offerings', () => {
   const home = html('index.html');
-  assert.match(home, /<h1[^>]*>AI is changing the fundamentals of business\.<\/h1>/);
+  assert.match(home, /<h1[^>]*>AI is changing the economics of business\.<\/h1>/);
   const opening = home.slice(home.indexOf('<header class="hero'), home.indexOf('</header>'));
-  assert.equal((opening.match(/<a /g) || []).length, 1, 'the opening carries a single action');
-  assert.ok(opening.includes('Helping organisations navigate, lead and build in the AI economy.'));
+  const actions = [...opening.matchAll(/<a [^>]*href="([^"]+)"/g)].map(m => m[1]);
+  assert.deepEqual(actions, ['/ai-transformation', '/operating-services'], 'the opening links to both offerings');
+  const order = ['outcomes', 'offerings', 'operating-services', 'markets-title', 'why-comet', 'fundamentals-title'].map(id => home.indexOf(`id="${id}"`));
+  assert.deepEqual([...order].sort((a, b) => a - b), order, 'sections appear in the agreed order');
   const marks = [...home.matchAll(/<p class="section-mark"><span>(\d\d)<\/span>/g)].map(m => m[1]);
   assert.deepEqual(marks, ['02', '03', '04', '05', '06', '07', '08']);
   for (const id of ['private-equity', 'government', 'energy']) assert.match(home, new RegExp(`id="${id}"[^>]*><h3><a href="/industries/${id}"`), `${id} is linked without hover`);
@@ -833,4 +845,13 @@ test('motion never hides text', () => {
   assert.match(layer, /\.js \.reveal\{opacity:1/);
   assert.match(layer, /prefers-reduced-motion:reduce/);
   assert.doesNotMatch(layer, /gradient|box-shadow|border-radius/);
+});
+
+test('no implied partnerships, retired pillar names or unsupported operating claims', () => {
+  for (const page of pages) {
+    const t = text(page);
+    assert.doesNotMatch(t, /\bAnthropic\b|\bHg\b/, `${page} names the strategic-context firms`);
+    assert.doesNotMatch(t, /\b(Advise|Educate|Engineer)\b/, `${page} uses a retired pillar name`);
+    assert.doesNotMatch(t, /\b(guaranteed|SLA of|\d+ clients|clients include)\b/i, `${page} makes an unsupported claim`);
+  }
 });

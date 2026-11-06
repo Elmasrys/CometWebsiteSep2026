@@ -11,11 +11,22 @@ const configuredSiteUrl = () =>
   process.env.SITE_URL || JSON.parse(fs.readFileSync(path.join(ROOT, 'src', 'content', 'site.json'), 'utf8')).url;
 
 /** Old URLs that map to a different page, one to one. `.html` suffixes are handled generically. */
-export const LEGACY_REDIRECTS = { '/rd': '/research-and-development', '/index': '/', '/diagnostic': '/advise' };
+// Retired paths map one to one onto their successors (the October 2026 service pages moved into AI Transformation).
+export const LEGACY_REDIRECTS = {
+  '/rd': '/research-and-development',
+  '/index': '/',
+  '/diagnostic': '/ai-transformation',
+  '/what-we-do': '/ai-transformation',
+  '/advise': '/ai-transformation',
+  '/educate': '/ai-transformation/executive-education',
+  '/engineer': '/ai-transformation/engineering',
+};
 
 export const TOPICS = {
-  advisory: 'An advisory engagement',
-  engineering: 'An engineering engagement',
+  transformation: 'An AI transformation requirement',
+  'operating-services': 'An operating services requirement',
+  advisory: 'AI strategy and economics',
+  engineering: 'AI engineering and deployment',
   'private-equity': 'Private equity',
   government: 'Government',
   energy: 'Energy',

@@ -2,7 +2,7 @@
 
 Generated from `src/content/images.json` by `node tools/image-inventory.mjs`. Do not edit by hand.
 
-**12 of 25 slots are live; 13 await approved photography.** Slots without photography keep their typographic composition, so nothing placeholder-like is published. The visual redesign is not final until these photographs are integrated and reviewed.
+**12 of 26 slots are live; 14 await approved photography.** Slots without photography keep their typographic composition, so nothing placeholder-like is published. The visual redesign is not final until these photographs are integrated and reviewed.
 
 ## How to add a photograph
 
@@ -21,19 +21,19 @@ Contemporary editorial, medium-format character, restrained saturation, neutral 
 | --- | --- | --- | --- | --- | --- |
 | Live | `home_opening` | `assets/source/gateway.jpg` | Home | 3:4 frame (master 16:10) | Master at least 2400 × 1500; existing 1586 × 992 accepted, 2400 × 1500 re-export preferred |
 | Live | `about_plate` | `assets/source/gateway.jpg` | About | fills hero plate (about 2:3) | Shares the Gateway master |
-| Live | `home_fundamentals` | `assets/source/fundamentals-architecture.jpg` | Home | 4:5 | 2000 × 2500 minimum |
-| Live | `industry_private_equity` | `assets/source/industry-private-equity.jpg` | Private Equity; Home section 04; Industries | 4:5 (hero) and 3:2 (home markets) | 2400 × 3000 minimum (subject centred so a 3:2 crop also works) |
-| Live | `industry_private_equity_detail` | `assets/source/industry-private-equity-detail.jpg` | Private Equity | 21:9 | 3000 × 1286 minimum |
-| Live | `industry_government` | `assets/source/industry-government.jpg` | Government; Home section 04; Industries | 3:2 | 2400 × 1600 minimum |
-| Live | `industry_government_detail` | `assets/source/industry-government-detail.jpg` | Government | 21:9 | 3000 × 1286 minimum |
-| Live | `industry_energy` | `assets/source/industry-energy.jpg` | Energy; Home section 04; Industries | 21:9 (hero) and 3:2 (home markets) | 3600 × 1543 minimum (subject centred for a 3:2 crop) |
-| Live | `industry_energy_detail` | `assets/source/industry-energy-detail.jpg` | Energy | 4:5 | 2000 × 2500 minimum |
-| Live | `advise_hero` | `assets/source/advise.jpg` | Advise | 4:5 | 2000 × 2500 minimum |
-| Awaiting | `advise_context` | `assets/source/advise-context.jpg` | Advise | 16:9 | 3000 × 1688 minimum |
-| Live | `educate_hero` | `assets/source/educate.jpg` | Educate | 16:9 | 3000 × 1688 minimum |
-| Awaiting | `educate_detail` | `assets/source/educate-detail.jpg` | Educate | 4:5 | 2000 × 2500 minimum |
-| Live | `engineer_hero` | `assets/source/engineer.jpg` | Engineer | 3:2 | 2400 × 1600 minimum |
-| Awaiting | `engineer_artefact` | `assets/source/engineer-artefact.png` | Engineer | 16:10 | 2560 × 1600 minimum |
+| Live | `home_fundamentals` | `assets/source/fundamentals-architecture.jpg` | Home (currently unused: the homepage Four Fundamentals section is typographic) | 4:5 | 2000 × 2500 minimum |
+| Live | `industry_private_equity` | `assets/source/industry-private-equity.jpg` | Private Equity; Home section 04 | 4:5 (hero) and 3:2 (home markets) | 2400 × 3000 minimum (subject centred so a 3:2 crop also works) |
+| Live | `industry_private_equity_detail` | `assets/source/industry-private-equity-detail.jpg` | Private Equity; Industries overview | 21:9 | 3000 × 1286 minimum |
+| Live | `industry_government` | `assets/source/industry-government.jpg` | Government; Home section 04 | 3:2 | 2400 × 1600 minimum |
+| Live | `industry_government_detail` | `assets/source/industry-government-detail.jpg` | Government; Industries overview | 21:9 | 3000 × 1286 minimum |
+| Live | `industry_energy` | `assets/source/industry-energy.jpg` | Energy; Home section 04 | 21:9 (hero) and 3:2 (home markets) | 3600 × 1543 minimum (subject centred for a 3:2 crop) |
+| Live | `industry_energy_detail` | `assets/source/industry-energy-detail.jpg` | Energy; Industries overview | 4:5 | 2000 × 2500 minimum |
+| Live | `transformation_hero` | `assets/source/advise.jpg` | AI Transformation | 4:5 | 2000 × 2500 minimum |
+| Awaiting | `transformation_context` | `assets/source/advise-context.jpg` | AI Transformation | 16:9 | 3000 × 1688 minimum |
+| Live | `education_hero` | `assets/source/educate.jpg` | Executive Education (AI Transformation) | 16:9 | 3000 × 1688 minimum |
+| Awaiting | `education_detail` | `assets/source/educate-detail.jpg` | Executive Education (AI Transformation) | 4:5 | 2000 × 2500 minimum |
+| Live | `engineering_hero` | `assets/source/engineer.jpg` | AI Engineering & Deployment (AI Transformation) | 3:2 | 2400 × 1600 minimum |
+| Awaiting | `engineering_artefact` | `assets/source/engineer-artefact.png` | AI Engineering & Deployment (AI Transformation) | 16:10 | 2560 × 1600 minimum |
 | Awaiting | `fundamentals_overview` | `assets/source/fundamentals-overview.jpg` | The Four Fundamentals | 21:9 | 3600 × 1543 minimum |
 | Awaiting | `fundamentals_value` | `assets/source/fundamentals-value.jpg` | The Four Fundamentals | 4:5 | 2000 × 2500 minimum |
 | Awaiting | `fundamentals_work` | `assets/source/fundamentals-work.jpg` | The Four Fundamentals | 4:5 | 2000 × 2500 minimum |
@@ -44,6 +44,7 @@ Contemporary editorial, medium-format character, restrained saturation, neutral 
 | Awaiting | `insight_economics` | `assets/source/insight-economics.jpg` | Home section 07; Insights | 3:2 | 2400 × 1600 minimum |
 | Awaiting | `insight_fundamentals` | `assets/source/insight-fundamentals.jpg` | Home section 07; Insights | 3:2 | 2400 × 1600 minimum |
 | Awaiting | `insight_build_next` | `assets/source/insight-build-next.jpg` | Home section 07; Insights | 3:2 | 2400 × 1600 minimum |
+| Awaiting | `operating_services_hero` | `assets/source/operating-services.jpg` | AI-Native Operating Services | 3:2 | 2400 × 1600 minimum |
 
 ## Slot briefs
 
@@ -69,7 +70,7 @@ Contemporary editorial, medium-format character, restrained saturation, neutral 
 
 ### `home_fundamentals` (live)
 
-- **Page:** Home
+- **Page:** Home (currently unused: the homepage Four Fundamentals section is typographic)
 - **Placement:** Section 05, The Four Fundamentals: tall image in the left columns beside the four questions
 - **Subject:** Contemporary monumental architecture with Egyptian proportions: tapered planes, a deep threshold or a colonnade in diffused daylight
 - **Composition:** Strong verticals, one dominant mass, generous negative space at top; no pyramids, temples or hieroglyphs
@@ -79,7 +80,7 @@ Contemporary editorial, medium-format character, restrained saturation, neutral 
 
 ### `industry_private_equity` (live)
 
-- **Page:** Private Equity; Home section 04; Industries
+- **Page:** Private Equity; Home section 04
 - **Placement:** Private Equity opening (image left half); featured image in the homepage markets section; Industries band
 - **Subject:** An operating business: a production floor, distribution centre or industrial workshop at work
 - **Composition:** People at work but not posed, depth through the space, calm light; no trading floors, skyscrapers or boardrooms
@@ -89,7 +90,7 @@ Contemporary editorial, medium-format character, restrained saturation, neutral 
 
 ### `industry_private_equity_detail` (live)
 
-- **Page:** Private Equity
+- **Page:** Private Equity; Industries overview
 - **Placement:** Full-bleed pause between 'An investment perspective on AI' and 'Where we focus'
 - **Subject:** Portfolio-company operations at scale: a logistics yard, plant exterior or line seen from above
 - **Composition:** Wide, orderly, operational; horizon or structure on a third; no logos
@@ -99,7 +100,7 @@ Contemporary editorial, medium-format character, restrained saturation, neutral 
 
 ### `industry_government` (live)
 
-- **Page:** Government; Home section 04; Industries
+- **Page:** Government; Home section 04
 - **Placement:** Government opening (offset image beneath the title); homepage markets; Industries band
 - **Subject:** A civic institution in use: the hall of a public building, a library or a transport concourse with people
 - **Composition:** Institutional architecture with human scale; no flags, politicians, handshakes or ceremonies
@@ -109,7 +110,7 @@ Contemporary editorial, medium-format character, restrained saturation, neutral 
 
 ### `industry_government_detail` (live)
 
-- **Page:** Government
+- **Page:** Government; Industries overview
 - **Placement:** Full-bleed pause before 'Responsible deployment by design'
 - **Subject:** Cities and urban systems: a city seen at dusk, a rail interchange or public infrastructure
 - **Composition:** Systemic and calm; repeating structure; avoid landmarks that pin the image to one country
@@ -119,7 +120,7 @@ Contemporary editorial, medium-format character, restrained saturation, neutral 
 
 ### `industry_energy` (live)
 
-- **Page:** Energy; Home section 04; Industries
+- **Page:** Energy; Home section 04
 - **Placement:** Energy opening: full-bleed panorama under the title; homepage markets; Industries band
 - **Subject:** Energy infrastructure at scale: a substation, transmission corridor, turbine hall or generation site
 - **Composition:** Scale and order, people small in frame for scale where possible; no stock wind-farm sunsets
@@ -129,7 +130,7 @@ Contemporary editorial, medium-format character, restrained saturation, neutral 
 
 ### `industry_energy_detail` (live)
 
-- **Page:** Energy
+- **Page:** Energy; Industries overview
 - **Placement:** Beside 'Engineering in operationally sensitive environments'
 - **Subject:** A control environment or operator at physical assets: control room, switchgear, plant walkway
 - **Composition:** Operational reality, screens may show but must not be readable or invented
@@ -137,9 +138,9 @@ Contemporary editorial, medium-format character, restrained saturation, neutral 
 - **Master:** `assets/source/industry-energy-detail.jpg`, 2000 × 2500 minimum; outputs `public/images/industry-energy-detail-{960,1122}.{avif,webp}` and `.jpg` at 1122px
 - **Credit and licence:** Supplied by Comet Innovations (curated collection, October 2026)
 
-### `advise_hero` (live)
+### `transformation_hero` (live)
 
-- **Page:** Advise
+- **Page:** AI Transformation
 - **Placement:** Opening: portrait image in the right columns beside the title
 - **Subject:** Strategic judgement: an authentic professional portrait of Comet's founder, or an executive environment without identifiable clients
 - **Composition:** Quiet, considered, eye level; never a staged meeting presented as a Comet engagement
@@ -147,19 +148,19 @@ Contemporary editorial, medium-format character, restrained saturation, neutral 
 - **Master:** `assets/source/advise.jpg`, 2000 × 2500 minimum; outputs `public/images/advise-{960,1122}.{avif,webp}` and `.jpg` at 1122px
 - **Credit and licence:** Supplied by Comet Innovations (curated collection, October 2026)
 
-### `advise_context` (awaiting photography)
+### `transformation_context` (awaiting photography)
 
-- **Page:** Advise
-- **Placement:** Full-bleed pause after 'Strategic questions, not technology prescriptions.'
+- **Page:** AI Transformation
+- **Placement:** Full-bleed pause after the five capabilities
 - **Subject:** Organisational complexity: a headquarters atrium or working floor seen from height
 - **Composition:** Layers of structure and people, restrained, no logos
 - **Aspect ratio:** 16:9; **focal point:** 50% 50%
 - **Master:** `assets/source/advise-context.jpg`, 3000 × 1688 minimum; outputs `public/images/advise-context-{1280,2400}.{avif,webp}` and `.jpg` at 2400px
 - **Credit and licence:** to be recorded on delivery
 
-### `educate_hero` (live)
+### `education_hero` (live)
 
-- **Page:** Educate
+- **Page:** Executive Education (AI Transformation)
 - **Placement:** Opening: wide image under the title, full width
 - **Subject:** Human presence in executive learning: leaders in focused discussion around a table or in a seminar room
 - **Composition:** Natural light, engaged expressions, no slides or logos; only authorised Comet imagery may be presented as a Comet programme
@@ -167,9 +168,9 @@ Contemporary editorial, medium-format character, restrained saturation, neutral 
 - **Master:** `assets/source/educate.jpg`, 3000 × 1688 minimum; outputs `public/images/educate-{1280,1672}.{avif,webp}` and `.jpg` at 1672px
 - **Credit and licence:** Supplied by Comet Innovations (curated collection, October 2026)
 
-### `educate_detail` (awaiting photography)
+### `education_detail` (awaiting photography)
 
-- **Page:** Educate
+- **Page:** Executive Education (AI Transformation)
 - **Placement:** Beside 'How we teach.'
 - **Subject:** A single participant listening, writing or speaking; hands and notes acceptable
 - **Composition:** Intimate, shallow depth of field, warm-neutral light
@@ -177,9 +178,9 @@ Contemporary editorial, medium-format character, restrained saturation, neutral 
 - **Master:** `assets/source/educate-detail.jpg`, 2000 × 2500 minimum; outputs `public/images/educate-detail-{960,1600}.{avif,webp}` and `.jpg` at 1600px
 - **Credit and licence:** to be recorded on delivery
 
-### `engineer_hero` (live)
+### `engineering_hero` (live)
 
-- **Page:** Engineer
+- **Page:** AI Engineering & Deployment (AI Transformation)
 - **Placement:** Opening: offset image beneath the title
 - **Subject:** Technical work in progress: engineers at workstations, a whiteboard architecture session or hardware on a bench
 - **Composition:** Precise and practical; screens unreadable unless showing genuine Comet work
@@ -187,9 +188,9 @@ Contemporary editorial, medium-format character, restrained saturation, neutral 
 - **Master:** `assets/source/engineer.jpg`, 2400 × 1600 minimum; outputs `public/images/engineer-{960,1536}.{avif,webp}` and `.jpg` at 1536px
 - **Credit and licence:** Supplied by Comet Innovations (curated collection, October 2026)
 
-### `engineer_artefact` (awaiting photography)
+### `engineering_artefact` (awaiting photography)
 
-- **Page:** Engineer
+- **Page:** AI Engineering & Deployment (AI Transformation)
 - **Placement:** Beside 'Our engineering capabilities'
 - **Subject:** A genuine Comet artefact: a real product interface, architecture diagram or demonstration still
 - **Composition:** Only authentic material; never a mock-up of a fictional project; set alt text to describe it
@@ -295,4 +296,14 @@ Contemporary editorial, medium-format character, restrained saturation, neutral 
 - **Composition:** Editorial cover, single idea
 - **Aspect ratio:** 3:2; **focal point:** 50% 50%
 - **Master:** `assets/source/insight-build-next.jpg`, 2400 × 1600 minimum; outputs `public/images/insight-build-next-{960,1600}.{avif,webp}` and `.jpg` at 1600px
+- **Credit and licence:** to be recorded on delivery
+
+### `operating_services_hero` (awaiting photography)
+
+- **Page:** AI-Native Operating Services
+- **Placement:** Opening: offset image beneath the title
+- **Subject:** Operational reality: a real customer-operations, service or shared-services team at work, ideally Comet's own operation once established
+- **Composition:** Natural light, people at work with real systems; no posed stock, no screens presented as client work, no AI imagery
+- **Aspect ratio:** 3:2; **focal point:** 50% 50%
+- **Master:** `assets/source/operating-services.jpg`, 2400 × 1600 minimum; outputs `public/images/operating-services-{960,1600,2400}.{avif,webp}` and `.jpg` at 2400px
 - **Credit and licence:** to be recorded on delivery

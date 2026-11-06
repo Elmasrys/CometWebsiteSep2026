@@ -49,7 +49,7 @@
       "focal": "50% 50%",
       "sizes": "(max-width: 980px) 100vw, 40vw",
       "alt": "",
-      "page": "Home",
+      "page": "Home (currently unused: the homepage Four Fundamentals section is typographic)",
       "placement": "Section 05, The Four Fundamentals: tall image in the left columns beside the four questions",
       "dimensions": "2000 × 2500 minimum",
       "subject": "Contemporary monumental architecture with Egyptian proportions: tapered planes, a deep threshold or a colonnade in diffused daylight",
@@ -67,7 +67,7 @@
       "focal": "38% 34%",
       "sizes": "(max-width: 980px) 100vw, 50vw",
       "alt": "",
-      "page": "Private Equity; Home section 04; Industries",
+      "page": "Private Equity; Home section 04",
       "placement": "Private Equity opening (image left half); featured image in the homepage markets section; Industries band",
       "dimensions": "2400 × 3000 minimum (subject centred so a 3:2 crop also works)",
       "subject": "An operating business: a production floor, distribution centre or industrial workshop at work",
@@ -85,7 +85,7 @@
       "focal": "50% 55%",
       "sizes": "100vw",
       "alt": "",
-      "page": "Private Equity",
+      "page": "Private Equity; Industries overview",
       "placement": "Full-bleed pause between 'An investment perspective on AI' and 'Where we focus'",
       "dimensions": "3000 × 1286 minimum",
       "subject": "Portfolio-company operations at scale: a logistics yard, plant exterior or line seen from above",
@@ -103,7 +103,7 @@
       "focal": "42% 62%",
       "sizes": "(max-width: 980px) 100vw, 58vw",
       "alt": "",
-      "page": "Government; Home section 04; Industries",
+      "page": "Government; Home section 04",
       "placement": "Government opening (offset image beneath the title); homepage markets; Industries band",
       "dimensions": "2400 × 1600 minimum",
       "subject": "A civic institution in use: the hall of a public building, a library or a transport concourse with people",
@@ -121,7 +121,7 @@
       "focal": "62% 50%",
       "sizes": "100vw",
       "alt": "",
-      "page": "Government",
+      "page": "Government; Industries overview",
       "placement": "Full-bleed pause before 'Responsible deployment by design'",
       "dimensions": "3000 × 1286 minimum",
       "subject": "Cities and urban systems: a city seen at dusk, a rail interchange or public infrastructure",
@@ -139,7 +139,7 @@
       "focal": "85% 50%",
       "sizes": "100vw",
       "alt": "",
-      "page": "Energy; Home section 04; Industries",
+      "page": "Energy; Home section 04",
       "placement": "Energy opening: full-bleed panorama under the title; homepage markets; Industries band",
       "dimensions": "3600 × 1543 minimum (subject centred for a 3:2 crop)",
       "subject": "Energy infrastructure at scale: a substation, transmission corridor, turbine hall or generation site",
@@ -157,14 +157,14 @@
       "focal": "52% 45%",
       "sizes": "(max-width: 980px) 100vw, 40vw",
       "alt": "",
-      "page": "Energy",
+      "page": "Energy; Industries overview",
       "placement": "Beside 'Engineering in operationally sensitive environments'",
       "dimensions": "2000 × 2500 minimum",
       "subject": "A control environment or operator at physical assets: control room, switchgear, plant walkway",
       "composition": "Operational reality, screens may show but must not be readable or invented",
       "credit": "Supplied by Comet Innovations (curated collection, October 2026)"
     },
-    "advise_hero": {
+    "transformation_hero": {
       "file": "advise",
       "master": "advise.jpg",
       "widths": [
@@ -175,14 +175,14 @@
       "focal": "56% 30%",
       "sizes": "(max-width: 980px) 100vw, 42vw",
       "alt": "",
-      "page": "Advise",
+      "page": "AI Transformation",
       "placement": "Opening: portrait image in the right columns beside the title",
       "dimensions": "2000 × 2500 minimum",
       "subject": "Strategic judgement: an authentic professional portrait of Comet's founder, or an executive environment without identifiable clients",
       "composition": "Quiet, considered, eye level; never a staged meeting presented as a Comet engagement",
       "credit": "Supplied by Comet Innovations (curated collection, October 2026)"
     },
-    "advise_context": {
+    "transformation_context": {
       "file": "advise-context",
       "master": "advise-context.jpg",
       "widths": [
@@ -193,14 +193,14 @@
       "focal": "50% 50%",
       "sizes": "100vw",
       "alt": "",
-      "page": "Advise",
-      "placement": "Full-bleed pause after 'Strategic questions, not technology prescriptions.'",
+      "page": "AI Transformation",
+      "placement": "Full-bleed pause after the five capabilities",
       "dimensions": "3000 × 1688 minimum",
       "subject": "Organisational complexity: a headquarters atrium or working floor seen from height",
       "composition": "Layers of structure and people, restrained, no logos",
       "credit": ""
     },
-    "educate_hero": {
+    "education_hero": {
       "file": "educate",
       "master": "educate.jpg",
       "widths": [
@@ -211,14 +211,14 @@
       "focal": "46% 40%",
       "sizes": "100vw",
       "alt": "",
-      "page": "Educate",
+      "page": "Executive Education (AI Transformation)",
       "placement": "Opening: wide image under the title, full width",
       "dimensions": "3000 × 1688 minimum",
       "subject": "Human presence in executive learning: leaders in focused discussion around a table or in a seminar room",
       "composition": "Natural light, engaged expressions, no slides or logos; only authorised Comet imagery may be presented as a Comet programme",
       "credit": "Supplied by Comet Innovations (curated collection, October 2026)"
     },
-    "educate_detail": {
+    "education_detail": {
       "file": "educate-detail",
       "master": "educate-detail.jpg",
       "widths": [
@@ -229,14 +229,14 @@
       "focal": "50% 40%",
       "sizes": "(max-width: 980px) 100vw, 40vw",
       "alt": "",
-      "page": "Educate",
+      "page": "Executive Education (AI Transformation)",
       "placement": "Beside 'How we teach.'",
       "dimensions": "2000 × 2500 minimum",
       "subject": "A single participant listening, writing or speaking; hands and notes acceptable",
       "composition": "Intimate, shallow depth of field, warm-neutral light",
       "credit": ""
     },
-    "engineer_hero": {
+    "engineering_hero": {
       "file": "engineer",
       "master": "engineer.jpg",
       "widths": [
@@ -247,14 +247,14 @@
       "focal": "52% 40%",
       "sizes": "(max-width: 980px) 100vw, 58vw",
       "alt": "",
-      "page": "Engineer",
+      "page": "AI Engineering & Deployment (AI Transformation)",
       "placement": "Opening: offset image beneath the title",
       "dimensions": "2400 × 1600 minimum",
       "subject": "Technical work in progress: engineers at workstations, a whiteboard architecture session or hardware on a bench",
       "composition": "Precise and practical; screens unreadable unless showing genuine Comet work",
       "credit": "Supplied by Comet Innovations (curated collection, October 2026)"
     },
-    "engineer_artefact": {
+    "engineering_artefact": {
       "file": "engineer-artefact",
       "master": "engineer-artefact.png",
       "widths": [
@@ -265,7 +265,7 @@
       "focal": "50% 50%",
       "sizes": "(max-width: 980px) 100vw, 60vw",
       "alt": "Comet engineering artefact",
-      "page": "Engineer",
+      "page": "AI Engineering & Deployment (AI Transformation)",
       "placement": "Beside 'Our engineering capabilities'",
       "dimensions": "2560 × 1600 minimum",
       "subject": "A genuine Comet artefact: a real product interface, architecture diagram or demonstration still",
@@ -455,6 +455,25 @@
       "composition": "Editorial cover, single idea",
       "credit": "",
       "insight": "what-should-you-build-next"
+    },
+    "operating_services_hero": {
+      "file": "operating-services",
+      "master": "operating-services.jpg",
+      "widths": [
+        960,
+        1600,
+        2400
+      ],
+      "ratio": "3:2",
+      "focal": "50% 50%",
+      "sizes": "(max-width: 980px) 100vw, 75vw",
+      "alt": "",
+      "page": "AI-Native Operating Services",
+      "placement": "Opening: offset image beneath the title",
+      "dimensions": "2400 × 1600 minimum",
+      "subject": "Operational reality: a real customer-operations, service or shared-services team at work, ideally Comet's own operation once established",
+      "composition": "Natural light, people at work with real systems; no posed stock, no screens presented as client work, no AI imagery",
+      "credit": ""
     }
   }
 }

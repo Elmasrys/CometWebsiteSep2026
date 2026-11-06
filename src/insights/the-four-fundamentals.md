@@ -12,8 +12,8 @@
   "related": "what-should-you-build-next",
   "cta": {
     "lead": "Explore the Four Fundamentals.",
-    "label": "What We Do",
-    "url": "/what-we-do.html"
+    "label": "AI Transformation",
+    "url": "/ai-transformation"
   },
   "seo": {
     "title": "The Four Fundamentals of AI Transformation | Comet Innovations",

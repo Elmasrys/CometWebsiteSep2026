@@ -50,6 +50,7 @@ Set these variables so the contact form can email enquiries through [Resend](htt
 ## URLs, metadata and search
 
 - Public URLs are clean (`/about`, `/insights/the-four-fundamentals`). `.html` URLs, trailing slashes, `/rd` and the bare domain redirect permanently.
+- The two offerings live at `/ai-transformation` (with `/ai-transformation/executive-education` and `/ai-transformation/engineering`) and `/operating-services`. The retired service pages redirect permanently: `/advise` and `/what-we-do` to `/ai-transformation`, `/educate` to `/ai-transformation/executive-education`, `/engineer` to `/ai-transformation/engineering` (see `LEGACY_REDIRECTS` in `app.js`).
 - Each page declares its exact `title`, `description`, search `intent`, `ogImage`, breadcrumb `parent` and `schema` in its `<!--meta -->` header. Insights declare theirs under `seo` in the front matter. Set `modified` on an Insight only after a substantive change.
 - The build writes `sitemap.xml`, `robots.txt`, `llms.txt` and a per-page JSON-LD graph. The crawler policy lives in `site.json`.
 - After changing a title or adding an Insight, regenerate the social images with `node tools/generate-og.mjs`.

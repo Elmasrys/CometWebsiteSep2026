@@ -50,8 +50,8 @@ main:focus{outline:none}
 .nav.scrolled{border-bottom-color:rgba(16,16,16,.22)}
 .nav-inner{height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:24px}
 .brand img{width:148px}
-.nav-links{display:flex;gap:30px;align-items:center;font-size:11px;letter-spacing:.2em;text-transform:uppercase}
-.nav-links>a{color:var(--graphite);padding:6px 0;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
+.nav-links{display:flex;gap:28px;align-items:center;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.nav-links>a{color:var(--graphite);padding:12px 0;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
 .nav-links>a:hover{color:var(--carbon)}
 .nav-links>a[aria-current]:not(.nav-cta){color:var(--carbon);border-bottom-color:var(--ember)}
 .nav-cta{display:inline-flex;align-items:center;white-space:nowrap;flex-shrink:0;border:1px solid currentColor;border-radius:0;padding:11px 18px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;transition:background .25s,color .25s,border-color .25s}
@@ -59,7 +59,7 @@ main:focus{outline:none}
 .nav .nav-cta:hover,.nav .nav-cta[aria-current]{background:var(--carbon);color:var(--chalk)}
 .nav-toggle{display:none;background:none;border:1px solid var(--carbon);border-radius:0;padding:10px 18px;color:var(--carbon);font-size:11px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer}
 .menu{position:relative}
-.menu>button{background:none;border:0;padding:6px 0;color:var(--graphite);font-size:inherit;letter-spacing:inherit;text-transform:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:8px;border-bottom:1px solid transparent}
+.menu>button{background:none;border:0;padding:12px 0;color:var(--graphite);font-size:inherit;letter-spacing:inherit;text-transform:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:8px;border-bottom:1px solid transparent}
 .menu>button:after{content:"";width:5px;height:5px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .2s}
 .menu>button:hover,.menu.current>button,.menu:has([aria-current])>button{color:var(--carbon)}
 .menu.current>button,.menu:has([aria-current])>button{border-bottom-color:var(--ember)}
@@ -486,7 +486,7 @@ dfn{font-style:normal;font-weight:600}
 
 /* ---------- Responsive ---------- */
 @media(max-width:1200px) and (min-width:981px){
- .nav-links{gap:22px}
+ .nav-links{gap:18px;font-size:11px;letter-spacing:.1em}
 }
 @media(max-width:980px){
  :root{--nav-h:68px}
@@ -834,7 +834,7 @@ body{font-size:17px}
 .has-media .market-item{grid-template-columns:1fr}
 .market-item h3{font-family:var(--serif);font-weight:400;font-size:clamp(31px,3.9vw,63px);line-height:.92;letter-spacing:-.022em;margin:0;grid-row:span 2}
 .has-media .market-item h3{grid-row:auto;font-size:clamp(30px,3.3vw,52px)}
-.market-item h3 a,.publication-text h3 a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.12em;text-decoration-color:transparent;transition:text-decoration-color .4s var(--ease)}
+.market-item h3 a,.publication-text :is(h3,h4) a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.12em;text-decoration-color:transparent;transition:text-decoration-color .4s var(--ease)}
 .market-item h3 a:hover,.market-item h3 a:focus-visible{text-decoration-color:currentColor}
 .market-item .market-lead{font-family:var(--serif);font-style:italic;font-size:clamp(21px,1.7vw,25px);line-height:1.25;color:var(--black);margin:0}
 .market-item p{margin:0;color:var(--graphite);max-width:52ch}
@@ -880,9 +880,9 @@ body{font-size:17px}
 .publication-no:before{content:counter(pub,decimal-leading-zero)}
 .publication-no{grid-column:1/span 1;margin:0;font-size:11px;letter-spacing:.2em;color:var(--graphite);font-variant-numeric:tabular-nums}
 .publication-text{grid-column:2/span 7}
-.publication-text h3{font-family:var(--serif);font-weight:400;font-size:clamp(24px,2.5vw,39px);line-height:1.04;letter-spacing:-.012em;margin:10px 0 12px}
-.publication-text h3 a:after{content:"";position:absolute;inset:0}
-.publication:hover h3 a,.publication h3 a:focus-visible{text-decoration-color:currentColor}
+.publication-text :is(h3,h4){font-family:var(--serif);font-weight:400;font-size:clamp(24px,2.5vw,39px);line-height:1.04;letter-spacing:-.012em;margin:10px 0 12px}
+.publication-text :is(h3,h4) a:after{content:"";position:absolute;inset:0}
+.publication:hover :is(h3,h4) a,.publication :is(h3,h4) a:focus-visible{text-decoration-color:currentColor}
 .publication-text p:not(.eyebrow){margin:0;color:var(--graphite);max-width:60ch}
 .publication .insight-meta{grid-column:10/span 3;margin:0;font-size:13px;color:var(--stone)}
 .publication.has-cover .publication-cover{grid-column:1/span 3;grid-row:span 2;aspect-ratio:3/2;align-self:start}
@@ -957,3 +957,160 @@ body{font-size:17px}
 @media(max-width:640px){
  .ratio-21x9,.ratio-16x9{aspect-ratio:4/3}
 }
+
+/* =====================================================================
+   Commercial architecture: outcomes, offerings, operating services.
+   Strategic statements stay in the serif; operational detail (labels,
+   workflow steps, responsibilities, measures) is set in Inter.
+   ===================================================================== */
+.fn{font-family:var(--sans)}
+
+/* Four economic outcomes: a ruled two-by-two, never boxed */
+.outcomes{list-style:none;margin:clamp(40px,5vw,72px) 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--line-strong)}
+.outcomes li{padding:clamp(28px,3vw,44px) clamp(24px,3vw,48px) clamp(28px,3vw,44px) 0;border-bottom:1px solid var(--line)}
+.outcomes li:nth-child(even){padding-left:clamp(24px,3vw,48px);border-left:1px solid var(--line)}
+.outcomes h3{font-family:var(--serif);font-weight:400;font-size:clamp(28px,2.6vw,40px);line-height:1.05;margin:0 0 12px}
+.outcomes p{margin:0;color:var(--graphite);max-width:46ch}
+.outcomes-note{margin:24px 0 0;font-size:14px;color:var(--stone)}
+
+/* Two offerings side by side */
+.offerings{margin-top:clamp(40px,5vw,72px);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--gutter)}
+.offering{border-top:1px solid var(--line-strong);padding-top:28px;display:flex;flex-direction:column}
+.offering-model{margin:0;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--graphite)}
+.offering h3{font-family:var(--serif);font-weight:400;font-size:clamp(36px,3.8vw,58px);line-height:.98;letter-spacing:-.018em;margin:14px 0 16px}
+.offering h3 a:hover{color:var(--graphite)}
+.offering-lead{font-family:var(--serif);font-style:italic;font-size:clamp(21px,1.8vw,26px);line-height:1.25;color:var(--black);margin:0 0 14px}
+.offering>p:not(.offering-model):not(.offering-lead):not(.ledger-action){margin:0;color:var(--graphite);max-width:52ch}
+.offering-list{list-style:none;margin:24px 0 0;padding:0;border-top:1px solid var(--line)}
+.offering-list a{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--carbon)}
+.offering-list a:after{content:"\2192";color:var(--stone);transition:transform .3s var(--ease)}
+.offering-list a:hover:after{transform:translateX(3px)}
+.offering .ledger-action{margin-top:auto;padding-top:28px}
+
+/* Engineering engagement compared with an operating service */
+.compare{margin-top:clamp(40px,5vw,64px);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--gutter)}
+.compare-col{border-top:1px solid rgba(255,255,255,.7);padding-top:24px}
+.compare-label{margin:0;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.compare-col h3{font-family:var(--sans);font-weight:500;font-size:clamp(19px,1.6vw,23px);line-height:1.3;margin:12px 0 14px}
+.compare-col ul{margin:0;padding:0 0 0 18px;color:var(--on-dark)}
+.compare-col li+li{margin-top:8px}
+:not(.dark)>.shell>.compare .compare-col,.compare.light .compare-col{border-top-color:var(--line-strong)}
+.compare.light .compare-label{color:var(--graphite)}
+.compare.light .compare-col ul{color:var(--graphite)}
+
+/* Workflow strip: how an operating service handles work */
+.flow{list-style:none;margin:clamp(40px,5vw,64px) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));counter-reset:flow}
+.flow li{counter-increment:flow;position:relative;padding:14px 24px 0 0;border-top:1px solid currentColor}
+.flow li:before{content:counter(flow,decimal-leading-zero);display:block;font-size:11px;letter-spacing:.16em;color:var(--stone)}
+.dark .flow li:before{color:var(--gold)}
+.flow-step{display:block;font-family:var(--sans);font-weight:500;font-size:16px;margin:6px 0 6px}
+.flow-note{display:block;font-size:15px;line-height:1.5;color:var(--graphite)}
+.dark .flow-note{color:var(--on-dark)}
+
+.practice-examples{margin-top:clamp(48px,6vw,80px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gutter);row-gap:24px}
+.practice-title{grid-column:1/span 4;font-family:var(--sans);font-weight:500;font-size:13px;letter-spacing:.16em;text-transform:uppercase;margin:0;color:var(--gold)}
+.practice-list{grid-column:5/span 8;list-style:none;margin:0;padding:0;border-top:1px solid var(--line-dark)}
+.practice-list a{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line-dark);color:var(--white)}
+.practice-list a:after{content:"\2192";color:var(--gold)}
+.status-note{grid-column:5/span 8;margin:0;font-size:15px;line-height:1.6;color:var(--on-dark);max-width:64ch}
+.status-note strong{color:var(--white);font-weight:500}
+
+/* The Four Fundamentals as a quiet strip of questions */
+.fundamental-strip{list-style:none;margin:clamp(32px,4vw,56px) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--gutter);border-top:1px solid var(--line-strong)}
+.fundamental-strip li{padding-top:20px}
+.fundamental-strip h3{font-family:var(--serif);font-weight:400;font-size:clamp(22px,1.9vw,28px);line-height:1.15;margin:10px 0 0;max-width:16ch}
+.perspective-insights{margin-top:clamp(64px,8vw,112px)}
+.perspective-insights .publication-index{margin-top:20px}
+
+@media(max-width:980px){
+ .outcomes,.offerings,.compare,.flow,.fundamental-strip,.practice-examples{grid-template-columns:1fr}
+ .outcomes li,.outcomes li:nth-child(even){padding:24px 0;border-left:0}
+ .offering+.offering{margin-top:48px}
+ .compare-col+.compare-col{margin-top:32px}
+ .flow li{padding:20px 0 24px}
+ .practice-title,.practice-list,.status-note{grid-column:1/-1}
+ .fundamental-strip li{padding:18px 0;border-bottom:1px solid var(--line)}
+}
+
+/* Capability and area rows: name and lead on the left, detail on the right */
+.capability-list,.area-list{margin-top:clamp(40px,5vw,72px);border-top:1px solid var(--line-strong)}
+.dark .capability-list,.dark .area-list{border-top-color:rgba(255,255,255,.7)}
+.capability,.area{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gutter);row-gap:20px;padding:clamp(36px,4.4vw,60px) 0;border-bottom:1px solid var(--line);scroll-margin-top:calc(var(--nav-h) + 16px)}
+.dark .capability,.dark .area{border-bottom-color:var(--line-dark)}
+.capability-head,.area-head{grid-column:1/span 5}
+.capability-body,.area-body{grid-column:7/span 6}
+.capability h3{font-family:var(--serif);font-weight:400;font-size:clamp(32px,3.2vw,48px);line-height:1;letter-spacing:-.015em;margin:0 0 14px}
+.capability-lead{font-family:var(--serif);font-style:italic;font-size:clamp(20px,1.7vw,25px);line-height:1.25;margin:0;color:var(--black)}
+.area h3{font-family:var(--sans);font-weight:500;font-size:clamp(22px,2vw,28px);line-height:1.15;letter-spacing:-.005em;margin:0 0 12px}
+.area-lead{margin:0;font-size:17px;line-height:1.55;color:var(--graphite);max-width:40ch}
+.capability-body>p,.area-body>p{margin:0 0 14px;color:var(--graphite)}
+.capability-label{font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--graphite);margin:24px 0 10px}
+.capability-body>.capability-label:first-child,.area-body>.capability-label:first-child{margin-top:0}
+.capability-items,.measure-list{list-style:none;margin:0 0 8px;padding:0;border-top:1px solid var(--line)}
+.capability-items li,.measure-list li{padding:9px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.45;color:var(--carbon)}
+.area-boundary{font-size:15px;line-height:1.55;margin-top:20px!important;padding-left:16px;border-left:2px solid currentColor}
+.area-boundary strong{font-weight:500}
+.area-sectors{display:grid;grid-template-columns:1fr;gap:8px}
+.area-sectors .capability-label{margin-top:16px}
+.area-sectors a{text-decoration:underline;text-underline-offset:3px}
+.dark .capability-lead,.dark .area h3{color:var(--white)}
+.dark .area-lead,.dark .capability-body>p,.dark .area-body>p{color:var(--on-dark)}
+.dark .capability-label{color:var(--gold)}
+.dark .capability-items,.dark .capability-items li{border-color:var(--line-dark)}
+.dark .capability-items li{color:var(--white)}
+.dark .area-boundary{color:var(--on-dark);border-left-color:rgba(255,255,255,.6)}
+.dark .area-boundary strong{color:var(--white)}
+
+/* Operating services: functional titles, status, tables and measures in Inter */
+.fn-title{font-family:var(--sans);font-weight:500;font-size:13px;letter-spacing:.16em;text-transform:uppercase;margin:0;color:var(--graphite)}
+.ops-status{padding:clamp(56px,6vw,96px) 0;border-top:1px solid var(--line)}
+.status-list{margin:0;border-top:1px solid var(--line-strong)}
+.status-list>div{display:grid;grid-template-columns:minmax(0,.3fr) minmax(0,.7fr);gap:8px 24px;padding:18px 0;border-bottom:1px solid var(--line)}
+.status-list dt{font-family:var(--sans);font-weight:500;font-size:15px}
+.status-list dd{margin:0;color:var(--graphite);font-size:16px;line-height:1.6}
+.status-list a{text-decoration:underline;text-underline-offset:3px}
+.role-table{width:100%;border-collapse:collapse;margin-top:clamp(40px,5vw,64px);font-size:15px;line-height:1.5}
+.role-table caption{text-align:left;font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--graphite);padding-bottom:12px}
+.role-table th,.role-table td{text-align:left;vertical-align:top;padding:14px 16px 14px 0;border-bottom:1px solid var(--line)}
+.role-table thead th{font-weight:500;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);border-bottom:1px solid var(--line-strong)}
+.role-table tbody th{font-weight:500;width:34%;color:var(--carbon)}
+.role-table td{color:var(--graphite)}
+.responsibility-table{margin-top:8px}
+.responsibility-table tbody th{width:70%;font-weight:400}
+.responsibility-table td{font-weight:500;color:var(--carbon)}
+.compare-caveat{margin:32px 0 0;max-width:64ch;color:var(--graphite)}
+.measure-list{display:grid;grid-template-columns:1fr 1fr;column-gap:24px;margin-bottom:20px}
+
+@media(max-width:980px){
+ .capability,.area{grid-template-columns:1fr}
+ .capability-head,.area-head,.capability-body,.area-body{grid-column:1/-1}
+ .status-list>div{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+ .measure-list{grid-template-columns:1fr}
+ .role-table tbody th{width:auto}
+ .role-table,.role-table tbody,.role-table tr,.role-table th,.role-table td{display:block}
+ .role-table thead{display:none}
+ .role-table tbody th{border-bottom:0;padding-bottom:2px}
+ .role-table td{padding-top:0}
+}
+
+/* Homepage perspective: the colonnade beside the four questions when supplied */
+.perspective-body.has-media{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gutter);align-items:start;margin-top:clamp(32px,4vw,56px)}
+.perspective-media{grid-column:1/span 4;aspect-ratio:4/5;margin:0}
+.perspective-body.has-media .fundamental-strip{grid-column:6/span 7;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:0}
+.perspective-body.has-media .fundamental-strip li{padding-bottom:28px}
+@media(max-width:980px){
+ .perspective-body.has-media{grid-template-columns:1fr}
+ .perspective-media,.perspective-body.has-media .fundamental-strip{grid-column:1/-1}
+ .perspective-media{max-width:420px;margin-bottom:32px}
+ .perspective-body.has-media .fundamental-strip{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+ .hero-actions .nav-cta,.hero-actions .btn{white-space:normal;flex-shrink:1;max-width:100%;text-align:center;line-height:1.5}
+}
+
+/* Operating Services: functional principle headings in Inter */
+.ops-page .principles h3{font-family:var(--sans);font-weight:500;font-size:18px;line-height:1.35}
+.service-body .capability-items{margin-top:16px}
+.service-body .row-sublead{color:var(--carbon)}

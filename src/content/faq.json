@@ -1,12 +1,72 @@
 [
-  { "question": "What does Comet Innovations do?", "answer": ["Comet Innovations is an AI Transformation & Venture Building firm offering three independent services: strategic advisory, executive education and forward-deployed AI engineering.", "We help organisations understand the strategic implications of artificial intelligence, strengthen leadership capability and build AI systems that address real business requirements."] },
-  { "question": "Can we engage Comet for advisory only?", "answer": ["Yes. Advise is a standalone professional service. Clients can commission strategic assessments, board-level advisory, investment-related analysis or other defined advisory work without purchasing education or engineering."] },
-  { "question": "Does Comet offer executive education as a separate service?", "answer": ["Yes. Educate provides standalone programmes for boards, executive committees and leadership teams. Programmes can be tailored to the audience, sector and strategic challenges of the organisation."] },
-  { "question": "What is forward-deployed engineering?", "answer": ["Forward-deployed engineering involves technical specialists working closely with client teams to understand operational requirements and build AI systems within the relevant business environment.", "This includes solution architecture, development, integration, testing and agreed deployment activities."] },
-  { "question": "Which industries does Comet serve?", "answer": ["Our priority markets are private equity, government and energy. We also consider selected engagements outside these sectors where our expertise is directly relevant."] },
-  { "question": "Is Comet tied to a particular AI provider?", "answer": ["No. Our approach is technology-agnostic. We assess models, platforms and system architectures according to business requirements, technical feasibility, security and operating constraints."] },
-  { "question": "Does Comet develop AI agents and enterprise applications?", "answer": ["Yes. Through Engineer, we work on AI-enabled workflows, agents, integrations and applications, subject to clearly defined requirements and delivery scope."] },
-  { "question": "Does Comet build new businesses?", "answer": ["Yes. Venture building is part of our overall proposition. We support opportunity assessment, business model development and venture strategy through Advise, and technical product development through Engineer."] },
-  { "question": "What is the Four Fundamentals framework?", "answer": ["The Four Fundamentals is Comet’s proprietary framework for examining where AI changes four dimensions of business: Value, Work, Organisation and Growth.", "It informs our strategic thinking but does not require clients to follow a fixed engagement sequence."] },
-  { "question": "Where is Comet based?", "answer": ["Comet Innovations is based in London, United Kingdom, and works internationally according to engagement requirements."] }
+  {
+    "question": "What does Comet Innovations do?",
+    "answer": [
+      "Comet Innovations is an AI Transformation & Operating Services firm. We help organisations improve business performance and create new economic value through AI, in two ways: project-led AI transformation and recurring AI-native operating services.",
+      "AI Transformation covers AI strategy and economics, operating model redesign, executive education, venture development, and AI engineering and deployment. AI-native operating services deliver defined business workflows through a combination of AI, automation, human expertise and operational oversight."
+    ]
+  },
+  {
+    "question": "What are AI-native operating services?",
+    "answer": [
+      "AI-native operating services are recurring engagements in which Comet runs a defined business workflow, such as customer enquiries, revenue administration or document processing, through a combination of AI, automation, human expertise and operational oversight within agreed service boundaries.",
+      "They are a developing part of our offer. Each service is scoped individually, and decisions, approvals and accountabilities that cannot be delegated remain with the client."
+    ]
+  },
+  {
+    "question": "Can we engage Comet for advisory only?",
+    "answer": [
+      "Yes. AI strategy and economics is commissioned on its own. Clients can engage us for strategic assessments, board-level advisory, investment-related analysis or other defined advisory work without purchasing education, engineering or operating services."
+    ]
+  },
+  {
+    "question": "Does Comet offer executive education as a separate service?",
+    "answer": [
+      "Yes. Executive Education is one of the five AI Transformation capabilities and is commissioned independently. Programmes for boards, executive committees and leadership teams are tailored to the audience, sector and strategic challenges of the organisation."
+    ]
+  },
+  {
+    "question": "What is forward-deployed engineering?",
+    "answer": [
+      "Forward-deployed engineering is how we deliver AI Engineering & Deployment: technical specialists work closely with client teams to understand operational requirements and build AI systems within the relevant business environment.",
+      "This includes solution architecture, development, integration, testing and agreed deployment activities."
+    ]
+  },
+  {
+    "question": "Which industries does Comet serve?",
+    "answer": [
+      "Our priority markets are private equity, government and energy. We also consider selected engagements outside these sectors where our expertise is directly relevant."
+    ]
+  },
+  {
+    "question": "Is Comet tied to a particular AI provider?",
+    "answer": [
+      "No. Our approach is technology-agnostic. We assess models, platforms and system architectures according to business requirements, technical feasibility, security and operating constraints."
+    ]
+  },
+  {
+    "question": "Does Comet develop AI agents and enterprise applications?",
+    "answer": [
+      "Yes. Through AI Engineering & Deployment, we work on AI-enabled workflows, agents, integrations and applications, subject to clearly defined requirements and delivery scope."
+    ]
+  },
+  {
+    "question": "Does Comet build new businesses?",
+    "answer": [
+      "Yes. Venture development is one of our AI Transformation capabilities. We support opportunity assessment, business model design and venture validation, and technical product development through AI Engineering & Deployment where it is needed."
+    ]
+  },
+  {
+    "question": "What is the Four Fundamentals framework?",
+    "answer": [
+      "The Four Fundamentals is Comet’s proprietary framework for examining where AI changes four dimensions of business: Value, Work, Organisation and Growth.",
+      "It informs our strategic thinking but does not require clients to follow a fixed engagement sequence."
+    ]
+  },
+  {
+    "question": "Where is Comet based?",
+    "answer": [
+      "Comet Innovations is based in London, United Kingdom, and works internationally according to engagement requirements."
+    ]
+  }
 ]

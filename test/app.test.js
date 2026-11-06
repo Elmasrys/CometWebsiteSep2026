@@ -47,7 +47,7 @@ test('serves pages with security headers', async () => {
   const res = await fetch(`${base}/`);
   assert.equal(res.status, 200);
   assert.match(res.headers.get('content-security-policy'), /default-src 'self'/);
-  assert.match(await res.text(), /AI is changing the fundamentals of business/);
+  assert.match(await res.text(), /AI is changing the economics of business/);
 });
 
 test('serves clean URLs and a 404 page', async () => {
@@ -152,8 +152,13 @@ test('permanently redirects old and non-canonical paths, one to one', async () =
     '/rd.html': '/research-and-development',
     '/rd': '/research-and-development',
     '/contact.html?topic=advisory': '/contact?topic=advisory',
-    '/diagnostic': '/advise',
-    '/diagnostic.html': '/advise',
+    '/diagnostic': '/ai-transformation',
+    '/diagnostic.html': '/ai-transformation',
+    '/what-we-do': '/ai-transformation',
+    '/advise': '/ai-transformation',
+    '/advise.html': '/ai-transformation',
+    '/educate': '/ai-transformation/executive-education',
+    '/engineer?topic=engineering': '/ai-transformation/engineering?topic=engineering',
   };
   for (const [from, to] of Object.entries(cases)) {
     const res = await fetch(`${base}${from}`, { redirect: 'manual' });
