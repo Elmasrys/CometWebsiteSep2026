@@ -389,7 +389,7 @@ test('the founder profile comes from content data and is complete', () => {
   for (const piece of [founder.name, founder.title, ...founder.bio, ...founder.expertise, ...founder.experience.flatMap(e => [e.heading, e.text])]) {
     assert.ok(about.includes(piece), piece);
   }
-  assert.ok(about.includes('These are not descriptions of Comet client engagements.'));
+  assert.ok(about.includes('Selected career experience of Comet’s founder.'));
   assert.ok(html('about.html').includes(founder.linkedin));
   for (const insight of ctx.insights) assert.ok(html('about.html').includes(`href="${insight.url}"`), insight.url);
 });
