@@ -441,7 +441,7 @@ function llmsTxt(ctx, pages) {
   return [
     `# ${site.name}`,
     '',
-    `> ${site.name} is a London-based ${site.category} firm. ${site.description}`,
+    `> ${site.name} is a London-based ${site.category} firm. ${site.description.replace(/^.*? firm that /, 'It ')}`,
     '',
     `Core question: ${site.question}`,
     '',

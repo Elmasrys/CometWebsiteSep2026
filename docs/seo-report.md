@@ -1,18 +1,6 @@
 # SEO and GEO implementation report
 
-> **November 2026 migration.** The service architecture moved to two offerings. The tables below predate it; where they differ, this note governs.
->
-> | Retired URL | Redirects (301) to | Content now lives at |
-> | --- | --- | --- |
-> | `/what-we-do` | `/ai-transformation` | Offerings overview on the homepage and `/ai-transformation` |
-> | `/advise` | `/ai-transformation` | AI Strategy & Economics section (`#strategy`) |
-> | `/educate` | `/ai-transformation/executive-education` | Same copy, retitled Executive Education |
-> | `/engineer` | `/ai-transformation/engineering` | Same copy, retitled AI Engineering & Deployment |
->
-> New indexable pages: `/ai-transformation` (intent: AI transformation services), `/operating-services` (intent: AI-native operating services; secondary: AI-enabled business process outsourcing, AI customer operations, AI revenue operations), `/ai-transformation/executive-education`, `/ai-transformation/engineering`. Service structured data now sits on these four pages.
-
-
-Comet Innovations website. Canonical origin: **https://www.comet-innovations.com**. Status as of 14 October 2026.
+Comet Innovations website. Canonical origin: **https://www.comet-innovations.com**. Status as of 6 November 2026, after the move to two offerings (AI Transformation and AI-Native Operating Services).
 
 The approved copy was not rewritten for search. Optimisation comes from metadata, semantic structure, internal linking, entity clarity and a small amount of definitional language. All new copy is listed in section 13 for approval.
 
@@ -22,26 +10,32 @@ The tables in sections 1 to 4 are generated from the build, so they match what i
 
 | URL | Indexed | Title | Meta description |
 | --- | --- | --- | --- |
-| `/` | Yes | AI Transformation & Venture Building \| Comet Innovations | Comet Innovations helps leadership teams identify where AI changes business economics, redesign work and operating models, and build new sources of growth. |
-| `/what-we-do` | Yes | AI Transformation Strategy & Services \| Comet Innovations | Explore Comet's approach to AI transformation across value creation, work redesign, operating models and venture building. |
-| `/value-creation` | Yes | AI Growth Strategy & Value Creation \| Comet Innovations | Identify where AI changes customer value, revenue models, propositions, pricing and margins through AI growth strategy and business model innovation. |
-| `/work-redesign` | Yes | AI Work Redesign & Workforce Transformation \| Comet Innovations | Redesign work around people, automation and AI. Comet helps organisations transform workflows, deploy agentic AI and build workforce capability. |
-| `/operating-model` | Yes | AI Operating Model & Governance \| Comet Innovations | Design the structures, governance, decision rights and capabilities required to scale AI across the enterprise. |
-| `/venture-building` | Yes | Corporate Venture Building & AI Ventures \| Comet Innovations | Comet helps established organisations identify, validate, build and scale new products, services and AI-native ventures. |
-| `/diagnostic` | Yes | AI Opportunity Assessment \| The Fundamentals Diagnostic | A four-to-six-week assessment identifying where AI materially changes value, work, organisation and growth, and which opportunities deserve priority. |
-| `/our-work` | Yes | AI Transformation & Venture Building Work \| Comet Innovations | Selected Comet engagements across AI transformation, value creation, operating models, work redesign and venture building. |
-| `/insights` | Yes | AI Transformation & Venture Building Insights \| Comet Innovations | Research and perspectives on AI economics, work redesign, operating models, business building and enterprise transformation. |
+| `/` | Yes | AI Transformation & Operating Services \| Comet Innovations | Comet Innovations helps organisations improve business performance through AI: project-led AI transformation and recurring AI-native operating services. |
+| `/ai-transformation` | Yes | AI Transformation Services \| Comet Innovations | Project-led AI transformation: AI strategy and economics, operating model redesign, executive education, venture development and AI engineering and deployment. |
+| `/ai-transformation/executive-education` | Yes | AI Executive Education & Leadership Programmes \| Comet Innovations | Executive education connecting AI with strategy, leadership and decision-making, for boards, executive committees and senior leadership teams. |
+| `/ai-transformation/engineering` | Yes | AI Engineering & Deployment \| Comet Innovations | AI engineering and deployment: enterprise AI agents, intelligent workflows, systems integration, AI-native products and prototypes, built with client teams. |
+| `/operating-services` | Yes | AI-Native Operating Services \| Comet Innovations | Recurring AI-native operating services for customer, revenue and business process operations: defined workflows delivered with AI, automation and human oversight. |
+| `/industries` | Yes | AI for Private Equity, Government & Energy \| Comet Innovations | How Comet applies AI transformation and AI-native operating services in private equity, government and energy, three markets where AI changes the economics. |
+| `/industries/private-equity` | Yes | AI for Private Equity: Portfolio Value Creation \| Comet Innovations | AI transformation and AI-native operating services for private equity: portfolio value creation, EBITDA, cost-to-serve and shared operating capabilities. |
+| `/industries/government` | Yes | AI for Government & Public Sector \| Comet Innovations | AI transformation and AI-native operating services for government: institutional AI strategy, public service delivery, administrative workflows and AI governance. |
+| `/industries/energy` | Yes | AI for Energy, Utilities & Infrastructure \| Comet Innovations | AI transformation and AI-native operating services for energy businesses, utilities and infrastructure operators, from asset information to enterprise workflows. |
+| `/four-fundamentals` | Yes | The Four Fundamentals: An AI Strategy Framework \| Comet Innovations | Comet’s Four Fundamentals framework examines how AI changes value, work, organisation and growth, helping leaders decide which changes deserve attention. |
+| `/value-creation` | Yes | AI Growth Strategy & Value Creation \| Comet Innovations | How AI changes the economics of value: customer propositions, revenue and pricing, cost and margin, competitive position and business model innovation. |
+| `/work-redesign` | Yes | AI Work Redesign & Workforce Transformation \| Comet Innovations | How AI changes work: workflow redesign, agentic AI, human and AI collaboration, operational productivity and the workforce implications of intelligent systems. |
+| `/operating-model` | Yes | AI Operating Model & Governance \| Comet Innovations | How AI changes the organisation: enterprise AI priorities, operating model design, decision rights, governance, capability development and portfolio transformation. |
+| `/venture-building` | Yes | Corporate Venture Building & AI Ventures \| Comet Innovations | How AI changes growth: opportunity discovery, business model innovation, venture validation, corporate venture building, AI-native products and commercialisation. |
+| `/insights` | Yes | AI Transformation & Operating Model Insights \| Comet Innovations | Research and perspectives on AI economics, work redesign, operating models, business building and enterprise transformation. |
 | `/insights/where-is-ai-changing-your-economics` | Yes | Where Is AI Changing Your Economics? \| Comet Innovations | Why AI strategy should begin with business economics rather than use cases, and how leaders can identify where AI materially changes value, work, organisation and growth. |
 | `/insights/the-four-fundamentals` | Yes | The Four Fundamentals of AI Transformation \| Comet Innovations | A leadership framework for understanding how AI changes value, work, organisation and growth. |
 | `/insights/what-should-you-build-next` | Yes | What Should You Build Next? Corporate Venture Building \| Comet | How established organisations can turn customers, capital, data, expertise and distribution into validated new businesses and AI-native ventures. |
-| `/research-and-development` | Yes | AI Research: Stateful AI Orchestration \| Comet Innovations | Comet Innovations conducts applied research into persistent state, validation-gated execution and orchestration for AI-native enterprise systems. |
-| `/about` | Yes | About Comet Innovations \| AI Transformation & Venture Building | Meet Comet Innovations, a London-based AI Transformation & Venture Building firm combining senior operating experience, strategy, engineering and applied AI research. |
-| `/contact` | Yes | Contact Comet Innovations \| AI Transformation & Venture Building | Speak with Comet Innovations about AI transformation, value creation, work redesign, operating models, venture building or the Fundamentals Diagnostic. |
+| `/research-and-development` | Yes | AI Research: Stateful AI Orchestration \| Comet Innovations | Comet’s applied research into stateful AI orchestration: persistent workflow state, validation-gated execution and multi-step orchestration for enterprise AI. |
+| `/about` | Yes | About Comet Innovations \| AI Transformation & Operating Services | Meet Comet Innovations, a London-based AI Transformation & Operating Services firm combining senior operating experience, strategy, engineering and applied AI research. |
+| `/contact` | Yes | Contact Comet Innovations \| AI Transformation & Operating Services | Speak with Comet Innovations about an AI transformation requirement or an AI-native operating service, in private equity, government, energy or beyond. |
 | `/privacy` | Yes | Privacy Policy \| Comet Innovations | How Comet Innovations collects, uses and protects personal information submitted through this website. |
 | `/cookies` | Yes | Cookie Policy \| Comet Innovations | How the Comet Innovations website uses cookies and similar technologies. |
 | `/terms` | Yes | Website Terms \| Comet Innovations | The terms that apply to your use of the Comet Innovations website. |
-| `/enquiry-received` | No (noindex) | Enquiry received \| Comet Innovations | Your enquiry has been received. |
-| any unknown URL | No (404 status, noindex) | Page not found \| Comet Innovations | The page you were looking for could not be found. |
+| `/enquiry-received` | No | Enquiry received \| Comet Innovations | Your enquiry has been received. |
+| `/404` | No | Page not found \| Comet Innovations | The page you were looking for could not be found. |
 
 Clean URLs throughout: no `.html`, no trailing slash, one host (`www`), HTTPS only. The R&D page moved from `/rd` to `/research-and-development`.
 
@@ -51,24 +45,30 @@ Each page has one primary intent and a limited set of secondary intents. The int
 
 | URL | Primary search intent | Secondary intents |
 | --- | --- | --- |
-| `/` | AI transformation consulting | AI transformation firm, AI venture building, enterprise AI transformation |
-| `/what-we-do` | AI transformation strategy | AI strategy consulting, enterprise AI transformation, AI business transformation |
-| `/value-creation` | AI growth strategy | AI business model innovation, AI value creation, AI commercial strategy, AI product strategy |
-| `/work-redesign` | AI workforce transformation | AI work redesign, agentic AI consulting, AI workflow redesign, AI agents for business |
-| `/operating-model` | AI operating model | AI governance consulting, enterprise AI strategy, AI centre of excellence, AI portfolio management |
-| `/venture-building` | corporate venture building | AI venture building, corporate innovation consulting, venture validation, AI-native ventures, new business building |
-| `/diagnostic` | AI opportunity assessment | AI readiness assessment, AI transformation assessment, AI strategy assessment, AI opportunity discovery |
-| `/our-work` | AI transformation case studies | AI consulting case studies, corporate venture building examples, AI transformation examples |
+| `/` | AI transformation services | AI-native operating services, enterprise AI strategy, AI operating model transformation, AI for private equity value creation |
+| `/ai-transformation` | AI transformation services | enterprise AI strategy, AI operating model transformation, AI strategy consulting, AI for private equity value creation |
+| `/ai-transformation/executive-education` | AI executive education | AI leadership programme, AI for boards, executive AI training, AI leadership development |
+| `/ai-transformation/engineering` | AI engineering and deployment | forward-deployed AI engineering, AI workflow automation, enterprise AI agents, AI systems integration, AI workflow automation, AI product development |
+| `/operating-services` | AI-native operating services | AI-enabled business process outsourcing, AI business process operations, AI customer operations, AI revenue operations, AI workflow automation |
+| `/industries` | AI consulting for private equity, government and energy | AI for private equity, AI in government, AI in energy, AI value creation private equity |
+| `/industries/private-equity` | AI for private equity | AI for private equity value creation, AI portfolio value creation, private equity AI strategy, portfolio AI assessment, AI operating partner support, shared services for portfolio companies |
+| `/industries/government` | AI for government | AI transformation for government, public sector AI strategy, AI in public services, government AI governance, AI public sector transformation |
+| `/industries/energy` | AI for energy | AI for energy operations, AI in utilities, AI for energy infrastructure, energy AI strategy, AI asset intelligence |
+| `/four-fundamentals` | AI strategy framework | AI transformation framework, Four Fundamentals, AI business framework, AI value work organisation growth |
+| `/value-creation` | AI value creation | AI business model innovation, AI pricing strategy, AI growth strategy, AI commercial strategy |
+| `/work-redesign` | AI work redesign | AI workflow redesign, agentic AI, human and AI collaboration, AI workforce transformation |
+| `/operating-model` | AI operating model | AI governance, AI decision rights, enterprise AI strategy, AI portfolio transformation |
+| `/venture-building` | corporate venture building | AI venture building, venture validation, AI-native products, AI growth strategy |
 | `/insights` | AI transformation insights | AI strategy insights, AI economics, AI operating models, corporate venture building |
 | `/insights/where-is-ai-changing-your-economics` | AI economics | AI transformation strategy, AI business value, AI value creation |
 | `/insights/the-four-fundamentals` | AI transformation framework | AI strategy framework, enterprise AI transformation |
 | `/insights/what-should-you-build-next` | corporate venture building | corporate innovation, new business building, AI venture building |
-| `/research-and-development` | stateful AI orchestration | AI orchestration, persistent AI systems, agentic AI architecture, enterprise AI architecture |
+| `/research-and-development` | stateful AI orchestration | AI orchestration, persistent AI workflows, agentic AI architecture, enterprise AI architecture |
 | `/about` | Comet Innovations | AI transformation consulting firm London, AI venture building firm, AI consultancy London |
-| `/contact` | Contact Comet Innovations | – |
-| `/privacy` | Comet Innovations privacy policy | – |
-| `/cookies` | Comet Innovations cookie policy | – |
-| `/terms` | Comet Innovations website terms | – |
+| `/contact` | Contact Comet Innovations | None |
+| `/privacy` | Comet Innovations privacy policy | None |
+| `/cookies` | Comet Innovations cookie policy | None |
+| `/terms` | Comet Innovations website terms | None |
 
 ## 3. Structured data per page
 
@@ -82,13 +82,19 @@ Every indexable page carries one JSON-LD `@graph`. Entities connect through stab
 | URL | JSON-LD (one connected @graph per page) |
 | --- | --- |
 | `/` | Organization, WebSite, WebPage |
-| `/what-we-do` | Organization, WebSite, WebPage, BreadcrumbList, DefinedTerm |
-| `/value-creation` | Organization, WebSite, WebPage, BreadcrumbList, Service |
-| `/work-redesign` | Organization, WebSite, WebPage, BreadcrumbList, Service |
-| `/operating-model` | Organization, WebSite, WebPage, BreadcrumbList, Service |
-| `/venture-building` | Organization, WebSite, WebPage, BreadcrumbList, Service, DefinedTerm |
-| `/diagnostic` | Organization, WebSite, WebPage, BreadcrumbList, Service |
-| `/our-work` | Organization, WebSite, CollectionPage, BreadcrumbList |
+| `/ai-transformation` | Organization, WebSite, WebPage, BreadcrumbList, Service |
+| `/ai-transformation/executive-education` | Organization, WebSite, WebPage, BreadcrumbList, Service |
+| `/ai-transformation/engineering` | Organization, WebSite, WebPage, BreadcrumbList, Service |
+| `/operating-services` | Organization, WebSite, WebPage, BreadcrumbList, Service |
+| `/industries` | Organization, WebSite, WebPage, BreadcrumbList |
+| `/industries/private-equity` | Organization, WebSite, WebPage, BreadcrumbList |
+| `/industries/government` | Organization, WebSite, WebPage, BreadcrumbList |
+| `/industries/energy` | Organization, WebSite, WebPage, BreadcrumbList |
+| `/four-fundamentals` | Organization, WebSite, WebPage, BreadcrumbList, DefinedTerm, DefinedTermSet |
+| `/value-creation` | Organization, WebSite, WebPage, BreadcrumbList |
+| `/work-redesign` | Organization, WebSite, WebPage, BreadcrumbList |
+| `/operating-model` | Organization, WebSite, WebPage, BreadcrumbList |
+| `/venture-building` | Organization, WebSite, WebPage, BreadcrumbList |
 | `/insights` | Organization, WebSite, CollectionPage, BreadcrumbList |
 | `/insights/where-is-ai-changing-your-economics` | Organization, WebSite, WebPage, BreadcrumbList, Person, Article |
 | `/insights/the-four-fundamentals` | Organization, WebSite, WebPage, BreadcrumbList, Person, Article |
@@ -103,7 +109,7 @@ Every indexable page carries one JSON-LD `@graph`. Entities connect through stab
 Notes:
 - **Organization** uses the single canonical description from `src/content/site.json`. Only London is encoded as an address. The UK, Middle East and Africa appear only as `areaServed`. No street address is published, because the only verified address is the registered office in Loughton, which is not an office.
 - **ProfessionalService was not used.** It is a LocalBusiness subtype that expects a public street address. Organization plus Service is the accurate model.
-- **Service** appears only on the four pillar pages and the Diagnostic, each with Comet as provider.
+- **Service** appears only on the four offering pages (`/ai-transformation`, `/ai-transformation/executive-education`, `/ai-transformation/engineering`, `/operating-services`), each with Comet as provider.
 - **DefinedTerm** records the definitions that appear visibly on the page: the Four Fundamentals, corporate venture building and stateful AI orchestration.
 - **FAQPage** appears only on About and matches the visible questions and answers character for character, from the same source file.
 - **Article** carries real `datePublished` and `dateModified` values (`modified` is set in an Insight's front matter only after a substantive change), the author as the Person `@id`, the publisher, its own social image and `mainEntityOfPage`.
@@ -113,7 +119,7 @@ Notes:
 
 Every indexable page has `og:title`, `og:description`, `og:url` (the canonical URL), `og:type`, `og:image` (1200×630, with dimensions and alt text), `og:locale`, and Twitter/X `summary_large_image` tags. Articles also carry `article:published_time`, `article:modified_time`, `article:author` and `article:section`.
 
-There are 16 distinct designed social images in `public/images/og/`: Home, What We Do, each pillar, the Diagnostic, Our Work, Insights, each cornerstone Insight, R&D, About and Contact. The legal pages share the default image. Regenerate the images after changing a title with `node tools/generate-og.mjs`.
+There are 22 social images in `public/images/og/`: the default, Home, both offerings and their two subpages, Industries and each market, the Four Fundamentals and each pillar, Insights and each cornerstone Insight, R&D, About and Contact. The legal pages share the default image. Regenerate the images after changing a title with `node tools/generate-og.mjs`.
 
 ## 5. Redirect map
 
@@ -127,14 +133,18 @@ All redirects are permanent (301), one to one, and preserve query strings.
 | `/<page>.html`, for every page | `/<page>` |
 | `/insights/<slug>.html` | `/insights/<slug>` |
 | `/rd`, `/rd.html` | `/research-and-development` |
+| `/what-we-do`, `/advise` (and `.html`) | `/ai-transformation` |
+| `/educate` | `/ai-transformation/executive-education` |
+| `/engineer` | `/ai-transformation/engineering` |
+| `/diagnostic` (retired October 2026) | `/ai-transformation` |
 | any URL with a trailing slash | the same URL without it |
 | `*.up.railway.app/*` | `https://www.comet-innovations.com/*`, once `REDIRECT_TO_CANONICAL=true` is set (see section 12). Until then these hosts are served with `X-Robots-Tag: noindex`. |
 
-There was no earlier Comet website, so no further legacy URLs need mapping. The contact form posts to `/api/contact` and confirms at `/enquiry-received` (noindex).
+The October 2026 service pages were retired in November 2026: Educate and Engineer moved intact under `/ai-transformation`, Advise was folded into its AI Strategy & Economics section, and What We Do was replaced by the offerings overview. No other legacy URLs need mapping. The contact form posts to `/api/contact` and confirms at `/enquiry-received` (noindex).
 
 ## 6. Sitemap
 
-`https://www.comet-innovations.com/sitemap.xml` lists the 18 canonical, indexable URLs only. It excludes the 404 page, `/enquiry-received`, redirects and every `.html` variant. Each `lastmod` is the page's recorded update date (Insights use `dateModified`). It is referenced from `robots.txt` and from a `<link rel="sitemap">` on every page.
+`https://www.comet-innovations.com/sitemap.xml` lists the 24 canonical, indexable URLs only. It excludes the 404 page, `/enquiry-received`, redirects and every `.html` variant. Each `lastmod` is the page's recorded update date (Insights use `dateModified`). It is referenced from `robots.txt` and from a `<link rel="sitemap">` on every page.
 
 ## 7. robots.txt
 
@@ -257,27 +267,20 @@ Ready for verification and submission once DNS points at Railway.
 
 ## 13. New copy for approval
 
-Everything else on the site is the approved copy, unchanged.
+The November 2026 restructure introduced new copy, written to the approved brief. It is listed here for review; everything else is earlier approved copy, moved without change.
 
 | Page | New or changed text |
 | --- | --- |
-| Home | Eyebrow now reads "An AI Transformation & Venture Building firm", establishing the category in the first screen. Added a link: "The Four Fundamentals, in depth". R&D band: "AI-native" and "patent-pending" hyphenated, and "stateful AI orchestration" linked. |
-| What We Do | Two definitional sentences supplied in the brief. Added "Read the framework in depth" and a "Continue exploring" block. Fundamentals links now read "Explore value creation" and so on, instead of "Explore". |
-| Value Creation | The H1 is now the brief's statement; the framework question stays as a visible line (now the canonical "How do you create and capture value?", from `src/content/fundamentals.json`). One definitional sentence. **New section: "How AI changes the economics of value"**, five answers. |
-| Work Redesign | H1 per the brief. One definitional sentence. **New section: "From task automation to workforce transformation"**, five distinctions, including the plain-language definition of agentic AI. |
-| Operating Model | H1 per the brief. A definition of an AI operating model. **New section: "Scaling AI is an organisational question"**, six answers. |
-| Venture Building | H1 per the brief. The definition and statement supplied in the brief. **New section: "Four disciplines that are often confused"**. |
-| Diagnostic | The definition supplied in the brief, plus "not a downloadable maturity test or self-assessment". **New section: "The Diagnostic at a glance"**, five answers. |
-| R&D | H1 hyphenated per the brief. **New definition of stateful AI orchestration.** Research areas hyphenated ("validation-gated", "multi-step", "state-dependent"). |
-| About | H1 "About Comet Innovations", followed by "Comet Innovations is an AI Transformation & Venture Building firm based in London." |
-| Insights | H1 "Insights", with "Ideas for businesses being changed by AI." as the lead line. |
-| The Four Fundamentals (Insight) | The canonical framework definition added as its own paragraph. |
-| All three Insights | Contextual links placed on existing phrases. No words changed. |
-| Pillar pages, Diagnostic, What We Do, Our Work, R&D | "Continue exploring" link blocks, using existing page and Insight titles. |
+| Home | All sections except "Why Comet" (principles partly reused), the founder line, applied research and Insights: the hero supporting line, the four economic outcomes, the two-offerings section, "From building a tool to running a service", the industry summaries and the closing paragraph. |
+| AI Transformation | New page. "The problems we address", the five capability descriptions (Executive Education and AI Engineering & Deployment summarise their own pages; AI Strategy & Economics reuses the former Advise copy), "Economics and operating realities first" and "How to engage us". |
+| AI-Native Operating Services | New page, all copy, including the status statement ("Available now", "In development", "Illustrative") and every service boundary. |
+| Executive Education, AI Engineering & Deployment | Former Educate and Engineer copy unchanged, plus one sentence each linking to AI Transformation or Operating Services. |
+| Private Equity, Government, Energy | "How Comet supports…" restructured into the two offerings; the Operating Services paragraph, examples and boundary on each page are new. |
+| Industries, About, FAQ | Wording updated for the two offerings; one new FAQ ("What are AI-native operating services?"). |
 
 ## 14. Topical clusters and future content
 
-The three cornerstone Insights anchor the AI Economics, Transformation and Venture Building clusters. Their forthcoming companions are already listed on `/insights`, unlinked until written:
+The three cornerstone Insights anchor the AI Economics, Transformation and Venture Building clusters. AI-Native Operating Services has no supporting Insight yet; a piece on how an operating service differs from outsourcing and from an engineering project would give `/operating-services` its first cluster companion, once there is evidence to cite. Their forthcoming companions are already listed on `/insights`, unlinked until written:
 
 - **Work:** Beyond Automation
 - **Operating Model:** The AI-Native Operating Model
