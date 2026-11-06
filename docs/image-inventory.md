@@ -28,12 +28,12 @@ Contemporary editorial, medium-format character, restrained saturation, neutral 
 | Live | `industry_government_detail` | `assets/source/industry-government-detail.jpg` | Government; Industries overview | 21:9 | 3000 × 1286 minimum |
 | Live | `industry_energy` | `assets/source/industry-energy.jpg` | Energy; Home section 04 | 21:9 (hero) and 3:2 (home markets) | 3600 × 1543 minimum (subject centred for a 3:2 crop) |
 | Live | `industry_energy_detail` | `assets/source/industry-energy-detail.jpg` | Energy; Industries overview | 4:5 | 2000 × 2500 minimum |
-| Live | `transformation_hero` | `assets/source/advise.jpg` | AI Transformation | 4:5 | 2000 × 2500 minimum |
-| Awaiting | `transformation_context` | `assets/source/advise-context.jpg` | AI Transformation | 16:9 | 3000 × 1688 minimum |
-| Live | `education_hero` | `assets/source/educate.jpg` | Executive Education (AI Transformation) | 16:9 | 3000 × 1688 minimum |
-| Awaiting | `education_detail` | `assets/source/educate-detail.jpg` | Executive Education (AI Transformation) | 4:5 | 2000 × 2500 minimum |
-| Live | `engineering_hero` | `assets/source/engineer.jpg` | AI Engineering & Deployment (AI Transformation) | 3:2 | 2400 × 1600 minimum |
-| Awaiting | `engineering_artefact` | `assets/source/engineer-artefact.png` | AI Engineering & Deployment (AI Transformation) | 16:10 | 2560 × 1600 minimum |
+| Live | `transformation_hero` | `assets/source/transformation.jpg` | AI Transformation | 4:5 | 2000 × 2500 minimum |
+| Awaiting | `transformation_context` | `assets/source/transformation-context.jpg` | AI Transformation | 16:9 | 3000 × 1688 minimum |
+| Live | `education_hero` | `assets/source/education.jpg` | Executive Education (AI Transformation) | 16:9 | 3000 × 1688 minimum |
+| Awaiting | `education_detail` | `assets/source/education-detail.jpg` | Executive Education (AI Transformation) | 4:5 | 2000 × 2500 minimum |
+| Live | `engineering_hero` | `assets/source/engineering.jpg` | AI Engineering & Deployment (AI Transformation) | 3:2 | 2400 × 1600 minimum |
+| Awaiting | `engineering_artefact` | `assets/source/engineering-artefact.png` | AI Engineering & Deployment (AI Transformation) | 16:10 | 2560 × 1600 minimum |
 | Awaiting | `fundamentals_overview` | `assets/source/fundamentals-overview.jpg` | The Four Fundamentals | 21:9 | 3600 × 1543 minimum |
 | Awaiting | `fundamentals_value` | `assets/source/fundamentals-value.jpg` | The Four Fundamentals | 4:5 | 2000 × 2500 minimum |
 | Awaiting | `fundamentals_work` | `assets/source/fundamentals-work.jpg` | The Four Fundamentals | 4:5 | 2000 × 2500 minimum |
@@ -145,7 +145,7 @@ Contemporary editorial, medium-format character, restrained saturation, neutral 
 - **Subject:** Strategic judgement: an authentic professional portrait of Comet's founder, or an executive environment without identifiable clients
 - **Composition:** Quiet, considered, eye level; never a staged meeting presented as a Comet engagement
 - **Aspect ratio:** 4:5; **focal point:** 56% 30%
-- **Master:** `assets/source/advise.jpg`, 2000 × 2500 minimum; outputs `public/images/advise-{960,1122}.{avif,webp}` and `.jpg` at 1122px
+- **Master:** `assets/source/transformation.jpg`, 2000 × 2500 minimum; outputs `public/images/transformation-{960,1122}.{avif,webp}` and `.jpg` at 1122px
 - **Credit and licence:** Supplied by Comet Innovations (curated collection, October 2026)
 
 ### `transformation_context` (awaiting photography)
@@ -155,7 +155,7 @@ Contemporary editorial, medium-format character, restrained saturation, neutral 
 - **Subject:** Organisational complexity: a headquarters atrium or working floor seen from height
 - **Composition:** Layers of structure and people, restrained, no logos
 - **Aspect ratio:** 16:9; **focal point:** 50% 50%
-- **Master:** `assets/source/advise-context.jpg`, 3000 × 1688 minimum; outputs `public/images/advise-context-{1280,2400}.{avif,webp}` and `.jpg` at 2400px
+- **Master:** `assets/source/transformation-context.jpg`, 3000 × 1688 minimum; outputs `public/images/transformation-context-{1280,2400}.{avif,webp}` and `.jpg` at 2400px
 - **Credit and licence:** to be recorded on delivery
 
 ### `education_hero` (live)
@@ -165,7 +165,7 @@ Contemporary editorial, medium-format character, restrained saturation, neutral 
 - **Subject:** Human presence in executive learning: leaders in focused discussion around a table or in a seminar room
 - **Composition:** Natural light, engaged expressions, no slides or logos; only authorised Comet imagery may be presented as a Comet programme
 - **Aspect ratio:** 16:9; **focal point:** 46% 40%
-- **Master:** `assets/source/educate.jpg`, 3000 × 1688 minimum; outputs `public/images/educate-{1280,1672}.{avif,webp}` and `.jpg` at 1672px
+- **Master:** `assets/source/education.jpg`, 3000 × 1688 minimum; outputs `public/images/education-{1280,1672}.{avif,webp}` and `.jpg` at 1672px
 - **Credit and licence:** Supplied by Comet Innovations (curated collection, October 2026)
 
 ### `education_detail` (awaiting photography)
@@ -175,7 +175,7 @@ Contemporary editorial, medium-format character, restrained saturation, neutral 
 - **Subject:** A single participant listening, writing or speaking; hands and notes acceptable
 - **Composition:** Intimate, shallow depth of field, warm-neutral light
 - **Aspect ratio:** 4:5; **focal point:** 50% 40%
-- **Master:** `assets/source/educate-detail.jpg`, 2000 × 2500 minimum; outputs `public/images/educate-detail-{960,1600}.{avif,webp}` and `.jpg` at 1600px
+- **Master:** `assets/source/education-detail.jpg`, 2000 × 2500 minimum; outputs `public/images/education-detail-{960,1600}.{avif,webp}` and `.jpg` at 1600px
 - **Credit and licence:** to be recorded on delivery
 
 ### `engineering_hero` (live)
@@ -185,7 +185,7 @@ Contemporary editorial, medium-format character, restrained saturation, neutral 
 - **Subject:** Technical work in progress: engineers at workstations, a whiteboard architecture session or hardware on a bench
 - **Composition:** Precise and practical; screens unreadable unless showing genuine Comet work
 - **Aspect ratio:** 3:2; **focal point:** 52% 40%
-- **Master:** `assets/source/engineer.jpg`, 2400 × 1600 minimum; outputs `public/images/engineer-{960,1536}.{avif,webp}` and `.jpg` at 1536px
+- **Master:** `assets/source/engineering.jpg`, 2400 × 1600 minimum; outputs `public/images/engineering-{960,1536}.{avif,webp}` and `.jpg` at 1536px
 - **Credit and licence:** Supplied by Comet Innovations (curated collection, October 2026)
 
 ### `engineering_artefact` (awaiting photography)
@@ -195,7 +195,7 @@ Contemporary editorial, medium-format character, restrained saturation, neutral 
 - **Subject:** A genuine Comet artefact: a real product interface, architecture diagram or demonstration still
 - **Composition:** Only authentic material; never a mock-up of a fictional project; set alt text to describe it
 - **Aspect ratio:** 16:10; **focal point:** 50% 50%
-- **Master:** `assets/source/engineer-artefact.png`, 2560 × 1600 minimum; outputs `public/images/engineer-artefact-{1280,2000}.{avif,webp}` and `.jpg` at 2000px
+- **Master:** `assets/source/engineering-artefact.png`, 2560 × 1600 minimum; outputs `public/images/engineering-artefact-{1280,2000}.{avif,webp}` and `.jpg` at 2000px
 - **Credit and licence:** to be recorded on delivery
 
 ### `fundamentals_overview` (awaiting photography)

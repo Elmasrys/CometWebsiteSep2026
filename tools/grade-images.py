@@ -4,7 +4,7 @@ Run from the repository root:  python3 tools/grade-images.py
 Masters live untouched in assets/source/; every output is regenerated from them,
 so the grade never compounds and new photography can join the set consistently.
 
-The house look (see docs/artwork-brief.md):
+The house look (slot briefs are in docs/image-inventory.md):
   - natural colour, kept: hue untouched, saturation eased slightly so colour stays calm
   - lifted shadows (black point about #1B1A18) and soft highlight roll-off (never clipped)
   - gentle contrast and fine, static grain for a medium-format finish

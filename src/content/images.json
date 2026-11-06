@@ -165,8 +165,8 @@
       "credit": "Supplied by Comet Innovations (curated collection, October 2026)"
     },
     "transformation_hero": {
-      "file": "advise",
-      "master": "advise.jpg",
+      "file": "transformation",
+      "master": "transformation.jpg",
       "widths": [
         960,
         1122
@@ -183,8 +183,8 @@
       "credit": "Supplied by Comet Innovations (curated collection, October 2026)"
     },
     "transformation_context": {
-      "file": "advise-context",
-      "master": "advise-context.jpg",
+      "file": "transformation-context",
+      "master": "transformation-context.jpg",
       "widths": [
         1280,
         2400
@@ -201,8 +201,8 @@
       "credit": ""
     },
     "education_hero": {
-      "file": "educate",
-      "master": "educate.jpg",
+      "file": "education",
+      "master": "education.jpg",
       "widths": [
         1280,
         1672
@@ -219,8 +219,8 @@
       "credit": "Supplied by Comet Innovations (curated collection, October 2026)"
     },
     "education_detail": {
-      "file": "educate-detail",
-      "master": "educate-detail.jpg",
+      "file": "education-detail",
+      "master": "education-detail.jpg",
       "widths": [
         960,
         1600
@@ -237,8 +237,8 @@
       "credit": ""
     },
     "engineering_hero": {
-      "file": "engineer",
-      "master": "engineer.jpg",
+      "file": "engineering",
+      "master": "engineering.jpg",
       "widths": [
         960,
         1536
@@ -255,8 +255,8 @@
       "credit": "Supplied by Comet Innovations (curated collection, October 2026)"
     },
     "engineering_artefact": {
-      "file": "engineer-artefact",
-      "master": "engineer-artefact.png",
+      "file": "engineering-artefact",
+      "master": "engineering-artefact.png",
       "widths": [
         1280,
         2000
